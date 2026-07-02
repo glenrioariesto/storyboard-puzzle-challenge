@@ -1,5 +1,10 @@
 import { Story } from '../types';
 
+import kancil1 from '../../assets/kancil-sungai-1.jpg';
+import kancil2 from '../../assets/kancil-sungai-2.jpg';
+import kancil3 from '../../assets/kancil-sungai-3.jpg';
+import kancil4 from '../../assets/kancil-sungai-4.jpg';
+
 export const STORYBOARD_CAMPAIGN: Story[] = [
   {
     id: 1,
@@ -11,28 +16,28 @@ export const STORYBOARD_CAMPAIGN: Story[] = [
       {
         id: 0,
         title: "Apel di Seberang",
-        imageUrl: "https://images.unsplash.com/photo-1507666405895-422efe53f0c2?w=600&auto=format&fit=crop&q=80",
+        imageUrl: kancil1,
         narrative: "Kancil yang lapar berdiri di tepi sungai yang dalam, memandang pohon apel merah yang berbuah sangat lebat dan ranum di seberang sungai.",
         correctTag: "pengenalan"
       },
       {
         id: 1,
         title: "Munculnya Buaya",
-        imageUrl: "https://images.unsplash.com/photo-1607681034540-2c46cc71896d?w=600&auto=format&fit=crop&q=80",
+        imageUrl: kancil2,
         narrative: "Kancil sadar tidak bisa berenang menyeberang sungai. Tiba-tiba, moncong buaya raksasa menyembul dari permukaan air sungai, siap menerkamnya.",
         correctTag: "konflik_awal"
       },
       {
         id: 2,
         title: "Trik Menghitung Buaya",
-        imageUrl: "https://images.unsplash.com/photo-1549488344-1f9b8d2bd1f3?w=600&auto=format&fit=crop&q=80",
+        imageUrl: kancil3,
         narrative: "Kancil mengelabui buaya dengan berpura-pura diperintah raja hutan membagi makanan gratis, lalu meminta buaya berbaris agar ia bisa menghitung jumlah mereka.",
         correctTag: "klimaks"
       },
       {
         id: 3,
         title: "Sampai di Tujuan",
-        imageUrl: "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?w=600&auto=format&fit=crop&q=80",
+        imageUrl: kancil4,
         narrative: "Kancil melompati punggung buaya satu per satu sebagai jembatan dan berhasil sampai di seberang sungai secara selamat untuk menikmati buah apel idamannya.",
         correctTag: "resolusi"
       }
