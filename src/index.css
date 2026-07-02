@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+
+  --radius-3xl: 16px;
+  --radius-2xl: 12px;
+  --radius-xl: 10px;
+  --radius-lg: 8px;
+  --radius-md: 6px;
+  --radius-sm: 4px;
+}
+
+body {
+  background-color: #FAF8F5; /* Warm Ivory Paper */
+  font-family: var(--font-sans);
+  color: #1E293B; /* Deep Slate Ink */
+}
+
+/* Reduced Motion Accessibility Settings */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-delay: 0s !important;
+    animation-duration: 0s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0s !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom Scrollbars - Vintage Ink style */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF8F5;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 99px;
+  border: 1px solid #FAF8F5;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Brutalist Sketchbook Card Shadows & Borders */
+.brutalist-card {
+  background: #FFFFFF;
+  border: 2px solid #0F172A;
+  box-shadow: 4px 4px 0px #0F172A;
+  transition: all 0.2s ease-in-out;
+}
+.brutalist-card:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 6px 6px 0px #0F172A;
+}
+
+.brutalist-button {
+  background: #EA580C; /* Burnt Orange */
+  color: #FFFFFF;
+  border: 2px solid #0F172A;
+  box-shadow: 3px 3px 0px #0F172A;
+  transition: all 0.15s ease-in-out;
+}
+.brutalist-button:hover:not(:disabled) {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0px #0F172A;
+  background: #F97316;
+}
+.brutalist-button:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #0F172A;
+}
+.brutalist-button:disabled {
+  background: #E2E8F0;
+  color: #94A3B8;
+  border-color: #CBD5E1;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* Warm Paper Grid pattern */
+.bg-paper-grid {
+  background-size: 30px 30px;
+  background-image: 
+    linear-gradient(to right, rgba(234, 88, 12, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(234, 88, 12, 0.04) 1px, transparent 1px);
+}
+
+/* Sketchbook Ring header simulation */
+.notebook-rings {
+  background-image: radial-gradient(#64748B 30%, transparent 35%);
+  background-size: 20px 20px;
+  background-repeat: repeat-x;
+  height: 20px;
+  width: 100%;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
