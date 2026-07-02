@@ -1,9 +1,9 @@
 import { Story } from '../types';
 
-import kancil1 from '../../assets/kancil-sungai-1.jpg';
-import kancil2 from '../../assets/kancil-sungai-2.jpg';
-import kancil3 from '../../assets/kancil-sungai-3.jpg';
-import kancil4 from '../../assets/kancil-sungai-4.jpg';
+import kancil1 from '../../assets/kancil-sungai-1.webp';
+import kancil2 from '../../assets/kancil-sungai-2.webp';
+import kancil3 from '../../assets/kancil-sungai-3.webp';
+import kancil4 from '../../assets/kancil-sungai-4.webp';
 
 export const STORYBOARD_CAMPAIGN: Story[] = [
   {
