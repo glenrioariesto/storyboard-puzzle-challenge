@@ -1,11 +1,8 @@
-export type NarrativeTag = 'pengenalan' | 'konflik_awal' | 'klimaks' | 'resolusi' | '';
-
 export interface Scene {
-  id: number;           // Original chronological index (0, 1, 2, 3)
+  id: number;           // Original chronological index (0, 1, 2, ...)
   title: string;
   imageUrl: string;
   narrative: string;
-  correctTag: NarrativeTag;
 }
 
 export interface Story {
@@ -28,7 +25,6 @@ export interface GameState {
   currentStoryIndex: number;
   score: number;
   shuffledScenes: Scene[]; // Active shuffled scene cards
-  assignedTags: Record<number, NarrativeTag>; // Map of scene ID -> assigned tag
   showFeedback: boolean;
   checked: boolean;
   attempts: number;

@@ -13,14 +13,13 @@ export default function App() {
     totalStories,
     score,
     shuffledScenes,
-    assignedTags,
     showFeedback,
     checked,
     attempts,
     answers,
     startInvestigation,
     moveCard,
-    assignTag,
+    reorderCard,
     checkStoryboard,
     advanceStory,
     restartGame,
@@ -47,9 +46,8 @@ export default function App() {
           score={score}
           attempts={attempts}
           shuffledScenes={shuffledScenes}
-          assignedTags={assignedTags}
           onMoveCard={moveCard}
-          onAssignTag={assignTag}
+          onReorderCard={reorderCard}
           onCheck={checkStoryboard}
           onAdvance={advanceStory}
           onBack={restartGame}

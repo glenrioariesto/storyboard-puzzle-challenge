@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { GameState, Scene, NarrativeTag, StoryAnswer } from '../types';
+import { GameState, Scene, StoryAnswer } from '../types';
 import { STORYBOARD_CAMPAIGN } from '../data/storyboardData';
 import { playSynthesizerNote } from '../utils/audio';
 
 const getRank = (score: number) => {
   if (score === 3) return { title: "Sutradara Maestro (Legendaris)", desc: "Sempurna! Anda memiliki insting narasi luar biasa dan mampu menyusun semua struktur cerita tanpa kesalahan.", color: "text-emerald-800 border-2 border-emerald-700 bg-emerald-50" };
   if (score === 2) return { title: "Editor Senior", desc: "Sangat memahami struktur linier cerita, transisi adegan, dan konflik dramatis.", color: "text-indigo-800 border-2 border-indigo-700 bg-indigo-50" };
-  if (score === 1) return { title: "Penulis Skrip Magang", desc: "Anda memahami dasar-dasar narasi, tetapi masih perlu mengasah penempatan klimaks.", color: "text-orange-850 border-2 border-orange-700 bg-orange-50" };
-  return { title: "Penonton Biasa", desc: "Pelajari lagi perbedaan antara eksposisi awal, titik balik konflik, dan penyelesaian resolusi.", color: "text-rose-800 border-2 border-rose-700 bg-rose-50" };
+  if (score === 1) return { title: "Penulis Skrip Magang", desc: "Anda memahami dasar-dasar narasi, tetapi masih perlu mengasah penempatan adegan.", color: "text-orange-800 border-2 border-orange-700 bg-orange-50" };
+  return { title: "Penonton Biasa", desc: "Pelajari lagi perbedaan kronologi cerita, transisi adegan, dan penyelesaian resolusi.", color: "text-rose-800 border-2 border-rose-700 bg-rose-50" };
 };
 
 const shuffleScenes = (scenes: Scene[]): Scene[] => {
@@ -40,7 +40,6 @@ export const useGameState = () => {
     currentStoryIndex: 0,
     score: 0,
     shuffledScenes: [],
-    assignedTags: {},
     showFeedback: false,
     checked: false,
     attempts: 0,
@@ -58,7 +57,6 @@ export const useGameState = () => {
       currentStoryIndex: 0,
       score: 0,
       shuffledScenes: shuffleScenes(STORYBOARD_CAMPAIGN[0].scenes),
-      assignedTags: {},
       showFeedback: false,
       checked: false,
       attempts: 0,
@@ -83,16 +81,18 @@ export const useGameState = () => {
     }));
   };
 
-  const assignTag = (sceneId: number, tag: NarrativeTag) => {
+  const reorderCard = (fromIndex: number, toIndex: number) => {
     if (state.showFeedback) return;
+    if (fromIndex === toIndex) return;
 
     playSynthesizerNote('btn');
+    const newScenes = [...state.shuffledScenes];
+    const [draggedCard] = newScenes.splice(fromIndex, 1);
+    newScenes.splice(toIndex, 0, draggedCard);
+
     setState(prev => ({
       ...prev,
-      assignedTags: {
-        ...prev.assignedTags,
-        [sceneId]: tag
-      },
+      shuffledScenes: newScenes,
       checked: false // Reset checked status on change
     }));
   };
@@ -103,14 +103,7 @@ export const useGameState = () => {
     const nextAttempts = state.attempts + 1;
     
     // Check positions: index in shuffledScenes must match original id
-    const isOrderCorrect = state.shuffledScenes.every((scene, idx) => scene.id === idx);
-
-    // Check tags: assigned tag must match correctTag
-    const isTagsCorrect = state.shuffledScenes.every(
-      (scene) => state.assignedTags[scene.id] === scene.correctTag
-    );
-
-    const isAllCorrect = isOrderCorrect && isTagsCorrect;
+    const isAllCorrect = state.shuffledScenes.every((scene, idx) => scene.id === idx);
 
     if (isAllCorrect) {
       playSynthesizerNote('success');
@@ -157,7 +150,6 @@ export const useGameState = () => {
         ...prev,
         currentStoryIndex: nextIndex,
         shuffledScenes: shuffleScenes(nextStory.scenes),
-        assignedTags: {},
         showFeedback: false,
         checked: false,
         attempts: 0
@@ -172,7 +164,6 @@ export const useGameState = () => {
       currentStoryIndex: 0,
       score: 0,
       shuffledScenes: [],
-      assignedTags: {},
       showFeedback: false,
       checked: false,
       attempts: 0,
@@ -187,14 +178,13 @@ export const useGameState = () => {
     totalStories: STORYBOARD_CAMPAIGN.length,
     score: state.score,
     shuffledScenes: state.shuffledScenes,
-    assignedTags: state.assignedTags,
     showFeedback: state.showFeedback,
     checked: state.checked,
     attempts: state.attempts,
     answers: state.answers,
     startInvestigation,
     moveCard,
-    assignTag,
+    reorderCard,
     checkStoryboard,
     advanceStory,
     restartGame,

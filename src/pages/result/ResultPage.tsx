@@ -34,13 +34,13 @@ export function ResultPage({ score, answers, onRestart, getRank }: ResultPagePro
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 w-full mb-8">
           {/* Circular Score Circle */}
           <div className="md:col-span-4 brutalist-card rounded-2xl p-6 flex flex-col items-center justify-center text-center bg-white">
-            <span className="text-[9px] font-mono font-bold text-slate-550 uppercase tracking-widest mb-4">
+            <span className="text-[9px] font-mono font-bold text-slate-500 uppercase tracking-widest mb-4">
               Akurasi Struktur
             </span>
             <div className="relative w-32 h-32 flex items-center justify-center">
               <div className="absolute inset-0 rounded-full border-4 border-slate-200"></div>
               <div 
-                className="absolute inset-0 rounded-full border-4 border-orange-650"
+                className="absolute inset-0 rounded-full border-4 border-orange-600"
                 style={{
                   clipPath: `polygon(50% 50%, -50% -50%, ${accuracy >= 25 ? '150% -50%' : '50% -50%'}, ${accuracy >= 50 ? '150% 150%' : '50% -50%'}, ${accuracy >= 75 ? '-50% 150%' : '50% -50%'}, ${accuracy >= 100 ? '-50% -50%' : '50% -50%'})`,
                   transform: 'rotate(45deg)'
@@ -94,7 +94,7 @@ export function ResultPage({ score, answers, onRestart, getRank }: ResultPagePro
           <div className="overflow-x-auto">
             <table className="w-full text-left font-mono text-xs">
               <thead>
-                <tr className="border-b-2 border-slate-900 text-slate-650 pb-2">
+                <tr className="border-b-2 border-slate-900 text-slate-600 pb-2">
                   <th className="pb-2 font-bold uppercase tracking-wider w-12 text-center">Kasus</th>
                   <th className="pb-2 font-bold uppercase tracking-wider">Judul Storyboard</th>
                   <th className="pb-2 font-bold uppercase tracking-wider">Kategori Cerita</th>
@@ -114,7 +114,7 @@ export function ResultPage({ score, answers, onRestart, getRank }: ResultPagePro
                       <td className="py-3 font-sans text-slate-500 font-semibold">
                         {c.category}
                       </td>
-                      <td className="py-3 text-center text-slate-650 font-bold">
+                      <td className="py-3 text-center text-slate-600 font-bold">
                         {ans ? `${ans.attemptsCount}x Cek` : '-'}
                       </td>
                       <td className="py-3 text-center">
