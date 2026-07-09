@@ -64,10 +64,10 @@ export const useGameState = () => {
     });
   };
 
-  const moveCard = (index: number, direction: 'left' | 'right') => {
+  const moveCard = (index: number, direction: 'up' | 'down') => {
     if (state.showFeedback) return;
 
-    const targetIndex = direction === 'left' ? index - 1 : index + 1;
+    const targetIndex = direction === 'up' ? index - 1 : index + 1;
     if (targetIndex < 0 || targetIndex >= state.shuffledScenes.length) return;
 
     playSynthesizerNote('btn');

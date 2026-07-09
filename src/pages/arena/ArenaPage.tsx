@@ -14,7 +14,7 @@ interface ArenaPageProps {
   score: number;
   attempts: number;
   shuffledScenes: Scene[];
-  onMoveCard: (index: number, direction: 'left' | 'right') => void;
+  onMoveCard: (index: number, direction: 'up' | 'down') => void;
   onReorderCard: (fromIndex: number, toIndex: number) => void;
   onCheck: () => void;
   onAdvance: () => void;
@@ -133,7 +133,7 @@ export function ArenaPage({
                   Evaluasi Urutan Storyboard
                 </p>
                 <p className="text-[10px] sm:text-xs text-slate-500 font-bold leading-normal">
-                  Tarik & lepas (drag-and-drop) kartu atau gunakan tombol Geser untuk mengurutkan kejadian dari kiri ke kanan.
+                  Tarik & lepas (drag-and-drop) kartu atau gunakan tombol Geser untuk mengurutkan kejadian dari atas ke bawah.
                 </p>
               </div>
 
@@ -156,7 +156,7 @@ export function ArenaPage({
         </div>
 
         {/* Storyboard cards board */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 py-2 shrink-0">
+        <div className="flex flex-col gap-4 py-2 shrink-0 max-w-4xl mx-auto w-full">
           {shuffledScenes.map((scene, idx) => (
             <SceneCard
               key={scene.id}
