@@ -124,7 +124,7 @@ export function ArenaPage({
       <main className="flex-1 flex flex-col overflow-y-auto px-3 sm:px-6 py-4 sm:py-6 gap-4 sm:gap-6 max-h-[calc(100vh-56px)] sm:max-h-[calc(100vh-68px)]">
         
         {/* Action triggers & Evaluation feedback panels */}
-        <div className="w-full shrink-0">
+        <div className="w-full shrink-0 max-w-4xl mx-auto">
           {/* Main Action Bar */}
           {!showFeedback && (
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white border-2 border-slate-900 p-4 rounded-xl shadow-[4px_4px_0px_#0f172a]">
