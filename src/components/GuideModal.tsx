@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { X, BookOpen, Lightbulb, ArrowRight, ArrowLeft } from 'lucide-react';
+import { X, BookOpen, Lightbulb, ArrowRight, ArrowLeft, MoveVertical, CheckCircle2 } from 'lucide-react';
 
 interface GuideModalProps {
   isOpen: boolean;
@@ -9,8 +9,9 @@ interface GuideModalProps {
   description: string;
 }
 
-export function GuideModal({ isOpen, onClose, title, category, description }: GuideModalProps) {
+export function GuideModal({ isOpen, onClose, title, description }: GuideModalProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const totalSlides = 3;
 
   // Reset slide index when modal is opened/closed
   useEffect(() => {
@@ -22,18 +23,18 @@ export function GuideModal({ isOpen, onClose, title, category, description }: Gu
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 animate-fadeIn">
+    <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-3 sm:p-4 animate-fadeIn">
       {/* Backdrop click to close */}
       <div className="absolute inset-0 cursor-default" onClick={onClose} />
       
-      {/* Modal Container */}
-      <div className="relative w-full max-w-md brutalist-card bg-white rounded-2xl p-6 flex flex-col justify-between min-h-[380px] z-10 select-none shadow-[6px_6px_0px_#000000]">
+      {/* Compact Modal Container */}
+      <div className="relative w-full max-w-md brutalist-card bg-white rounded-2xl p-4 sm:p-5 flex flex-col justify-between z-10 select-none shadow-[6px_6px_0px_#000000]">
         {/* Header */}
-        <div className="flex items-center justify-between border-b-2 border-slate-900 pb-3">
+        <div className="flex items-center justify-between border-b-2 border-slate-900 pb-2.5 shrink-0">
           <div className="flex items-center gap-2 text-orange-700">
-            <BookOpen className="w-5 h-5 shrink-0" />
+            <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
             <h4 className="font-mono text-xs font-bold uppercase tracking-wider">
-              Panduan Storyboard {currentSlide + 1}/2
+              Panduan Level ({currentSlide + 1}/{totalSlides})
             </h4>
           </div>
           <button
@@ -45,90 +46,102 @@ export function GuideModal({ isOpen, onClose, title, category, description }: Gu
           </button>
         </div>
 
-        {/* Content Slides */}
-        <div className="flex-1 py-4 flex flex-col justify-center">
-          {currentSlide === 0 ? (
-            <div className="flex flex-col gap-3 animate-fadeIn">
-              <div>
-                <span className="text-[9px] font-mono font-bold text-orange-700 uppercase tracking-widest bg-orange-50 px-2 py-0.5 rounded border-2 border-slate-900">
-                  {category}
-                </span>
-                <h3 className="text-lg font-bold font-serif text-slate-900 mt-2.5">
-                  {title}
-                </h3>
-              </div>
-              <p className="text-xs text-slate-700 leading-relaxed font-semibold">
+        {/* Content Slides (Compact height, no scrolling required) */}
+        <div className="py-4 flex flex-col justify-center min-h-[160px] sm:min-h-[180px]">
+          {currentSlide === 0 && (
+            <div className="flex flex-col gap-2.5 animate-fadeIn">
+              <span className="text-[10px] font-mono font-bold text-orange-700 uppercase tracking-widest bg-orange-50 px-2 py-0.5 rounded border border-orange-300 w-fit">
+                Misi Storyboard
+              </span>
+              <h3 className="text-base sm:text-lg font-bold font-serif text-slate-900 leading-snug">
+                {title}
+              </h3>
+              <p className="text-xs text-slate-700 leading-relaxed font-medium">
                 {description}
               </p>
             </div>
-          ) : (
+          )}
+
+          {currentSlide === 1 && (
             <div className="flex flex-col gap-3 animate-fadeIn">
-              {/* Quick Tutorial */}
-              <div className="bg-slate-50 border-2 border-slate-900 p-4 rounded-xl flex gap-3 items-start shadow-[3px_3px_0px_#000000]">
-                <Lightbulb className="w-6 h-6 text-amber-500 shrink-0 mt-0.5" />
-                <div className="flex flex-col gap-2 text-xs text-slate-700 leading-relaxed">
-                  <span className="font-bold text-slate-900 font-mono uppercase tracking-wider text-[11px]">
-                    Cara Bermain:
-                  </span>
-                  <p>
-                    1. <strong>Tarik & Lepas (Drag & Drop)</strong> kartu cerita untuk memindahkan posisinya secara langsung.
-                  </p>
-                  <p>
-                    2. Atau gunakan tombol <strong>Geser Kiri / Kanan</strong> di bagian bawah kartu untuk menggeser.
-                  </p>
-                  <p>
-                    3. Urutkan seluruh adegan secara kronologis dari kiri ke kanan, lalu klik <strong>Periksa Cerita</strong> untuk mengecek hasil Anda.
-                  </p>
-                </div>
+              <div className="flex items-center gap-2 text-slate-900 font-bold font-mono text-xs uppercase tracking-wider">
+                <MoveVertical className="w-4 h-4 text-orange-600" />
+                <span>Cara Mengurutkan Adegan:</span>
+              </div>
+              <div className="bg-slate-50 border-2 border-slate-900 p-3 rounded-xl flex flex-col gap-2 text-xs text-slate-700 font-medium shadow-[2px_2px_0px_#000000]">
+                <p className="flex items-start gap-2">
+                  <span className="font-bold text-orange-600 shrink-0">1.</span>
+                  <span><strong>Tarik & Lepas (Drag & Drop):</strong> Geser langsung kartu cerita ke atas atau ke bawah.</span>
+                </p>
+                <p className="flex items-start gap-2">
+                  <span className="font-bold text-orange-600 shrink-0">2.</span>
+                  <span><strong>Tombol Geser Atas / Bawah:</strong> Gunakan tombol di bagian bawah setiap kartu untuk menukar posisi.</span>
+                </p>
+              </div>
+            </div>
+          )}
+
+          {currentSlide === 2 && (
+            <div className="flex flex-col gap-3 animate-fadeIn">
+              <div className="flex items-center gap-2 text-slate-900 font-bold font-mono text-xs uppercase tracking-wider">
+                <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                <span>Pemeriksaan Cerita & Skor:</span>
+              </div>
+              <div className="bg-emerald-50/60 border-2 border-slate-900 p-3 rounded-xl flex flex-col gap-2 text-xs text-slate-700 font-medium shadow-[2px_2px_0px_#000000]">
+                <p className="flex items-start gap-2">
+                  <span className="font-bold text-emerald-700 shrink-0">✓</span>
+                  <span>Susun adegan kronologis dari <strong>Slot #1 (Atas)</strong> hingga <strong>Slot Terakhir (Bawah)</strong>.</span>
+                </p>
+                <p className="flex items-start gap-2">
+                  <span className="font-bold text-emerald-700 shrink-0">✓</span>
+                  <span>Klik tombol <strong>Periksa Cerita</strong> jika urutan sudah sesuai untuk mendapat skor penuh.</span>
+                </p>
               </div>
             </div>
           )}
         </div>
 
         {/* Footer Actions */}
-        <div className="flex flex-col gap-3 border-t-2 border-slate-900 pt-4 mt-auto">
-          {/* Progress dots */}
-          <div className="flex justify-center gap-1.5 mb-1">
-            <span 
-              onClick={() => setCurrentSlide(0)}
-              className={`w-2.5 h-2.5 rounded-full border border-slate-900 cursor-pointer transition-all ${
-                currentSlide === 0 ? 'bg-orange-600 scale-110 shadow-sm' : 'bg-slate-200'
-              }`}
-            />
-            <span 
-              onClick={() => setCurrentSlide(1)}
-              className={`w-2.5 h-2.5 rounded-full border border-slate-900 cursor-pointer transition-all ${
-                currentSlide === 1 ? 'bg-orange-600 scale-110 shadow-sm' : 'bg-slate-200'
-              }`}
-            />
+        <div className="flex flex-col gap-2.5 border-t-2 border-slate-900 pt-3 shrink-0">
+          {/* Progress indicators */}
+          <div className="flex justify-center gap-1.5 mb-0.5">
+            {Array.from({ length: totalSlides }).map((_, idx) => (
+              <span
+                key={idx}
+                onClick={() => setCurrentSlide(idx)}
+                className={`w-2.5 h-2.5 rounded-full border border-slate-900 cursor-pointer transition-all ${
+                  currentSlide === idx ? 'bg-orange-600 scale-110 shadow-xs' : 'bg-slate-200'
+                }`}
+              />
+            ))}
           </div>
 
           <div className="flex items-center gap-2">
-            {currentSlide === 1 && (
+            {currentSlide > 0 && (
               <button
                 type="button"
-                onClick={() => setCurrentSlide(0)}
-                className="px-4 py-2.5 border-2 border-slate-900 hover:bg-slate-50 text-slate-800 rounded-lg text-xs font-mono font-bold flex items-center justify-center gap-1 transition-all shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_#000000] cursor-pointer animate-fadeIn"
+                onClick={() => setCurrentSlide(prev => prev - 1)}
+                className="px-3.5 py-2 border-2 border-slate-900 hover:bg-slate-50 text-slate-800 rounded-lg text-xs font-mono font-bold flex items-center justify-center gap-1 transition-all shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_#000000] cursor-pointer"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
-                <span>Kembali</span>
+                <span>Sebelumnya</span>
               </button>
             )}
             
-            {currentSlide === 0 ? (
+            {currentSlide < totalSlides - 1 ? (
               <button
                 type="button"
-                onClick={() => setCurrentSlide(1)}
-                className="flex-1 py-2.5 bg-orange-600 hover:bg-orange-700 border-2 border-slate-900 text-white rounded-lg text-xs font-mono font-bold flex items-center justify-center gap-1 transition-all shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_#000000] cursor-pointer"
+                onClick={() => setCurrentSlide(prev => prev + 1)}
+                className="flex-1 py-2 bg-orange-600 hover:bg-orange-700 border-2 border-slate-900 text-white rounded-lg text-xs font-mono font-bold flex items-center justify-center gap-1 transition-all shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_#000000] cursor-pointer"
               >
-                <span>Lanjut Cara Bermain</span>
+                <span>Selanjutnya</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             ) : (
               <button
                 type="button"
                 onClick={onClose}
-                className="flex-1 py-2.5 bg-orange-600 hover:bg-orange-700 border-2 border-slate-900 text-white rounded-lg text-xs font-mono font-bold flex items-center justify-center gap-1 transition-all shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_#000000] cursor-pointer"
+                className="flex-1 py-2 bg-orange-600 hover:bg-orange-700 border-2 border-slate-900 text-white rounded-lg text-xs font-mono font-bold flex items-center justify-center gap-1 transition-all shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_#000000] cursor-pointer"
               >
                 <span>Mulai Menyusun!</span>
               </button>
