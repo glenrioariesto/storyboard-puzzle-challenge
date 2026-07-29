@@ -4,6 +4,7 @@ import { Story, Scene } from '../../types';
 import { GuideModal } from '../../components/GuideModal';
 import { EvaluationModal } from '../../components/EvaluationModal';
 import { SceneCard } from '../../components/SceneCard';
+import arenaBg from '../../../assets/arena-bg.jpg';
 
 interface ArenaPageProps {
   currentStoryIndex: number;
@@ -73,9 +74,18 @@ export function ArenaPage({
   };
 
   return (
-    <div className="min-h-screen w-screen bg-transparent text-slate-800 flex flex-col font-sans">
-      {/* Upper Navigation Header */}
-      <header className="border-b-2 border-slate-900 bg-white px-3 sm:px-6 py-2.5 sm:py-4 flex items-center justify-between z-10 shrink-0 select-none shadow-[0_2px_4px_rgba(0,0,0,0.05)]">
+    <div className="min-h-screen w-screen relative bg-amber-50/50 text-slate-800 flex flex-col font-sans overflow-hidden">
+      {/* Scenic Atmosphere Background Image - Bright & Warm */}
+      <img
+        src={arenaBg}
+        alt="Arena Background"
+        className="fixed inset-0 w-full h-full object-cover z-0 opacity-60 pointer-events-none filter blur-[1px] brightness-125 saturate-125"
+      />
+      {/* Light Clean Overlay for contrast */}
+      <div className="fixed inset-0 bg-gradient-to-b from-amber-50/40 via-white/50 to-orange-50/60 backdrop-blur-[1px] z-0 pointer-events-none" />
+
+      {/* Upper Navigation Header - Fixed/Sticky on top with Glassmorphism blur */}
+      <header className="sticky top-0 left-0 right-0 bg-white/30 backdrop-blur-md px-3 sm:px-6 py-2.5 sm:py-4 flex items-center justify-between z-30 shrink-0 select-none shadow-[0_4px_12px_rgba(0,0,0,0.06)]">
         <button
           type="button"
           onClick={onBack}
@@ -98,7 +108,7 @@ export function ArenaPage({
           <button
             type="button"
             onClick={() => setIsGuideOpen(true)}
-            className="inline-flex items-center gap-1 text-[10px] sm:text-xs font-mono font-bold text-slate-700 hover:text-orange-700 bg-white hover:bg-orange-50 border-2 border-slate-900 hover:border-orange-500 px-2 sm:px-3 py-0.5 sm:py-1 rounded-lg transition-all shadow-[2px_2px_0px_#0f172a] hover:shadow-[3px_3px_0px_#ea580c] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_#0f172a] cursor-pointer"
+            className="inline-flex items-center gap-1 text-[10px] sm:text-xs font-mono font-bold text-slate-700 hover:text-orange-700 bg-white/90 hover:bg-orange-50 border-2 border-slate-900 hover:border-orange-500 px-2 sm:px-3 py-0.5 sm:py-1 rounded-lg transition-all shadow-[2px_2px_0px_#0f172a] hover:shadow-[3px_3px_0px_#ea580c] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_#0f172a] cursor-pointer"
           >
             <span>💡<span className="hidden sm:inline"> Panduan</span></span>
           </button>
@@ -112,8 +122,8 @@ export function ArenaPage({
         </div>
       </header>
 
-      {/* Progress Bar */}
-      <div className="w-full h-1 sm:h-1.5 bg-slate-200 relative z-10 shrink-0">
+      {/* Progress Bar - Sticky below Header */}
+      <div className="sticky top-[53px] sm:top-[68px] z-30 w-full h-1 sm:h-1.5 bg-white/30 backdrop-blur-md shrink-0 border-b-2 border-slate-900/80">
         <div
           className="h-full bg-orange-500 transition-all duration-500"
           style={{ width: `${progressPercentage}%` }}
@@ -121,13 +131,13 @@ export function ArenaPage({
       </div>
 
       {/* Main Content Arena */}
-      <main className="flex-1 flex flex-col overflow-y-auto px-3 sm:px-6 py-4 sm:py-6 gap-4 sm:gap-6 max-h-[calc(100vh-56px)] sm:max-h-[calc(100vh-68px)]">
+      <main className="flex-1 flex flex-col overflow-y-auto px-3 sm:px-6 py-4 sm:py-6 gap-4 sm:gap-6 relative z-10">
         
         {/* Action triggers & Evaluation feedback panels */}
         <div className="w-full shrink-0 max-w-4xl mx-auto">
           {/* Main Action Bar */}
           {!showFeedback && (
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white border-2 border-slate-900 p-4 rounded-xl shadow-[4px_4px_0px_#0f172a]">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white/95 backdrop-blur-md border-2 border-slate-900 p-4 rounded-xl shadow-[4px_4px_0px_#0f172a]">
               <div className="flex flex-col gap-0.5">
                 <p className="text-xs sm:text-sm font-mono font-bold text-slate-800 uppercase tracking-wider">
                   Evaluasi Urutan Storyboard
@@ -137,16 +147,16 @@ export function ArenaPage({
                 </p>
               </div>
 
-              <div className="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto shrink-0 border-t sm:border-t-0 border-slate-100 pt-3 sm:pt-0">
+              <div className="flex items-center justify-between sm:justify-end gap-2 sm:gap-3 w-full sm:w-auto shrink-0 border-t sm:border-t-0 border-slate-100 pt-3 sm:pt-0">
                 {attempts > 0 && (
-                  <span className="text-xs font-mono font-bold text-rose-600">
+                  <span className="text-xs font-mono font-bold text-rose-600 mr-auto sm:mr-0">
                     Salah: {attempts}x
                   </span>
                 )}
                 <button
                   type="button"
                   onClick={onCheck}
-                  className="w-full sm:w-auto px-5 py-2 font-mono text-xs font-bold uppercase rounded-lg border-2 transition-all cursor-pointer border-slate-900 text-white bg-orange-600 hover:bg-orange-700 shadow-[3px_3px_0px_#0f172a] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[2px_2px_0px_#0f172a]"
+                  className="px-4 sm:px-5 py-2 font-mono text-xs font-bold uppercase rounded-lg border-2 transition-all cursor-pointer border-slate-900 text-white bg-orange-600 hover:bg-orange-700 shadow-[3px_3px_0px_#0f172a] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[2px_2px_0px_#0f172a]"
                 >
                   Periksa Cerita
                 </button>
@@ -181,7 +191,6 @@ export function ArenaPage({
         isOpen={isGuideOpen}
         onClose={() => setIsGuideOpen(false)}
         title={activeStory.title}
-        category={activeStory.category}
         description={activeStory.description}
       />
 
