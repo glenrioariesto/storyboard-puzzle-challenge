@@ -5,7 +5,6 @@ interface GuideModalProps {
   isOpen: boolean;
   onClose: () => void;
   title: string;
-  category: string;
   description: string;
 }
 
@@ -50,9 +49,6 @@ export function GuideModal({ isOpen, onClose, title, description }: GuideModalPr
         <div className="py-4 flex flex-col justify-center min-h-[160px] sm:min-h-[180px]">
           {currentSlide === 0 && (
             <div className="flex flex-col gap-2.5 animate-fadeIn">
-              <span className="text-[10px] font-mono font-bold text-orange-700 uppercase tracking-widest bg-orange-50 px-2 py-0.5 rounded border border-orange-300 w-fit">
-                Misi Storyboard
-              </span>
               <h3 className="text-base sm:text-lg font-bold font-serif text-slate-900 leading-snug">
                 {title}
               </h3>

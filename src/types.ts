@@ -8,7 +8,6 @@ export interface Scene {
 export interface Story {
   id: number;
   title: string;
-  category: string;
   description: string;
   scenes: Scene[];      // The correct ordered scenes
   explanation: string;  // Educational review explanation

@@ -17,7 +17,6 @@ export const STORYBOARD_CAMPAIGN: Story[] = [
   {
     id: 1,
     title: "Level 1: Kancil & Kawanan Buaya (Awal Pertemuan)",
-    category: "Fabel - Tingkat Dasar (4 Adegan)",
     description: "Musim kemarau melanda hutan Kancil. Dari kejauhan terlihat hutan seberang yang subur, namun sungai deras dipenuhi buaya lapar menghalangi jalannya. Susun 4 adegan pertama ini!",
     explanation: "Pada level dasar ini, struktur cerita berfokus pada Pengenalan dan Munculnya Rintangan Utama: Pengenalan kondisi hutan kering (adegan 1), harapan di seberang sungai (adegan 2), tantangan arus deras (adegan 3), serta kemunculan kawanan buaya (adegan 4).",
     scenes: [
@@ -50,7 +49,6 @@ export const STORYBOARD_CAMPAIGN: Story[] = [
   {
     id: 2,
     title: "Level 2: Trik Cerdik Sang Kancil (Rencana & Aksi)",
-    category: "Fabel - Tingkat Menengah (8 Adegan)",
     description: "Kancil mulai menjalankan rencana cerdiknya dengan mengelabui buaya berdalih titah Raja Hutan. Susun 8 adegan alur cerita hingga Kancil mulai menyeberang!",
     explanation: "Level menengah ini menguji pemahaman alur dari pengenalan rintangan, aksi taktik Kancil (menyampaikan titah palsu), pembuatan jembatan buaya, hingga keberanian Kancil melompat dan menghitung buaya pertama.",
     scenes: [
@@ -107,7 +105,6 @@ export const STORYBOARD_CAMPAIGN: Story[] = [
   {
     id: 3,
     title: "Level 3: Petualangan Lengkap Kancil (Petualangan Utuh)",
-    category: "Fabel - Tingkat Ahli (12 Adegan)",
     description: "Ini adalah tantangan puncak! Susunlah alur lengkap 12 adegan dari awal Kancil mencari makan, melintasi rintangan, momen mendebarkan di tengah sungai, hingga berhasil lolos ke seberang!",
     explanation: "Alur fabel legendaris ini mengikuti struktur naratif lengkap 12 adegan: Pengenalan (1-2), Awal Konflik & Rintangan (3-5), Taktik & Klimaks (6-9) ketika Kancil hampir kehilangan keseimbangan di tengah sungai, serta Resolusi & Akhir Bahagia (10-12) di hutan kelimpahan.",
     scenes: [
