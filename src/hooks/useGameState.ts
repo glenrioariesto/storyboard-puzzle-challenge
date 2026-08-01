@@ -4,9 +4,11 @@ import { STORYBOARD_CAMPAIGN } from '../data/storyboardData';
 import { playSynthesizerNote } from '../utils/audio';
 
 const getRank = (score: number) => {
-  if (score === 3) return { title: "Sutradara Maestro (Legendaris)", desc: "Sempurna! Anda memiliki insting narasi luar biasa dan mampu menyusun semua struktur cerita tanpa kesalahan.", color: "text-emerald-800 border-2 border-emerald-700 bg-emerald-50" };
-  if (score === 2) return { title: "Editor Senior", desc: "Sangat memahami struktur linier cerita, transisi adegan, dan konflik dramatis.", color: "text-indigo-800 border-2 border-indigo-700 bg-indigo-50" };
-  if (score === 1) return { title: "Penulis Skrip Magang", desc: "Anda memahami dasar-dasar narasi, tetapi masih perlu mengasah penempatan adegan.", color: "text-orange-800 border-2 border-orange-700 bg-orange-50" };
+  if (score === 5) return { title: "Sutradara Maestro (Legendaris)", desc: "Sempurna! Anda memiliki insting narasi luar biasa dan mampu menyusun semua struktur cerita tanpa kesalahan.", color: "text-emerald-800 border-2 border-emerald-700 bg-emerald-50" };
+  if (score === 4) return { title: "Editor Senior", desc: "Sangat memahami struktur linier cerita, transisi adegan, dan konflik dramatis.", color: "text-indigo-800 border-2 border-indigo-700 bg-indigo-50" };
+  if (score === 3) return { title: "Penulis Skrip Menengah", desc: "Pemahaman narasi yang cukup baik, namun masih ada ruang untuk perbaikan di beberapa level.", color: "text-sky-800 border-2 border-sky-700 bg-sky-50" };
+  if (score === 2) return { title: "Penulis Skrip Magang", desc: "Anda memahami dasar-dasar narasi, tetapi masih perlu mengasah penempatan adegan.", color: "text-orange-800 border-2 border-orange-700 bg-orange-50" };
+  if (score === 1) return { title: "Penonton Pemula", desc: "Masih banyak yang perlu dipelajari tentang alur cerita dan kronologi narasi.", color: "text-amber-800 border-2 border-amber-700 bg-amber-50" };
   return { title: "Penonton Biasa", desc: "Pelajari lagi perbedaan kronologi cerita, transisi adegan, dan penyelesaian resolusi.", color: "text-rose-800 border-2 border-rose-700 bg-rose-50" };
 };
 
