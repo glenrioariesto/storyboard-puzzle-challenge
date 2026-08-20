@@ -72,7 +72,7 @@ export const useGameState = () => {
     const targetIndex = direction === 'up' ? index - 1 : index + 1;
     if (targetIndex < 0 || targetIndex >= state.shuffledScenes.length) return;
 
-    playSynthesizerNote('btn');
+    playSynthesizerNote('slide');
     const newScenes = [...state.shuffledScenes];
     [newScenes[index], newScenes[targetIndex]] = [newScenes[targetIndex], newScenes[index]];
 
@@ -87,7 +87,7 @@ export const useGameState = () => {
     if (state.showFeedback) return;
     if (fromIndex === toIndex) return;
 
-    playSynthesizerNote('btn');
+    playSynthesizerNote('slide');
     const newScenes = [...state.shuffledScenes];
     const [draggedCard] = newScenes.splice(fromIndex, 1);
     newScenes.splice(toIndex, 0, draggedCard);
