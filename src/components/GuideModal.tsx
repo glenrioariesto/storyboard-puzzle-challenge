@@ -35,7 +35,7 @@ export function GuideModal({ isOpen, onClose, title, description }: GuideModalPr
         className="relative w-full max-w-md 2xl:max-w-xl brutalist-card bg-white rounded-2xl 2xl:rounded-3xl p-4 sm:p-5 2xl:p-8 flex flex-col justify-between z-10 select-none shadow-[6px_6px_0px_#000000]"
       >
         {/* Header */}
-        <div id="guide-modal-header" className="flex items-center justify-between border-b-2 2xl:border-3 border-slate-900 pb-2.5 2xl:pb-4 shrink-0">
+        <div id="guide-modal-header" className="flex items-center justify-between border-b-2 border-slate-900 pb-2.5 2xl:pb-4 shrink-0">
           <div className="flex items-center gap-2 2xl:gap-3 text-orange-700">
             <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 2xl:w-7 2xl:h-7 shrink-0" />
             <h4 id="guide-modal-title" className="font-mono text-xs 2xl:text-base font-bold uppercase tracking-wider">
@@ -71,7 +71,7 @@ export function GuideModal({ isOpen, onClose, title, description }: GuideModalPr
                 <MoveVertical className="w-4 h-4 2xl:w-6 2xl:h-6 text-orange-600" />
                 <span>Cara Mengurutkan Adegan:</span>
               </div>
-              <div className="bg-slate-50 border-2 2xl:border-3 border-slate-900 p-3 2xl:p-5 rounded-xl 2xl:rounded-2xl flex flex-col gap-2 2xl:gap-3 text-xs 2xl:text-base text-slate-700 font-medium shadow-[2px_2px_0px_#000000]">
+              <div className="bg-slate-50 border-2 border-slate-900 p-3 2xl:p-5 rounded-xl 2xl:rounded-2xl flex flex-col gap-2 2xl:gap-3 text-xs 2xl:text-base text-slate-700 font-medium shadow-[2px_2px_0px_#000000]">
                 <p className="flex items-start gap-2">
                   <span className="font-bold text-orange-600 shrink-0">1.</span>
                   <span><strong>Tarik & Lepas (Drag & Drop):</strong> Geser langsung kartu cerita ke atas atau ke bawah.</span>
@@ -90,7 +90,7 @@ export function GuideModal({ isOpen, onClose, title, description }: GuideModalPr
                 <CheckCircle2 className="w-4 h-4 2xl:w-6 2xl:h-6 text-emerald-600" />
                 <span>Pemeriksaan Cerita & Skor:</span>
               </div>
-              <div className="bg-emerald-50/60 border-2 2xl:border-3 border-slate-900 p-3 2xl:p-5 rounded-xl 2xl:rounded-2xl flex flex-col gap-2 2xl:gap-3 text-xs 2xl:text-base text-slate-700 font-medium shadow-[2px_2px_0px_#000000]">
+              <div className="bg-emerald-50/60 border-2 border-slate-900 p-3 2xl:p-5 rounded-xl 2xl:rounded-2xl flex flex-col gap-2 2xl:gap-3 text-xs 2xl:text-base text-slate-700 font-medium shadow-[2px_2px_0px_#000000]">
                 <p className="flex items-start gap-2">
                   <span className="font-bold text-emerald-700 shrink-0">✓</span>
                   <span>Susun adegan kronologis dari <strong>Slot #1 (Atas)</strong> hingga <strong>Slot Terakhir (Bawah)</strong>.</span>
@@ -105,7 +105,7 @@ export function GuideModal({ isOpen, onClose, title, description }: GuideModalPr
         </div>
 
         {/* Footer Actions */}
-        <div id="guide-modal-footer" className="flex flex-col gap-2.5 2xl:gap-4 border-t-2 2xl:border-3 border-slate-900 pt-3 2xl:pt-5 shrink-0">
+        <div id="guide-modal-footer" className="flex flex-col gap-2.5 2xl:gap-4 border-t-2 border-slate-900 pt-3 2xl:pt-5 shrink-0">
           {/* Progress indicators */}
           <div id="guide-slide-dots" className="flex justify-center gap-1.5 2xl:gap-2.5 mb-0.5">
             {Array.from({ length: totalSlides }).map((_, idx) => (
@@ -126,7 +126,7 @@ export function GuideModal({ isOpen, onClose, title, description }: GuideModalPr
                 id="guide-modal-prev-button"
                 type="button"
                 onClick={() => setCurrentSlide(prev => prev - 1)}
-                className="px-3.5 2xl:px-5 py-2 2xl:py-3.5 border-2 2xl:border-3 border-slate-900 hover:bg-slate-50 text-slate-800 rounded-lg 2xl:rounded-xl text-xs 2xl:text-base font-mono font-bold flex items-center justify-center gap-1 transition-all shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] cursor-pointer"
+                className="px-3.5 2xl:px-5 py-2 2xl:py-3.5 border-2 border-slate-900 hover:bg-slate-50 text-slate-800 rounded-lg 2xl:rounded-xl text-xs 2xl:text-base font-mono font-bold flex items-center justify-center gap-1 transition-all shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] cursor-pointer"
               >
                 <ArrowLeft className="w-3.5 h-3.5 2xl:w-5 2xl:h-5" />
                 <span>Sebelumnya</span>
@@ -138,7 +138,7 @@ export function GuideModal({ isOpen, onClose, title, description }: GuideModalPr
                 id="guide-modal-next-button"
                 type="button"
                 onClick={() => setCurrentSlide(prev => prev + 1)}
-                className="flex-1 py-2 2xl:py-3.5 bg-orange-600 hover:bg-orange-700 border-2 2xl:border-3 border-slate-900 text-white rounded-lg 2xl:rounded-xl text-xs 2xl:text-base font-mono font-bold flex items-center justify-center gap-1 transition-all shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] cursor-pointer"
+                className="flex-1 py-2 2xl:py-3.5 bg-orange-600 hover:bg-orange-700 border-2 border-slate-900 text-white rounded-lg 2xl:rounded-xl text-xs 2xl:text-base font-mono font-bold flex items-center justify-center gap-1 transition-all shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] cursor-pointer"
               >
                 <span>Selanjutnya</span>
                 <ArrowRight className="w-3.5 h-3.5 2xl:w-5 2xl:h-5" />
@@ -148,7 +148,7 @@ export function GuideModal({ isOpen, onClose, title, description }: GuideModalPr
                 id="guide-modal-start-button"
                 type="button"
                 onClick={onClose}
-                className="flex-1 py-2 2xl:py-3.5 bg-orange-600 hover:bg-orange-700 border-2 2xl:border-3 border-slate-900 text-white rounded-lg 2xl:rounded-xl text-xs 2xl:text-base font-mono font-bold flex items-center justify-center gap-1 transition-all shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] cursor-pointer"
+                className="flex-1 py-2 2xl:py-3.5 bg-orange-600 hover:bg-orange-700 border-2 border-slate-900 text-white rounded-lg 2xl:rounded-xl text-xs 2xl:text-base font-mono font-bold flex items-center justify-center gap-1 transition-all shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] cursor-pointer"
               >
                 <span>Mulai Menyusun!</span>
               </button>

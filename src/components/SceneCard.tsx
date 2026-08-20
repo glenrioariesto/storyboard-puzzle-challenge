@@ -57,7 +57,7 @@ export function SceneCard({
       {/* Scene image rendering - Image Left */}
       <div
         id={`scene-image-container-${scene.id}`}
-        className="w-24 h-24 sm:w-40 sm:h-28 2xl:w-56 2xl:h-40 rounded-lg sm:rounded-xl 2xl:rounded-2xl overflow-hidden bg-slate-950 relative border-2 2xl:border-3 border-slate-900 pointer-events-none shrink-0"
+        className="w-24 h-24 sm:w-40 sm:h-28 2xl:w-56 2xl:h-40 rounded-lg sm:rounded-xl 2xl:rounded-2xl overflow-hidden bg-slate-950 relative border-2 border-slate-900 pointer-events-none shrink-0"
       >
         <img
           id={`scene-image-${scene.id}`}
@@ -109,7 +109,7 @@ export function SceneCard({
         </div>
 
         {/* Card Controls Panel - Atas / Bawah */}
-        <div id={`scene-controls-${scene.id}`} className="flex items-center gap-2 2xl:gap-3 border-t-2 2xl:border-3 border-slate-900 pt-2 2xl:pt-3 mt-auto">
+        <div id={`scene-controls-${scene.id}`} className="flex items-center gap-2 2xl:gap-3 border-t-2 border-slate-900 pt-2 2xl:pt-3 mt-auto">
           <button
             id={`scene-move-up-${scene.id}`}
             type="button"
@@ -118,7 +118,7 @@ export function SceneCard({
               e.stopPropagation();
               onMoveCard(idx, 'up');
             }}
-            className={`flex-1 py-1 2xl:py-2 flex items-center justify-center gap-1 sm:gap-1.5 2xl:gap-2 rounded-lg 2xl:rounded-xl border-2 2xl:border-3 text-[9px] sm:text-xs 2xl:text-sm font-mono font-bold transition-all cursor-pointer ${
+            className={`flex-1 py-1 2xl:py-2 flex items-center justify-center gap-1 sm:gap-1.5 2xl:gap-2 rounded-lg 2xl:rounded-xl border-2 text-[9px] sm:text-xs 2xl:text-sm font-mono font-bold transition-all cursor-pointer ${
               idx === 0 || showFeedback
                 ? 'border-slate-200 text-slate-400 bg-slate-50 cursor-not-allowed'
                 : 'border-slate-900 text-slate-800 bg-white hover:bg-slate-50 shadow-[2px_2px_0px_#0f172a] 2xl:shadow-[3px_3px_0px_#0f172a] active:translate-x-[1px] active:translate-y-[1px]'
@@ -135,7 +135,7 @@ export function SceneCard({
               e.stopPropagation();
               onMoveCard(idx, 'down');
             }}
-            className={`flex-1 py-1 2xl:py-2 flex items-center justify-center gap-1 sm:gap-1.5 2xl:gap-2 rounded-lg 2xl:rounded-xl border-2 2xl:border-3 text-[9px] sm:text-xs 2xl:text-sm font-mono font-bold transition-all cursor-pointer ${
+            className={`flex-1 py-1 2xl:py-2 flex items-center justify-center gap-1 sm:gap-1.5 2xl:gap-2 rounded-lg 2xl:rounded-xl border-2 text-[9px] sm:text-xs 2xl:text-sm font-mono font-bold transition-all cursor-pointer ${
               idx === totalScenes - 1 || showFeedback
                 ? 'border-slate-200 text-slate-400 bg-slate-50 cursor-not-allowed'
                 : 'border-slate-900 text-slate-800 bg-white hover:bg-slate-50 shadow-[2px_2px_0px_#0f172a] 2xl:shadow-[3px_3px_0px_#0f172a] active:translate-x-[1px] active:translate-y-[1px]'

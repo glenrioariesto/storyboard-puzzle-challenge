@@ -87,19 +87,29 @@ export function ArenaPage({
         id="arena-bg-image"
         src={arenaBg}
         alt="Arena Background"
-        className="fixed inset-0 w-full h-full object-cover z-0 opacity-60 pointer-events-none filter blur-[1px] brightness-125 saturate-125"
+        className="fixed inset-0 w-full h-full object-cover z-0 opacity-60 pointer-events-none filter blur-[1px] "
       />
       {/* Light Clean Overlay for contrast */}
       <div
         id="arena-gradient-overlay"
-        className="fixed inset-0 bg-gradient-to-b from-amber-50/40 via-white/50 to-orange-50/60 backdrop-blur-[1px] z-0 pointer-events-none"
+        className="fixed inset-0 backdrop-blur-[1px] z-0 pointer-events-none"
       />
 
-      {/* Symmetrical Upper Navigation Header - Fixed/Sticky on top with Glassmorphism blur */}
+      {/* Symmetrical Upper Navigation Header - Sticky on top with Glassmorphism Background */}
       <header
         id="arena-header"
-        className="sticky top-0 left-0 right-0 z-30 bg-white/75 backdrop-blur-md shadow-[0_4px_12px_rgba(0,0,0,0.06)] border-b border-slate-900/10 shrink-0 select-none"
+        className="sticky top-0 left-0 right-0 z-30 bg-white/80 backdrop-blur-md shadow-[0_4px_12px_rgba(0,0,0,0.06)] border-b border-slate-900/10 shrink-0 select-none"
       >
+        {/* Progress Bar - Situated at the very top above the Navbar */}
+        <div id="arena-progress-bar-container" className="w-full h-1 sm:h-1.5 2xl:h-2 bg-slate-200/80 overflow-hidden">
+          <div
+            id="arena-progress-bar-fill"
+            className="h-full bg-orange-500 transition-all duration-500"
+            style={{ width: `${progressPercentage}%` }}
+          />
+        </div>
+
+        {/* Navbar Container */}
         <div
           id="arena-navbar-container"
           className="h-14 sm:h-16 md:h-18 lg:h-20 2xl:h-24 px-3 sm:px-6 lg:px-8 2xl:px-12 flex items-center justify-between gap-3"
@@ -161,15 +171,6 @@ export function ArenaPage({
               className="h-9 w-9 sm:h-10 sm:w-10 md:h-11 md:w-11 lg:h-13 lg:w-13 2xl:h-16 2xl:w-16"
             />
           </div>
-        </div>
-
-        {/* Progress Bar - Attached seamlessly underneath Header */}
-        <div id="arena-progress-bar-container" className="w-full h-1 sm:h-1.5 2xl:h-2 bg-slate-200/80 overflow-hidden border-t border-slate-900/10">
-          <div
-            id="arena-progress-bar-fill"
-            className="h-full bg-orange-500 transition-all duration-500"
-            style={{ width: `${progressPercentage}%` }}
-          />
         </div>
       </header>
 
