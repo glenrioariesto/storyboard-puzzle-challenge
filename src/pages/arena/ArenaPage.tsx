@@ -128,7 +128,7 @@ export function ArenaPage({
           <div id="arena-mission-container" className="flex flex-col items-center justify-center min-w-0 px-2 text-center">
             <span
               id="arena-mission-badge"
-              className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm 2xl:text-base font-mono text-orange-600 font-bold uppercase tracking-wider"
+              className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm 2xl:text-base font-serif text-orange-600 font-bold uppercase tracking-wider"
             >
               Misi {currentStoryIndex + 1}/{totalStories}
             </span>
@@ -149,7 +149,7 @@ export function ArenaPage({
                 playSynthesizerNote('pop');
                 setIsGuideOpen(true);
               }}
-              className="h-9 sm:h-10 md:h-11 lg:h-13 2xl:h-16 px-2.5 sm:px-3.5 lg:px-5 2xl:px-6 inline-flex items-center justify-center gap-1.5 2xl:gap-2.5 text-[11px] sm:text-xs md:text-sm lg:text-base 2xl:text-xl font-mono font-bold text-slate-700 hover:text-orange-700 bg-white/95 hover:bg-orange-50 border-2 2xl:border-3 border-slate-900 hover:border-orange-500 rounded-xl 2xl:rounded-2xl transition-all shadow-[2px_2px_0px_#0f172a] 2xl:shadow-[3px_3px_0px_#0f172a] hover:shadow-[3px_3px_0px_#ea580c] 2xl:hover:shadow-[4px_4px_0px_#ea580c] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_#0f172a] cursor-pointer"
+              className="h-9 sm:h-10 md:h-11 lg:h-13 2xl:h-16 px-2.5 sm:px-3.5 lg:px-5 2xl:px-6 inline-flex items-center justify-center gap-1.5 2xl:gap-2.5 text-[11px] sm:text-xs md:text-sm lg:text-base 2xl:text-xl font-serif font-bold text-slate-700 hover:text-orange-700 bg-white/95 hover:bg-orange-50 border-2 2xl:border-3 border-slate-900 hover:border-orange-500 rounded-xl 2xl:rounded-2xl transition-all shadow-[2px_2px_0px_#0f172a] 2xl:shadow-[3px_3px_0px_#0f172a] hover:shadow-[3px_3px_0px_#ea580c] 2xl:hover:shadow-[4px_4px_0px_#ea580c] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_#0f172a] cursor-pointer"
             >
               <span>💡<span className="hidden sm:inline"> Panduan</span></span>
             </button>
@@ -158,8 +158,8 @@ export function ArenaPage({
               id="arena-score-badge"
               className="h-9 sm:h-10 md:h-11 lg:h-13 2xl:h-16 px-2.5 sm:px-3 lg:px-4 2xl:px-6 inline-flex items-center justify-center gap-1.5 2xl:gap-2.5 bg-orange-50 border-2 2xl:border-3 border-slate-900 rounded-xl 2xl:rounded-2xl shadow-[2px_2px_0px_#0f172a] 2xl:shadow-[3px_3px_0px_#0f172a]"
             >
-              <span className="text-[10px] sm:text-xs lg:text-sm 2xl:text-lg font-mono text-slate-500 font-bold hidden sm:inline">Poin:</span>
-              <span id="arena-score-value" className="font-mono text-xs sm:text-sm md:text-base lg:text-lg 2xl:text-2xl font-black text-orange-700">
+              <span className="text-[10px] sm:text-xs lg:text-sm 2xl:text-lg font-serif text-slate-500 font-bold hidden sm:inline">Poin:</span>
+              <span id="arena-score-value" className="font-serif text-xs sm:text-sm md:text-base lg:text-lg 2xl:text-2xl font-black text-orange-700">
                 {score}
               </span>
             </div>
@@ -186,7 +186,7 @@ export function ArenaPage({
               className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white/95 backdrop-blur-md border-2 2xl:border-3 border-slate-900 p-4 2xl:p-6 rounded-xl 2xl:rounded-2xl shadow-[4px_4px_0px_#0f172a] 2xl:shadow-[6px_6px_0px_#0f172a]"
             >
               <div id="arena-action-text-container" className="flex flex-col gap-0.5 2xl:gap-1.5">
-                <p id="arena-action-title" className="text-xs sm:text-sm 2xl:text-lg font-mono font-bold text-slate-800 uppercase tracking-wider">
+                <p id="arena-action-title" className="text-xs sm:text-sm 2xl:text-lg font-serif font-bold text-slate-800 uppercase tracking-wider">
                   Evaluasi Urutan Storyboard
                 </p>
                 <p id="arena-action-desc" className="text-[10px] sm:text-xs 2xl:text-base text-slate-500 font-bold leading-normal">
@@ -196,7 +196,7 @@ export function ArenaPage({
 
               <div id="arena-action-buttons-container" className="flex items-center justify-between sm:justify-end gap-2 sm:gap-3 2xl:gap-4 w-full sm:w-auto shrink-0 border-t sm:border-t-0 border-slate-100 pt-3 sm:pt-0">
                 {attempts > 0 && (
-                  <span id="arena-attempts-indicator" className="text-xs 2xl:text-base font-mono font-bold text-rose-600 mr-auto sm:mr-0">
+                  <span id="arena-attempts-indicator" className="text-xs 2xl:text-base font-serif font-bold text-rose-600 mr-auto sm:mr-0">
                     Salah: {attempts}x
                   </span>
                 )}
@@ -204,7 +204,7 @@ export function ArenaPage({
                   id="arena-check-button"
                   type="button"
                   onClick={onCheck}
-                  className="px-4 sm:px-5 2xl:px-8 py-2 2xl:py-3.5 font-mono text-xs sm:text-sm 2xl:text-lg font-bold uppercase rounded-lg 2xl:rounded-xl border-2 2xl:border-3 transition-all cursor-pointer border-slate-900 text-white bg-orange-600 hover:bg-orange-700 shadow-[3px_3px_0px_#0f172a] 2xl:shadow-[5px_5px_0px_#0f172a] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[2px_2px_0px_#0f172a]"
+                  className="px-4 sm:px-5 2xl:px-8 py-2 2xl:py-3.5 font-serif text-xs sm:text-sm 2xl:text-lg font-bold uppercase rounded-lg 2xl:rounded-xl border-2 2xl:border-3 transition-all cursor-pointer border-slate-900 text-white bg-orange-600 hover:bg-orange-700 shadow-[3px_3px_0px_#0f172a] 2xl:shadow-[5px_5px_0px_#0f172a] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[2px_2px_0px_#0f172a]"
                 >
                   Periksa Cerita
                 </button>

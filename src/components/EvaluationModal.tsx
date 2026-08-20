@@ -66,14 +66,14 @@ export function EvaluationModal({
         {/* Header */}
         <div id="evaluation-modal-header" className="flex items-center gap-2 2xl:gap-3 border-b-2 2xl:border-3 pb-2.5 2xl:pb-4 border-slate-900 shrink-0">
           <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 2xl:w-8 2xl:h-8 text-emerald-700 shrink-0 animate-bounce" />
-          <h4 id="evaluation-modal-title" className="font-mono text-xs sm:text-sm 2xl:text-lg font-bold text-emerald-800 uppercase tracking-wider">
+          <h4 id="evaluation-modal-title" className="font-serif text-xs sm:text-sm 2xl:text-lg font-bold text-emerald-800 uppercase tracking-wider">
             STORYBOARD SEJAJAR BENAR (+1)
           </h4>
         </div>
 
         {/* Content */}
         <div id="evaluation-modal-content" className="flex flex-col gap-2 2xl:gap-3 py-1">
-          <div className="flex items-center gap-1.5 2xl:gap-2 text-[10px] sm:text-xs 2xl:text-base font-mono text-emerald-800 font-bold uppercase">
+          <div className="flex items-center gap-1.5 2xl:gap-2 text-[10px] sm:text-xs 2xl:text-base font-serif text-emerald-800 font-bold uppercase">
             <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4 2xl:w-6 2xl:h-6 text-orange-600 shrink-0" />
             <span>Ulasan Alur Cerita</span>
           </div>
@@ -90,7 +90,7 @@ export function EvaluationModal({
           id="evaluation-modal-advance-button"
           type="button"
           onClick={onAdvance}
-          className="w-full py-2.5 sm:py-3 2xl:py-4 bg-orange-600 hover:bg-orange-700 border-2 2xl:border-3 border-slate-900 text-white rounded-xl 2xl:rounded-2xl text-xs sm:text-sm 2xl:text-lg font-mono font-bold flex items-center justify-center gap-2 2xl:gap-3 shadow-[3px_3px_0px_#0f172a] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[2px_2px_0px_#0f172a] transition-all cursor-pointer shrink-0 mt-1"
+          className="w-full py-2.5 sm:py-3 2xl:py-4 bg-orange-600 hover:bg-orange-700 border-2 2xl:border-3 border-slate-900 text-white rounded-xl 2xl:rounded-2xl text-xs sm:text-sm 2xl:text-lg font-serif font-bold flex items-center justify-center gap-2 2xl:gap-3 shadow-[3px_3px_0px_#0f172a] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[2px_2px_0px_#0f172a] transition-all cursor-pointer shrink-0 mt-1"
         >
           <span>{isLastStory ? 'Lihat Hasil Evaluasi' : 'Lanjut ke Storyboard Berikutnya'}</span>
           <ArrowRight className="w-4 h-4 2xl:w-6 2xl:h-6" />

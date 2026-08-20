@@ -75,7 +75,7 @@ export function SceneCard({
           <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 2xl:gap-3 mb-1.5 sm:mb-2 2xl:mb-3">
             <span
               id={`scene-slot-badge-${scene.id}`}
-              className="bg-slate-900 border-2 border-slate-900 text-[8px] sm:text-[10px] 2xl:text-xs font-mono text-white font-bold px-1.5 sm:px-2 2xl:px-3 py-0.5 rounded-md 2xl:rounded-lg"
+              className="bg-slate-900 border-2 border-slate-900 text-[8px] sm:text-[10px] 2xl:text-xs font-serif text-white font-bold px-1.5 sm:px-2 2xl:px-3 py-0.5 rounded-md 2xl:rounded-lg"
             >
               Slot #{idx + 1}
             </span>
@@ -88,7 +88,7 @@ export function SceneCard({
             {checked && (
               <span
                 id={`scene-status-badge-${scene.id}`}
-                className={`inline-flex items-center gap-0.5 text-[8px] sm:text-[9px] 2xl:text-xs font-mono font-bold px-1.5 2xl:px-2.5 py-0.5 rounded-md 2xl:rounded-lg border-2 ${
+                className={`inline-flex items-center gap-0.5 text-[8px] sm:text-[9px] 2xl:text-xs font-serif font-bold px-1.5 2xl:px-2.5 py-0.5 rounded-md 2xl:rounded-lg border-2 ${
                   isPosCorrect 
                     ? 'bg-emerald-100 border-emerald-700 text-emerald-800' 
                     : 'bg-rose-100 border-rose-700 text-rose-800'
@@ -118,7 +118,7 @@ export function SceneCard({
               e.stopPropagation();
               onMoveCard(idx, 'up');
             }}
-            className={`flex-1 py-1 2xl:py-2 flex items-center justify-center gap-1 sm:gap-1.5 2xl:gap-2 rounded-lg 2xl:rounded-xl border-2 text-[9px] sm:text-xs 2xl:text-sm font-mono font-bold transition-all cursor-pointer ${
+            className={`flex-1 py-1 2xl:py-2 flex items-center justify-center gap-1 sm:gap-1.5 2xl:gap-2 rounded-lg 2xl:rounded-xl border-2 text-[9px] sm:text-xs 2xl:text-sm font-serif font-bold transition-all cursor-pointer ${
               idx === 0 || showFeedback
                 ? 'border-slate-200 text-slate-400 bg-slate-50 cursor-not-allowed'
                 : 'border-slate-900 text-slate-800 bg-white hover:bg-slate-50 shadow-[2px_2px_0px_#0f172a] 2xl:shadow-[3px_3px_0px_#0f172a] active:translate-x-[1px] active:translate-y-[1px]'
@@ -135,7 +135,7 @@ export function SceneCard({
               e.stopPropagation();
               onMoveCard(idx, 'down');
             }}
-            className={`flex-1 py-1 2xl:py-2 flex items-center justify-center gap-1 sm:gap-1.5 2xl:gap-2 rounded-lg 2xl:rounded-xl border-2 text-[9px] sm:text-xs 2xl:text-sm font-mono font-bold transition-all cursor-pointer ${
+            className={`flex-1 py-1 2xl:py-2 flex items-center justify-center gap-1 sm:gap-1.5 2xl:gap-2 rounded-lg 2xl:rounded-xl border-2 text-[9px] sm:text-xs 2xl:text-sm font-serif font-bold transition-all cursor-pointer ${
               idx === totalScenes - 1 || showFeedback
                 ? 'border-slate-200 text-slate-400 bg-slate-50 cursor-not-allowed'
                 : 'border-slate-900 text-slate-800 bg-white hover:bg-slate-50 shadow-[2px_2px_0px_#0f172a] 2xl:shadow-[3px_3px_0px_#0f172a] active:translate-x-[1px] active:translate-y-[1px]'

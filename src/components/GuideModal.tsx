@@ -38,7 +38,7 @@ export function GuideModal({ isOpen, onClose, title, description }: GuideModalPr
         <div id="guide-modal-header" className="flex items-center justify-between border-b-2 border-slate-900 pb-2.5 2xl:pb-4 shrink-0">
           <div className="flex items-center gap-2 2xl:gap-3 text-orange-700">
             <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 2xl:w-7 2xl:h-7 shrink-0" />
-            <h4 id="guide-modal-title" className="font-mono text-xs 2xl:text-base font-bold uppercase tracking-wider">
+            <h4 id="guide-modal-title" className="font-serif text-xs 2xl:text-base font-bold uppercase tracking-wider">
               Panduan Level ({currentSlide + 1}/{totalSlides})
             </h4>
           </div>
@@ -67,7 +67,7 @@ export function GuideModal({ isOpen, onClose, title, description }: GuideModalPr
 
           {currentSlide === 1 && (
             <div id="guide-slide-1" className="flex flex-col gap-3 2xl:gap-4 animate-fadeIn">
-              <div className="flex items-center gap-2 2xl:gap-3 text-slate-900 font-bold font-mono text-xs 2xl:text-base uppercase tracking-wider">
+              <div className="flex items-center gap-2 2xl:gap-3 text-slate-900 font-bold font-serif text-xs 2xl:text-base uppercase tracking-wider">
                 <MoveVertical className="w-4 h-4 2xl:w-6 2xl:h-6 text-orange-600" />
                 <span>Cara Mengurutkan Adegan:</span>
               </div>
@@ -86,7 +86,7 @@ export function GuideModal({ isOpen, onClose, title, description }: GuideModalPr
 
           {currentSlide === 2 && (
             <div id="guide-slide-2" className="flex flex-col gap-3 2xl:gap-4 animate-fadeIn">
-              <div className="flex items-center gap-2 2xl:gap-3 text-slate-900 font-bold font-mono text-xs 2xl:text-base uppercase tracking-wider">
+              <div className="flex items-center gap-2 2xl:gap-3 text-slate-900 font-bold font-serif text-xs 2xl:text-base uppercase tracking-wider">
                 <CheckCircle2 className="w-4 h-4 2xl:w-6 2xl:h-6 text-emerald-600" />
                 <span>Pemeriksaan Cerita & Skor:</span>
               </div>
@@ -126,7 +126,7 @@ export function GuideModal({ isOpen, onClose, title, description }: GuideModalPr
                 id="guide-modal-prev-button"
                 type="button"
                 onClick={() => setCurrentSlide(prev => prev - 1)}
-                className="px-3.5 2xl:px-5 py-2 2xl:py-3.5 border-2 border-slate-900 hover:bg-slate-50 text-slate-800 rounded-lg 2xl:rounded-xl text-xs 2xl:text-base font-mono font-bold flex items-center justify-center gap-1 transition-all shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] cursor-pointer"
+                className="px-3.5 2xl:px-5 py-2 2xl:py-3.5 border-2 border-slate-900 hover:bg-slate-50 text-slate-800 rounded-lg 2xl:rounded-xl text-xs 2xl:text-base font-serif font-bold flex items-center justify-center gap-1 transition-all shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] cursor-pointer"
               >
                 <ArrowLeft className="w-3.5 h-3.5 2xl:w-5 2xl:h-5" />
                 <span>Sebelumnya</span>
@@ -138,7 +138,7 @@ export function GuideModal({ isOpen, onClose, title, description }: GuideModalPr
                 id="guide-modal-next-button"
                 type="button"
                 onClick={() => setCurrentSlide(prev => prev + 1)}
-                className="flex-1 py-2 2xl:py-3.5 bg-orange-600 hover:bg-orange-700 border-2 border-slate-900 text-white rounded-lg 2xl:rounded-xl text-xs 2xl:text-base font-mono font-bold flex items-center justify-center gap-1 transition-all shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] cursor-pointer"
+                className="flex-1 py-2 2xl:py-3.5 bg-orange-600 hover:bg-orange-700 border-2 border-slate-900 text-white rounded-lg 2xl:rounded-xl text-xs 2xl:text-base font-serif font-bold flex items-center justify-center gap-1 transition-all shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] cursor-pointer"
               >
                 <span>Selanjutnya</span>
                 <ArrowRight className="w-3.5 h-3.5 2xl:w-5 2xl:h-5" />
@@ -148,7 +148,7 @@ export function GuideModal({ isOpen, onClose, title, description }: GuideModalPr
                 id="guide-modal-start-button"
                 type="button"
                 onClick={onClose}
-                className="flex-1 py-2 2xl:py-3.5 bg-orange-600 hover:bg-orange-700 border-2 border-slate-900 text-white rounded-lg 2xl:rounded-xl text-xs 2xl:text-base font-mono font-bold flex items-center justify-center gap-1 transition-all shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] cursor-pointer"
+                className="flex-1 py-2 2xl:py-3.5 bg-orange-600 hover:bg-orange-700 border-2 border-slate-900 text-white rounded-lg 2xl:rounded-xl text-xs 2xl:text-base font-serif font-bold flex items-center justify-center gap-1 transition-all shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] cursor-pointer"
               >
                 <span>Mulai Menyusun!</span>
               </button>

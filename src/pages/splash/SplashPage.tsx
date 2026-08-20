@@ -71,7 +71,7 @@ export function SplashPage({ onStart, isMuted, onToggleAudio }: SplashPageProps)
         {/* Subtitle */}
         <h2
           id="splash-subtitle"
-          className="text-[10px] sm:text-xs md:text-sm lg:text-base 2xl:text-2xl font-mono text-orange-300 mb-6 sm:mb-8 2xl:mb-12 uppercase tracking-widest font-bold bg-slate-900/90 px-2.5 sm:px-3 lg:px-4 2xl:px-6 py-1 sm:py-1.5 lg:py-2 2xl:py-3 rounded-lg 2xl:rounded-2xl border border-orange-500/40 backdrop-blur-xs shadow-md max-w-full"
+          className="text-[10px] sm:text-xs md:text-sm lg:text-base 2xl:text-2xl font-serif text-orange-300 mb-6 sm:mb-8 2xl:mb-12 uppercase tracking-widest font-bold bg-slate-900/90 px-2.5 sm:px-3 lg:px-4 2xl:px-6 py-1 sm:py-1.5 lg:py-2 2xl:py-3 rounded-lg 2xl:rounded-2xl border border-orange-500/40 backdrop-blur-xs shadow-md max-w-full"
         >
           Susun Alur & Identifikasi Struktur Cerita
         </h2>
@@ -81,10 +81,10 @@ export function SplashPage({ onStart, isMuted, onToggleAudio }: SplashPageProps)
           id="splash-start-button"
           type="button"
           onClick={onStart}
-          className="brutalist-button px-6 sm:px-10 lg:px-12 2xl:px-16 py-3.5 sm:py-5 lg:py-6 2xl:py-8 rounded-xl sm:rounded-2xl 2xl:rounded-3xl font-bold font-mono text-xs sm:text-base lg:text-lg 2xl:text-2xl tracking-wider uppercase flex items-center gap-2.5 sm:gap-3 2xl:gap-5 cursor-pointer bg-orange-600 hover:bg-orange-500 text-white border-2 2xl:border-4 border-slate-900 shadow-[4px_4px_0px_#0f172a] sm:shadow-[6px_6px_0px_#0f172a] 2xl:shadow-[8px_8px_0px_#0f172a] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0px_#0f172a] transition-all"
+          className="brutalist-button px-6 sm:px-10 lg:px-12 2xl:px-16 py-3.5 sm:py-5 lg:py-6 2xl:py-8 rounded-xl sm:rounded-2xl 2xl:rounded-3xl font-bold font-serif text-xs sm:text-base lg:text-lg 2xl:text-2xl tracking-wider uppercase flex items-center gap-2.5 sm:gap-3 2xl:gap-5 cursor-pointer bg-orange-600 hover:bg-orange-500 text-white border-2 2xl:border-4 border-slate-900 shadow-[4px_4px_0px_#0f172a] sm:shadow-[6px_6px_0px_#0f172a] 2xl:shadow-[8px_8px_0px_#0f172a] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0px_#0f172a] transition-all"
         >
           <span>Mulai Menyusun</span>
-          <span className="font-sans text-base sm:text-lg 2xl:text-3xl">→</span>
+          <span className="font-serif text-base sm:text-lg 2xl:text-3xl">→</span>
         </button>
       </div>
     </div>
