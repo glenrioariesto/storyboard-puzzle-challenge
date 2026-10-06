@@ -5,7 +5,7 @@ import { EvaluationModal } from '../../components/EvaluationModal';
 import { SceneCard } from '../../components/SceneCard';
 import { AudioToggle } from '../../components/AudioToggle';
 import { playSynthesizerNote } from '../../utils/audio';
-import arenaBg from '../../../assets/arena-bg.jpg';
+import bgGame from '../../../assets/bg-game.webp';
 import logoPusbuk from '../../../assets/logo-pusbuk.webp';
 
 interface ArenaPageProps {
@@ -23,6 +23,7 @@ interface ArenaPageProps {
   onReorderCard: (fromIndex: number, toIndex: number) => void;
   onCheck: () => void;
   onAdvance: () => void;
+  onOpenObjectives?: () => void;
 }
 
 export function ArenaPage({
@@ -39,7 +40,8 @@ export function ArenaPage({
   onMoveCard,
   onReorderCard,
   onCheck,
-  onAdvance
+  onAdvance,
+  onOpenObjectives
 }: ArenaPageProps) {
   const progressPercentage = (currentStoryIndex / totalStories) * 100;
   
@@ -80,19 +82,19 @@ export function ArenaPage({
   return (
     <div
       id="arena-page"
-      className="min-h-screen w-screen relative bg-amber-50/50 text-slate-800 flex flex-col font-sans overflow-hidden"
+      className="min-h-screen w-screen relative bg-slate-900 text-slate-800 flex flex-col font-sans overflow-hidden"
     >
-      {/* Scenic Atmosphere Background Image - Bright & Warm */}
+      {/* Scenic Atmosphere Background Image */}
       <img
         id="arena-bg-image"
-        src={arenaBg}
-        alt="Arena Background"
-        className="fixed inset-0 w-full h-full object-cover z-0 opacity-60 pointer-events-none filter blur-[1px] "
+        src={bgGame}
+        alt="In-Game Background"
+        className="fixed inset-0 w-full h-full object-cover z-0 pointer-events-none"
       />
       {/* Light Clean Overlay for contrast */}
       <div
         id="arena-gradient-overlay"
-        className="fixed inset-0 backdrop-blur-[1px] z-0 pointer-events-none"
+        className="fixed inset-0 bg-slate-950/25 backdrop-blur-[0.5px] z-0 pointer-events-none"
       />
 
       {/* Symmetrical Upper Navigation Header - Sticky on top with Glassmorphism Background */}
@@ -112,7 +114,7 @@ export function ArenaPage({
         {/* Navbar Container */}
         <div
           id="arena-navbar-container"
-          className="h-14 sm:h-16 md:h-18 lg:h-20 2xl:h-24 px-3 sm:px-6 lg:px-8 2xl:px-12 flex items-center justify-between gap-3"
+          className="h-14 sm:h-16 md:h-18 lg:h-20 2xl:h-24 px-3 sm:px-6 lg:px-8 2xl:px-12 flex items-center justify-between gap-2 sm:gap-3"
         >
           {/* Top Left: Logo Pusbuk (Scaled for 2xl) */}
           <div id="arena-logo-container" className="flex items-center shrink-0">
@@ -128,20 +130,33 @@ export function ArenaPage({
           <div id="arena-mission-container" className="flex flex-col items-center justify-center min-w-0 px-2 text-center">
             <span
               id="arena-mission-badge"
-              className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm 2xl:text-base font-serif text-orange-600 font-bold uppercase tracking-wider"
+              className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm 2xl:text-base font-display text-orange-600 font-bold uppercase tracking-wider"
             >
               Misi {currentStoryIndex + 1}/{totalStories}
             </span>
             <h3
               id="arena-story-title"
-              className="text-xs sm:text-sm md:text-base lg:text-lg 2xl:text-2xl font-bold font-serif text-slate-900 mt-0.5 truncate max-w-[150px] sm:max-w-xs md:max-w-md lg:max-w-lg 2xl:max-w-2xl"
+              className="text-xs sm:text-sm md:text-base lg:text-lg 2xl:text-2xl font-bold font-display text-slate-900 mt-0.5 truncate max-w-[150px] sm:max-w-xs md:max-w-md lg:max-w-lg 2xl:max-w-2xl"
             >
               {activeStory.title}
             </h3>
           </div>
 
-          {/* Top Right: Guide Button, Score Badge & Mute/Unmute Audio Toggle (Symmetrical Heights) */}
-          <div id="arena-header-controls" className="flex items-center gap-1.5 sm:gap-2.5 md:gap-3 2xl:gap-4 shrink-0">
+          {/* Top Right: Objectives Button, Guide Button, Score Badge & Audio Toggle */}
+          <div id="arena-header-controls" className="flex items-center gap-1.5 sm:gap-2 md:gap-2.5 2xl:gap-3.5 shrink-0">
+            <button
+              id="arena-objectives-button"
+              type="button"
+              onClick={() => {
+                playSynthesizerNote('pop');
+                onOpenObjectives?.();
+              }}
+              className="h-9 sm:h-10 md:h-11 lg:h-13 2xl:h-16 px-2 sm:px-3 lg:px-4 2xl:px-5 inline-flex items-center justify-center gap-1 sm:gap-1.5 2xl:gap-2 text-[10.5px] sm:text-xs md:text-sm lg:text-base 2xl:text-xl font-display font-bold text-emerald-800 hover:text-emerald-950 bg-emerald-50 hover:bg-emerald-100 border-2 2xl:border-3 border-slate-900 rounded-xl 2xl:rounded-2xl transition-all shadow-[2px_2px_0px_#0f172a] 2xl:shadow-[3px_3px_0px_#0f172a] hover:shadow-[3px_3px_0px_#059669] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_#0f172a] cursor-pointer"
+              title="Tujuan Pembelajaran & Bermain"
+            >
+              <span>🎯<span className="hidden sm:inline"> Tujuan</span></span>
+            </button>
+
             <button
               id="arena-guide-button"
               type="button"
@@ -149,7 +164,8 @@ export function ArenaPage({
                 playSynthesizerNote('pop');
                 setIsGuideOpen(true);
               }}
-              className="h-9 sm:h-10 md:h-11 lg:h-13 2xl:h-16 px-2.5 sm:px-3.5 lg:px-5 2xl:px-6 inline-flex items-center justify-center gap-1.5 2xl:gap-2.5 text-[11px] sm:text-xs md:text-sm lg:text-base 2xl:text-xl font-serif font-bold text-slate-700 hover:text-orange-700 bg-white/95 hover:bg-orange-50 border-2 2xl:border-3 border-slate-900 hover:border-orange-500 rounded-xl 2xl:rounded-2xl transition-all shadow-[2px_2px_0px_#0f172a] 2xl:shadow-[3px_3px_0px_#0f172a] hover:shadow-[3px_3px_0px_#ea580c] 2xl:hover:shadow-[4px_4px_0px_#ea580c] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_#0f172a] cursor-pointer"
+              className="h-9 sm:h-10 md:h-11 lg:h-13 2xl:h-16 px-2 sm:px-3 lg:px-4 2xl:px-5 inline-flex items-center justify-center gap-1 sm:gap-1.5 2xl:gap-2 text-[10.5px] sm:text-xs md:text-sm lg:text-base 2xl:text-xl font-display font-bold text-slate-700 hover:text-orange-700 bg-white/95 hover:bg-orange-50 border-2 2xl:border-3 border-slate-900 hover:border-orange-500 rounded-xl 2xl:rounded-2xl transition-all shadow-[2px_2px_0px_#0f172a] 2xl:shadow-[3px_3px_0px_#0f172a] hover:shadow-[3px_3px_0px_#ea580c] 2xl:hover:shadow-[4px_4px_0px_#ea580c] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_#0f172a] cursor-pointer"
+              title="Panduan Level"
             >
               <span>💡<span className="hidden sm:inline"> Panduan</span></span>
             </button>
@@ -158,8 +174,8 @@ export function ArenaPage({
               id="arena-score-badge"
               className="h-9 sm:h-10 md:h-11 lg:h-13 2xl:h-16 px-2.5 sm:px-3 lg:px-4 2xl:px-6 inline-flex items-center justify-center gap-1.5 2xl:gap-2.5 bg-orange-50 border-2 2xl:border-3 border-slate-900 rounded-xl 2xl:rounded-2xl shadow-[2px_2px_0px_#0f172a] 2xl:shadow-[3px_3px_0px_#0f172a]"
             >
-              <span className="text-[10px] sm:text-xs lg:text-sm 2xl:text-lg font-serif text-slate-500 font-bold hidden sm:inline">Poin:</span>
-              <span id="arena-score-value" className="font-serif text-xs sm:text-sm md:text-base lg:text-lg 2xl:text-2xl font-black text-orange-700">
+              <span className="text-[10px] sm:text-xs lg:text-sm 2xl:text-lg font-display text-slate-500 font-bold hidden sm:inline">Poin:</span>
+              <span id="arena-score-value" className="font-display text-xs sm:text-sm md:text-base lg:text-lg 2xl:text-2xl font-black text-orange-700">
                 {score}
               </span>
             </div>
@@ -186,7 +202,7 @@ export function ArenaPage({
               className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white/95 backdrop-blur-md border-2 2xl:border-3 border-slate-900 p-4 2xl:p-6 rounded-xl 2xl:rounded-2xl shadow-[4px_4px_0px_#0f172a] 2xl:shadow-[6px_6px_0px_#0f172a]"
             >
               <div id="arena-action-text-container" className="flex flex-col gap-0.5 2xl:gap-1.5">
-                <p id="arena-action-title" className="text-xs sm:text-sm 2xl:text-lg font-serif font-bold text-slate-800 uppercase tracking-wider">
+                <p id="arena-action-title" className="text-xs sm:text-sm 2xl:text-lg font-display font-bold text-slate-800 uppercase tracking-wider">
                   Evaluasi Urutan Storyboard
                 </p>
                 <p id="arena-action-desc" className="text-[10px] sm:text-xs 2xl:text-base text-slate-500 font-bold leading-normal">
@@ -196,7 +212,7 @@ export function ArenaPage({
 
               <div id="arena-action-buttons-container" className="flex items-center justify-between sm:justify-end gap-2 sm:gap-3 2xl:gap-4 w-full sm:w-auto shrink-0 border-t sm:border-t-0 border-slate-100 pt-3 sm:pt-0">
                 {attempts > 0 && (
-                  <span id="arena-attempts-indicator" className="text-xs 2xl:text-base font-serif font-bold text-rose-600 mr-auto sm:mr-0">
+                  <span id="arena-attempts-indicator" className="text-xs 2xl:text-base font-display font-bold text-rose-600 mr-auto sm:mr-0">
                     Salah: {attempts}x
                   </span>
                 )}
@@ -204,7 +220,7 @@ export function ArenaPage({
                   id="arena-check-button"
                   type="button"
                   onClick={onCheck}
-                  className="px-4 sm:px-5 2xl:px-8 py-2 2xl:py-3.5 font-serif text-xs sm:text-sm 2xl:text-lg font-bold uppercase rounded-lg 2xl:rounded-xl border-2 2xl:border-3 transition-all cursor-pointer border-slate-900 text-white bg-orange-600 hover:bg-orange-700 shadow-[3px_3px_0px_#0f172a] 2xl:shadow-[5px_5px_0px_#0f172a] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[2px_2px_0px_#0f172a]"
+                  className="px-4 sm:px-5 2xl:px-8 py-2 2xl:py-3.5 font-display text-xs sm:text-sm 2xl:text-lg font-bold uppercase rounded-lg 2xl:rounded-xl border-2 2xl:border-3 transition-all cursor-pointer border-slate-900 text-white bg-orange-600 hover:bg-orange-700 shadow-[3px_3px_0px_#0f172a] 2xl:shadow-[5px_5px_0px_#0f172a] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[2px_2px_0px_#0f172a]"
                 >
                   Periksa Cerita
                 </button>

@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useGameState } from './hooks/useGameState';
 import { useAudio } from './hooks/useAudio';
 import { SplashPage } from './pages/splash/SplashPage';
 import { ArenaPage } from './pages/arena/ArenaPage';
 import { ResultPage } from './pages/result/ResultPage';
 import { PortraitWarning } from './components/PortraitWarning';
+import { ObjectivesModal } from './components/ObjectivesModal';
 
 export default function App() {
   const {
@@ -28,6 +29,7 @@ export default function App() {
   } = useGameState();
 
   const { isMuted, toggleMute, startBgm } = useAudio();
+  const [showObjectivesModal, setShowObjectivesModal] = useState(false);
 
   // Try playing BGM on mount (will activate upon user gesture if blocked by autoplay policy)
   useEffect(() => {
@@ -36,13 +38,20 @@ export default function App() {
 
   const handleStart = () => {
     startBgm();
-    startInvestigation();
+    setShowObjectivesModal(true);
+  };
+
+  const handleProceedFromObjectives = () => {
+    setShowObjectivesModal(false);
+    if (pageView === 'splash') {
+      startInvestigation();
+    }
   };
 
   return (
     <div
       id="app-root"
-      className="h-screen w-screen overflow-hidden bg-[#FAF8F5] bg-paper-grid flex flex-col antialiased text-slate-800 relative"
+      className="h-screen w-screen overflow-hidden bg-[#FAF8F5] bg-paper-grid flex flex-col antialiased text-slate-800 relative font-sans"
     >
       {/* Landscape phone orientation locks */}
       <PortraitWarning />
@@ -51,6 +60,7 @@ export default function App() {
       {pageView === 'splash' && (
         <SplashPage
           onStart={handleStart}
+          onOpenObjectives={() => setShowObjectivesModal(true)}
           isMuted={isMuted}
           onToggleAudio={toggleMute}
         />
@@ -72,6 +82,7 @@ export default function App() {
           onReorderCard={reorderCard}
           onCheck={checkStoryboard}
           onAdvance={advanceStory}
+          onOpenObjectives={() => setShowObjectivesModal(true)}
         />
       )}
 
@@ -86,10 +97,19 @@ export default function App() {
         />
       )}
 
-      {/* Footer Copyright */}
-      <footer className="fixed bottom-1 left-0 right-0 z-40 text-center pointer-events-none select-none text-[10px] text-slate-500 font-medium tracking-wide">
-        Copyright 2026 Pusat Perbukuan
-      </footer>
+      {/* Modal Tujuan Pembelajaran / Bermain */}
+      <ObjectivesModal
+        isOpen={showObjectivesModal}
+        onClose={() => setShowObjectivesModal(false)}
+        onStart={handleProceedFromObjectives}
+      />
+
+      {/* Footer Copyright: Hanya tampil di halaman tanpa kontrol (Splash & Result) */}
+      {pageView !== 'game' && (
+        <footer className="fixed bottom-1.5 left-0 right-0 z-40 text-center pointer-events-none select-none text-[10px] text-slate-700 font-semibold drop-shadow-xs tracking-wide">
+          Copyright 2026 Pusat Perbukuan
+        </footer>
+      )}
     </div>
   );
 }

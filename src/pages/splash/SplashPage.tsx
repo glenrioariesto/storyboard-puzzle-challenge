@@ -1,91 +1,126 @@
 import React from 'react';
+import bgSplash from '../../../assets/bg-splash.webp';
+import titlePuzzle from '../../../assets/title-puzzle.webp';
+import titleStoryboard from '../../../assets/title-storyboard.webp';
+import btnMulai from '../../../assets/btn-mulai.webp';
 import logoPusbuk from '../../../assets/logo-pusbuk.webp';
-import splashBg from '../../../assets/splash-bg.jpg';
 import { AudioToggle } from '../../components/AudioToggle';
+import { Target } from 'lucide-react';
+import { playSynthesizerNote } from '../../utils/audio';
 
 interface SplashPageProps {
   onStart: () => void;
+  onOpenObjectives: () => void;
   isMuted: boolean;
   onToggleAudio: () => void;
 }
 
-export function SplashPage({ onStart, isMuted, onToggleAudio }: SplashPageProps) {
+export function SplashPage({ onStart, onOpenObjectives, isMuted, onToggleAudio }: SplashPageProps) {
+  const handleStartClick = () => {
+    playSynthesizerNote('btn');
+    onStart();
+  };
+
+  const handleObjectivesClick = () => {
+    playSynthesizerNote('pop');
+    onOpenObjectives();
+  };
+
   return (
     <div
       id="splash-page"
-      className="min-h-screen w-screen relative flex items-end justify-end p-4 sm:p-8 md:p-12 lg:p-16 2xl:p-24 overflow-hidden text-slate-800"
+      className="fixed inset-0 w-screen h-screen select-none overflow-hidden bg-cover bg-center bg-no-repeat z-10"
+      style={{ backgroundImage: `url(${bgSplash})` }}
     >
-      {/* Background Image - Clean illustration focused on left */}
-      <img
-        id="splash-bg-image"
-        src={splashBg}
-        alt="Background Storyboard"
-        className="absolute inset-0 w-full h-full object-cover object-left z-0 pointer-events-none"
-      />
-
-      {/* Responsive Gradient Overlay: Top-to-bottom on mobile, left-to-right on larger screens */}
+      {/* Subtle depth gradient overlay */}
       <div
-        id="splash-gradient-overlay"
-        className="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-slate-950/70 to-slate-950/95 sm:bg-gradient-to-r sm:from-transparent sm:via-slate-900/60 sm:to-slate-950/90 z-0 pointer-events-none"
+        id="splash-vignette-overlay"
+        className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-amber-950/15 pointer-events-none"
       />
 
-      {/* Pusbuk Logo on Top Left - Large and crisp on 2xl */}
+      {/* Top Left: Logo Pusbuk */}
       <div
         id="splash-logo-container"
-        className="absolute top-3 left-3 sm:top-5 sm:left-6 lg:top-8 lg:left-10 2xl:top-12 2xl:left-14 z-20 shrink-0 animate-fadeIn"
+        className="fixed top-3 left-3 sm:top-5 sm:left-6 lg:top-7 lg:left-8 2xl:top-10 2xl:left-12 z-30 animate-fadeIn"
       >
         <img
           id="splash-logo-image"
-          src={logoPusbuk} 
-          alt="Logo Pusbuk" 
-          className="h-10 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-32 w-auto object-contain drop-shadow-md"
+          src={logoPusbuk}
+          alt="Logo Pusbuk"
+          className="h-9 sm:h-12 md:h-14 lg:h-16 2xl:h-22 w-auto object-contain drop-shadow-md"
         />
       </div>
 
-      {/* Audio Mute/Unmute Toggle on Top Right - Scaled for 2xl */}
+      {/* Top Right Controls: Tujuan Pembelajaran & Audio Toggle */}
       <div
-        id="splash-audio-container"
-        className="absolute top-3 right-3 sm:top-5 sm:right-6 lg:top-8 lg:right-10 2xl:top-12 2xl:right-14 z-20 shrink-0 animate-fadeIn"
+        id="splash-header-controls"
+        className="fixed top-3 right-3 sm:top-5 sm:right-6 lg:top-7 lg:right-8 2xl:top-10 2xl:right-12 z-30 flex items-center gap-2 sm:gap-3 animate-fadeIn"
       >
+        <button
+          id="splash-objectives-top-btn"
+          type="button"
+          onClick={handleObjectivesClick}
+          className="h-9 sm:h-11 md:h-12 2xl:h-16 px-2.5 sm:px-4 2xl:px-6 bg-white/95 hover:bg-white text-emerald-900 border-2 border-emerald-950/20 hover:border-emerald-600 rounded-xl 2xl:rounded-2xl shadow-[2px_2px_0px_#0f172a] text-[10px] sm:text-xs md:text-sm 2xl:text-lg font-black font-display uppercase tracking-wide flex items-center gap-1.5 transition-all cursor-pointer hover:scale-105 active:scale-95 backdrop-blur-xs"
+        >
+          <Target className="w-3.5 h-3.5 sm:w-4 sm:h-4 2xl:w-6 2xl:h-6 text-emerald-600 shrink-0" />
+          <span>Tujuan Pembelajaran</span>
+        </button>
+
         <AudioToggle
           id="splash-audio-button"
           isMuted={isMuted}
           onToggle={onToggleAudio}
-          className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 lg:h-16 lg:w-16 2xl:h-20 2xl:w-20 bg-white/90 backdrop-blur-sm shadow-[2px_2px_0px_#0f172a] 2xl:shadow-[4px_4px_0px_#0f172a]"
+          className="h-9 w-9 sm:h-11 sm:w-11 md:h-12 md:w-12 2xl:h-16 2xl:w-16 bg-white/95 backdrop-blur-xs shadow-[2px_2px_0px_#0f172a]"
         />
       </div>
 
-      {/* Main Content Area - Strictly Aligned Right for All Devices */}
-      <div
-        id="splash-content"
-        className="z-10 w-full max-w-lg sm:max-w-xl lg:max-w-2xl 2xl:max-w-4xl ml-auto flex flex-col items-end text-right select-none animate-fadeIn pb-6 sm:pb-0"
-      >
-        {/* Title */}
-        <h1
-          id="splash-title"
-          className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl 2xl:text-8xl font-black font-serif mb-2 sm:mb-3 2xl:mb-6 select-none uppercase text-white tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]"
+      {/* Safe right boundary container: Title & Start Button stack */}
+      <div className="w-full h-full flex justify-end items-center pr-6 sm:pr-10 md:pr-14 lg:pr-20 xl:pr-24 2xl:pr-36">
+        <div
+          id="splash-card-column"
+          className="flex flex-col items-center max-w-[210px] sm:max-w-[270px] md:max-w-[330px] lg:max-w-[420px] xl:max-w-[460px] 2xl:max-w-[620px] w-full z-20"
         >
-          PUZZLE <br /> STORYBOARD
-        </h1>
-        
-        {/* Subtitle */}
-        <h2
-          id="splash-subtitle"
-          className="text-[10px] sm:text-xs md:text-sm lg:text-base 2xl:text-2xl font-serif text-orange-300 mb-6 sm:mb-8 2xl:mb-12 uppercase tracking-widest font-bold bg-slate-900/90 px-2.5 sm:px-3 lg:px-4 2xl:px-6 py-1 sm:py-1.5 lg:py-2 2xl:py-3 rounded-lg 2xl:rounded-2xl border border-orange-500/40 backdrop-blur-xs shadow-md max-w-full"
-        >
-          Susun Alur & Identifikasi Struktur Cerita
-        </h2>
+          {/* Floating container for titles to create a smooth bobbing/wiggle effect */}
+          <div className="w-full flex flex-col items-center animate-float-wiggle">
+            {/* Title 1: PUZZLE */}
+            <img
+              id="splash-title-puzzle"
+              src={titlePuzzle}
+              alt="PUZZLE"
+              className="w-[72%] sm:w-[70%] h-auto object-contain select-none pointer-events-none relative z-10 animate-title-1 drop-shadow-xl"
+            />
+            {/* Title 2: STORYBOARD */}
+            <img
+              id="splash-title-storyboard"
+              src={titleStoryboard}
+              alt="STORYBOARD"
+              className="w-full h-auto object-contain select-none pointer-events-none -mt-2 sm:-mt-3 md:-mt-4 lg:-mt-5 2xl:-mt-7 relative z-20 animate-title-2 drop-shadow-xl"
+            />
+          </div>
 
-        {/* Start Button */}
-        <button
-          id="splash-start-button"
-          type="button"
-          onClick={onStart}
-          className="brutalist-button px-6 sm:px-10 lg:px-12 2xl:px-16 py-3.5 sm:py-5 lg:py-6 2xl:py-8 rounded-xl sm:rounded-2xl 2xl:rounded-3xl font-bold font-serif text-xs sm:text-base lg:text-lg 2xl:text-2xl tracking-wider uppercase flex items-center gap-2.5 sm:gap-3 2xl:gap-5 cursor-pointer bg-orange-600 hover:bg-orange-500 text-white border-2 2xl:border-4 border-slate-900 shadow-[4px_4px_0px_#0f172a] sm:shadow-[6px_6px_0px_#0f172a] 2xl:shadow-[8px_8px_0px_#0f172a] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0px_#0f172a] transition-all"
-        >
-          <span>Mulai Menyusun</span>
-          <span className="font-serif text-base sm:text-lg 2xl:text-3xl">→</span>
-        </button>
+          {/* Subtitle Badge */}
+          <div className="mt-2.5 sm:mt-3.5 md:mt-4 2xl:mt-6 text-center animate-fadeIn">
+            <span className="inline-block text-[8.5px] sm:text-[10px] md:text-xs lg:text-sm 2xl:text-lg font-bold font-sans text-emerald-950 bg-white/90 backdrop-blur-xs px-3 sm:px-4 2xl:px-6 py-1 sm:py-1.5 2xl:py-2 rounded-full border-2 border-emerald-900/30 shadow-[2px_2px_0px_rgba(27,67,50,0.2)] uppercase tracking-wider">
+              Susun Alur & Struktur Narasi
+            </span>
+          </div>
+
+          {/* Centered Start Button with Pulse and Hover Grow Effect */}
+          <button
+            id="splash-start-button"
+            type="button"
+            onClick={handleStartClick}
+            className="mt-4 sm:mt-5 md:mt-7 2xl:mt-10 cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300 hover:brightness-105 focus:outline-none animate-[pulse_2.5s_infinite] drop-shadow-2xl"
+            aria-label="Mulai Menyusun"
+          >
+            <img
+              id="splash-start-button-image"
+              src={btnMulai}
+              alt="Mulai Menyusun"
+              className="w-44 sm:w-56 md:w-64 lg:w-72 xl:w-80 2xl:w-[420px] h-auto object-contain select-none pointer-events-none"
+            />
+          </button>
+        </div>
       </div>
     </div>
   );
