@@ -127,15 +127,15 @@ export function ArenaPage({
         {/* Navbar Container */}
         <div
           id="arena-navbar-container"
-          className="relative h-14 sm:h-16 md:h-18 lg:h-20 2xl:h-24 px-3 sm:px-6 lg:px-8 2xl:px-12 flex items-center justify-between"
+          className="relative h-14 sm:h-16 md:h-20 lg:h-22 2xl:h-28 px-3 sm:px-6 lg:px-8 2xl:px-12 flex items-center justify-between"
         >
-          {/* Top Left: Logo Jenama Pusbuk */}
+          {/* Top Left: Logo Jenama Kemendikdasmen / Pusbuk (Matched with SplashPage) */}
           <div id="arena-logo-container" className="flex items-center shrink-0 pointer-events-auto z-20">
             <img 
               id="arena-logo-image"
               src={logoJenama} 
               alt="Logo Pusbuk" 
-              className="h-8 sm:h-10 md:h-12 lg:h-14 2xl:h-16 w-auto object-contain drop-shadow-[0_4px_10px_rgba(0,0,0,0.35)]"
+              className="h-10 sm:h-13 md:h-15 lg:h-18 2xl:h-24 w-auto object-contain drop-shadow-md"
             />
           </div>
 
