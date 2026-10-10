@@ -252,16 +252,11 @@ export function ArenaPage({
         </div>
       </header>
 
-      {/* Right Side: Level Selector in Brand Red/Orange Card (Level 1 - 5) - Centered Vertically */}
+      {/* Right Side: Level Selector in Storyboard Brutalist Card Style (Level 1 - 5) - Centered Vertically */}
       <div
         id="arena-level-selector"
-        className="fixed right-2 sm:right-3 md:right-4 xl:right-5 top-1/2 -translate-y-1/2 z-30 flex flex-col items-center gap-1 sm:gap-1.5 bg-gradient-to-b from-[#FA6E00] via-[#E85D00] to-[#C93B00] border-2 border-white/80 shadow-[0_8px_24px_rgba(0,0,0,0.45)] rounded-2xl sm:rounded-3xl p-1 sm:p-1.5 md:p-2 select-none pointer-events-auto"
+        className="fixed right-2 sm:right-3 md:right-4 xl:right-5 top-1/2 -translate-y-1/2 z-30 flex flex-col items-center gap-1.5 sm:gap-2 bg-white/95 backdrop-blur-md border-2 2xl:border-3 border-slate-900 shadow-[4px_4px_0px_#0f172a] rounded-2xl sm:rounded-3xl p-1.5 sm:p-2 select-none pointer-events-auto"
       >
-        <div className="text-[7.5px] sm:text-[9px] md:text-[10px] font-display text-white tracking-widest uppercase mb-0.5 flex items-center gap-1 drop-shadow-sm">
-          <span>🎬</span>
-          <span className="hidden sm:inline font-bold">LEVEL</span>
-        </div>
-
         {Array.from({ length: totalStories }, (_, i) => {
           const storyNum = i + 1;
           const isCurrent = i === currentStoryIndex;
@@ -275,14 +270,14 @@ export function ArenaPage({
               key={storyNum}
               type="button"
               onClick={() => onJumpToStory(i)}
-              className={`relative w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-8.5 lg:h-8.5 rounded-lg sm:rounded-xl font-display text-[11px] sm:text-xs md:text-sm font-bold flex items-center justify-center transition-all duration-200 cursor-pointer ${
+              className={`relative w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-9.5 lg:h-9.5 2xl:w-11 2xl:h-11 rounded-xl 2xl:rounded-2xl font-display text-xs sm:text-sm 2xl:text-base font-bold flex items-center justify-center transition-all duration-200 cursor-pointer ${
                 isCurrent
-                  ? 'bg-white text-[#FA6E00] ring-2 sm:ring-3 ring-white scale-110 shadow-lg font-black z-10'
+                  ? 'bg-orange-600 text-white border-2 border-slate-900 shadow-[2px_2px_0px_#0f172a] scale-110 font-black z-10'
                   : isAnswered
                   ? isCorrect
-                    ? 'bg-emerald-600 text-white hover:bg-emerald-500 hover:scale-105 border border-emerald-300 shadow-xs'
-                    : 'bg-[#1e2633]/90 text-white/90 hover:bg-[#2a3344] hover:scale-105 border border-white/30 shadow-xs'
-                  : 'bg-white/20 text-white hover:bg-white/40 hover:scale-105 border border-white/25 shadow-xs'
+                    ? 'bg-emerald-100 text-emerald-900 hover:bg-emerald-200 hover:scale-105 border-2 border-emerald-700 shadow-[2px_2px_0px_#047857]'
+                    : 'bg-rose-100 text-rose-900 hover:bg-rose-200 hover:scale-105 border-2 border-rose-700 shadow-[2px_2px_0px_#be123c]'
+                  : 'bg-[#FAF8F5] text-slate-700 hover:bg-orange-50 hover:text-orange-700 hover:scale-105 border-2 border-slate-900/40 hover:border-slate-900 shadow-[1px_1px_0px_#0f172a] hover:shadow-[2px_2px_0px_#0f172a]'
               }`}
               title={`Level ${storyNum}: ${story?.title || ''}${
                 isAnswered ? (isCorrect ? ' (Selesai Benar)' : ' (Selesai)') : ' (Klik untuk pindah level)'
@@ -292,8 +287,8 @@ export function ArenaPage({
               {/* Status Indicator Badge */}
               {isAnswered && (
                 <span
-                  className={`absolute -top-0.5 -right-0.5 w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full border border-white ${
-                    isCorrect ? 'bg-emerald-400' : 'bg-rose-500'
+                  className={`absolute -top-0.5 -right-0.5 w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full border border-slate-900 ${
+                    isCorrect ? 'bg-emerald-500' : 'bg-rose-500'
                   }`}
                 />
               )}
