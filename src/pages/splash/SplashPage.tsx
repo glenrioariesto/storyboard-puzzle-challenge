@@ -78,7 +78,7 @@ export function SplashPage({ onStart, onOpenObjectives, isMuted, onToggleAudio }
       <div className="w-full h-full flex justify-end items-center pr-6 sm:pr-8 md:pr-12 lg:pr-16 xl:pr-20 2xl:pr-28">
         <div
           id="splash-card-column"
-          className="flex flex-col items-center max-w-[280px] sm:max-w-[360px] md:max-w-[460px] lg:max-w-[560px] xl:max-w-[640px] 2xl:max-w-[800px] w-full z-20 animate-scale-up"
+          className="flex flex-col items-center max-w-[280px] sm:max-w-[360px] md:max-w-[460px] lg:max-w-[560px] xl:max-w-[640px] 2xl:max-w-[800px] w-full z-20"
         >
           {/* Floating container for titles to create a smooth bobbing/wiggle effect */}
           <div className="w-full flex flex-col items-center animate-float-wiggle">

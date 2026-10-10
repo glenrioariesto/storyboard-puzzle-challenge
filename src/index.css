@@ -72,17 +72,6 @@ button, .font-display {
   font-family: var(--font-display);
 }
 
-/* Reduced Motion Accessibility Settings */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-delay: 0s !important;
-    animation-duration: 0s !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0s !important;
-    scroll-behavior: auto !important;
-  }
-}
-
 /* Custom Scrollbars - Vintage Ink style */
 ::-webkit-scrollbar {
   width: 6px;
@@ -182,63 +171,45 @@ button, .font-display {
 /* Custom Floating & Wiggling Animation (Ngambang) for Title Container */
 @keyframes floatWiggle {
   0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  25% {
-    transform: translateY(-5px) rotate(0.8deg);
+    transform: translateY(0px) rotate(-0.6deg);
   }
   50% {
-    transform: translateY(-10px) rotate(-0.5deg);
-  }
-  75% {
-    transform: translateY(-4px) rotate(0.5deg);
+    transform: translateY(-16px) rotate(0.6deg);
   }
 }
 
 .animate-float-wiggle {
-  animation: floatWiggle 4.2s ease-in-out infinite;
+  animation: floatWiggle 3s ease-in-out infinite !important;
   will-change: transform;
 }
 
 /* Independent Dynamic Floating & Tilting for Title 1 (PUZZLE) */
 @keyframes floatTitleTop {
   0%, 100% {
-    transform: translateY(0px) rotate(-0.8deg) scale(1);
-  }
-  25% {
-    transform: translateY(-8px) rotate(0.9deg) scale(1.02);
+    transform: translateY(0px) rotate(-1deg) scale(1);
   }
   50% {
-    transform: translateY(-15px) rotate(-0.5deg) scale(1.045);
-  }
-  75% {
-    transform: translateY(-7px) rotate(-1.2deg) scale(1.015);
+    transform: translateY(-8px) rotate(1deg) scale(1.04);
   }
 }
 
 /* Counter-phase Dynamic Floating & Tilting for Title 2 (STORYBOARD) */
 @keyframes floatTitleBottom {
   0%, 100% {
-    transform: translateY(0px) rotate(0.7deg) scale(1);
-  }
-  25% {
-    transform: translateY(-6px) rotate(-0.9deg) scale(1.015);
+    transform: translateY(0px) rotate(1deg) scale(1);
   }
   50% {
-    transform: translateY(-14px) rotate(0.6deg) scale(1.035);
-  }
-  75% {
-    transform: translateY(-9px) rotate(1.1deg) scale(1.02);
+    transform: translateY(-8px) rotate(-1deg) scale(1.03);
   }
 }
 
 .animate-title-1 {
-  animation: floatTitleTop 3.6s ease-in-out infinite;
+  animation: floatTitleTop 2.6s ease-in-out infinite !important;
   will-change: transform;
 }
 
 .animate-title-2 {
-  animation: floatTitleBottom 4s ease-in-out 0.3s infinite;
+  animation: floatTitleBottom 3.2s ease-in-out 0.2s infinite !important;
   will-change: transform;
 }
 
