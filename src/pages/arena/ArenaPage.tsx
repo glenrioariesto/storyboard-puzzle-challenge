@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Target, HelpCircle, Share2 } from 'lucide-react';
+import { Target, HelpCircle } from 'lucide-react';
 import { Story, Scene, StoryAnswer } from '../../types';
 import { STORYBOARD_CAMPAIGN } from '../../data/storyboardData';
 import { GuideModal } from '../../components/GuideModal';
@@ -53,7 +53,6 @@ export function ArenaPage({
   
   // Modals state
   const [isGuideOpen, setIsGuideOpen] = useState(false);
-  const [showShareToast, setShowShareToast] = useState(false);
 
   // Drag & drop indexing state
   const [draggingIndex, setDraggingIndex] = useState<number | null>(null);
@@ -67,32 +66,6 @@ export function ArenaPage({
       setIsGuideOpen(false);
     }
   }, [activeStory.id]);
-
-  // Share handler
-  const handleShare = async () => {
-    playSynthesizerNote('pop');
-    const shareData = {
-      title: 'Storyboard Puzzle Challenge',
-      text: 'Ayo susun adegan cerita dan uji alur narasi di Storyboard Puzzle Challenge!',
-      url: window.location.href,
-    };
-
-    if (navigator.share) {
-      try {
-        await navigator.share(shareData);
-      } catch {
-        // User dismissed
-      }
-    } else {
-      try {
-        await navigator.clipboard.writeText(window.location.href);
-        setShowShareToast(true);
-        setTimeout(() => setShowShareToast(false), 2500);
-      } catch {
-        // Fallback
-      }
-    }
-  };
 
   // Drag handlers
   const handleDragStart = (e: React.DragEvent, index: number) => {
@@ -215,18 +188,6 @@ export function ArenaPage({
               aria-label="Panduan Cerita"
             >
               <HelpCircle className="w-4 h-4 sm:w-5 sm:h-5 text-orange-600 stroke-[2.5]" />
-            </button>
-
-            {/* Sebarkan / Share Button (Icon only) */}
-            <button
-              id="arena-share-button"
-              type="button"
-              onClick={handleShare}
-              className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 lg:w-11 lg:h-11 2xl:w-13 2xl:h-13 rounded-xl 2xl:rounded-2xl bg-white/95 hover:bg-indigo-50 text-indigo-700 border-2 2xl:border-3 border-slate-900 hover:border-indigo-600 shadow-[2px_2px_0px_#0f172a] hover:shadow-[3px_3px_0px_#4f46e5] flex items-center justify-center cursor-pointer transition-all active:translate-x-[1px] active:translate-y-[1px]"
-              title="Sebarkan / Bagikan Game"
-              aria-label="Sebarkan Game"
-            >
-              <Share2 className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-700 stroke-[2.5]" />
             </button>
 
             {/* Compact Score Badge */}
@@ -356,17 +317,6 @@ export function ArenaPage({
           ))}
         </div>
       </main>
-
-      {/* Toast Notification when link is copied to clipboard */}
-      {showShareToast && (
-        <div
-          id="arena-share-toast"
-          className="fixed top-16 sm:top-20 left-1/2 -translate-x-1/2 z-50 bg-slate-900/95 text-white font-sans text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl shadow-2xl border border-white/20 animate-fadeIn pointer-events-none flex items-center gap-2"
-        >
-          <span>✨</span>
-          <span>Tautan game berhasil disalin!</span>
-        </div>
-      )}
 
       {/* Guide Modals Overlay */}
       <GuideModal
