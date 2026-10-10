@@ -98,19 +98,12 @@ export function SplashPage({ onStart, onOpenObjectives, isMuted, onToggleAudio }
             />
           </div>
 
-          {/* Subtitle Badge */}
-          <div className="mt-3 sm:mt-4 md:mt-5 2xl:mt-7 text-center animate-fadeIn">
-            <span className="inline-block text-[9.5px] sm:text-xs md:text-sm lg:text-base 2xl:text-xl font-bold font-sans text-emerald-950 bg-white/90 backdrop-blur-xs px-3.5 sm:px-5 2xl:px-7 py-1 sm:py-2 2xl:py-2.5 rounded-full border-2 border-emerald-900/30 shadow-[2px_2px_0px_rgba(27,67,50,0.2)] uppercase tracking-wider">
-              Susun Alur & Struktur Narasi
-            </span>
-          </div>
-
           {/* Centered Start Button with Pulse and Hover Grow Effect */}
           <button
             id="splash-start-button"
             type="button"
             onClick={handleStartClick}
-            className="mt-4 sm:mt-6 md:mt-8 2xl:mt-12 cursor-pointer transform hover:scale-110 active:scale-95 transition-all duration-300 hover:brightness-110 focus:outline-none animate-btn-pulse"
+            className="mt-4 sm:mt-6 md:mt-8 lg:mt-10 2xl:mt-14 cursor-pointer transform hover:scale-110 active:scale-95 transition-all duration-300 hover:brightness-110 focus:outline-none animate-btn-pulse"
             aria-label="Mulai Menyusun"
           >
             <img
