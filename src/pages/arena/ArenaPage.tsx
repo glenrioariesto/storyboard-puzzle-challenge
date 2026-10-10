@@ -6,7 +6,7 @@ import { SceneCard } from '../../components/SceneCard';
 import { AudioToggle } from '../../components/AudioToggle';
 import { playSynthesizerNote } from '../../utils/audio';
 import bgGame from '../../../assets/bg-game.webp';
-import logoPusbuk from '../../../assets/logo-pusbuk.webp';
+import logoJenama from '../../../assets/logo-jenama.webp?v2';
 
 interface ArenaPageProps {
   currentStoryIndex: number;
@@ -116,13 +116,13 @@ export function ArenaPage({
           id="arena-navbar-container"
           className="h-14 sm:h-16 md:h-18 lg:h-20 2xl:h-24 px-3 sm:px-6 lg:px-8 2xl:px-12 flex items-center justify-between gap-2 sm:gap-3"
         >
-          {/* Top Left: Logo Pusbuk (Scaled for 2xl) */}
+          {/* Top Left: Logo Jenama Pusbuk (Scaled for 2xl) */}
           <div id="arena-logo-container" className="flex items-center shrink-0">
             <img 
               id="arena-logo-image"
-              src={logoPusbuk} 
+              src={logoJenama} 
               alt="Logo Pusbuk" 
-              className="h-9 sm:h-12 md:h-14 lg:h-16 2xl:h-20 w-auto object-contain drop-shadow-xs"
+              className="h-9 sm:h-11 md:h-13 lg:h-15 2xl:h-18 w-auto object-contain drop-shadow-xs"
             />
           </div>
 

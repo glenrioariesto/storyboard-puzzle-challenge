@@ -3,7 +3,7 @@ import bgSplash from '../../../assets/bg-splash.webp';
 import titlePuzzle from '../../../assets/title-puzzle.webp';
 import titleStoryboard from '../../../assets/title-storyboard.webp';
 import btnMulai from '../../../assets/btn-mulai.webp';
-import logoPusbuk from '../../../assets/logo-pusbuk.webp';
+import logoJenama from '../../../assets/logo-jenama.webp?v2';
 import { AudioToggle } from '../../components/AudioToggle';
 import { Target } from 'lucide-react';
 import { playSynthesizerNote } from '../../utils/audio';
@@ -38,16 +38,16 @@ export function SplashPage({ onStart, onOpenObjectives, isMuted, onToggleAudio }
         className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-amber-950/15 pointer-events-none"
       />
 
-      {/* Top Left: Logo Pusbuk */}
+      {/* Top Left: Logo Jenama Kemendikdasmen / Pusbuk */}
       <div
         id="splash-logo-container"
         className="fixed top-3 left-3 sm:top-5 sm:left-6 lg:top-7 lg:left-8 2xl:top-10 2xl:left-12 z-30 animate-fadeIn"
       >
         <img
           id="splash-logo-image"
-          src={logoPusbuk}
+          src={logoJenama}
           alt="Logo Pusbuk"
-          className="h-9 sm:h-12 md:h-14 lg:h-16 2xl:h-22 w-auto object-contain drop-shadow-md"
+          className="h-10 sm:h-13 md:h-15 lg:h-18 2xl:h-24 w-auto object-contain drop-shadow-md"
         />
       </div>
 
@@ -75,10 +75,10 @@ export function SplashPage({ onStart, onOpenObjectives, isMuted, onToggleAudio }
       </div>
 
       {/* Safe right boundary container: Title & Start Button stack */}
-      <div className="w-full h-full flex justify-end items-center pr-6 sm:pr-10 md:pr-14 lg:pr-20 xl:pr-24 2xl:pr-36">
+      <div className="w-full h-full flex justify-end items-center pr-6 sm:pr-8 md:pr-12 lg:pr-16 xl:pr-20 2xl:pr-28">
         <div
           id="splash-card-column"
-          className="flex flex-col items-center max-w-[210px] sm:max-w-[270px] md:max-w-[330px] lg:max-w-[420px] xl:max-w-[460px] 2xl:max-w-[620px] w-full z-20"
+          className="flex flex-col items-center max-w-[280px] sm:max-w-[360px] md:max-w-[460px] lg:max-w-[560px] xl:max-w-[640px] 2xl:max-w-[800px] w-full z-20"
         >
           {/* Floating container for titles to create a smooth bobbing/wiggle effect */}
           <div className="w-full flex flex-col items-center animate-float-wiggle">
@@ -94,13 +94,13 @@ export function SplashPage({ onStart, onOpenObjectives, isMuted, onToggleAudio }
               id="splash-title-storyboard"
               src={titleStoryboard}
               alt="STORYBOARD"
-              className="w-full h-auto object-contain select-none pointer-events-none -mt-2 sm:-mt-3 md:-mt-4 lg:-mt-5 2xl:-mt-7 relative z-20 animate-title-2 drop-shadow-xl"
+              className="w-full h-auto object-contain select-none pointer-events-none -mt-2 sm:-mt-3 md:-mt-5 lg:-mt-7 2xl:-mt-10 relative z-20 animate-title-2 drop-shadow-xl"
             />
           </div>
 
           {/* Subtitle Badge */}
-          <div className="mt-2.5 sm:mt-3.5 md:mt-4 2xl:mt-6 text-center animate-fadeIn">
-            <span className="inline-block text-[8.5px] sm:text-[10px] md:text-xs lg:text-sm 2xl:text-lg font-bold font-sans text-emerald-950 bg-white/90 backdrop-blur-xs px-3 sm:px-4 2xl:px-6 py-1 sm:py-1.5 2xl:py-2 rounded-full border-2 border-emerald-900/30 shadow-[2px_2px_0px_rgba(27,67,50,0.2)] uppercase tracking-wider">
+          <div className="mt-3 sm:mt-4 md:mt-5 2xl:mt-7 text-center animate-fadeIn">
+            <span className="inline-block text-[9.5px] sm:text-xs md:text-sm lg:text-base 2xl:text-xl font-bold font-sans text-emerald-950 bg-white/90 backdrop-blur-xs px-3.5 sm:px-5 2xl:px-7 py-1 sm:py-2 2xl:py-2.5 rounded-full border-2 border-emerald-900/30 shadow-[2px_2px_0px_rgba(27,67,50,0.2)] uppercase tracking-wider">
               Susun Alur & Struktur Narasi
             </span>
           </div>
@@ -110,14 +110,14 @@ export function SplashPage({ onStart, onOpenObjectives, isMuted, onToggleAudio }
             id="splash-start-button"
             type="button"
             onClick={handleStartClick}
-            className="mt-4 sm:mt-5 md:mt-7 2xl:mt-10 cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300 hover:brightness-105 focus:outline-none animate-[pulse_2.5s_infinite] drop-shadow-2xl"
+            className="mt-4 sm:mt-6 md:mt-8 2xl:mt-12 cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300 hover:brightness-105 focus:outline-none animate-[pulse_2.5s_infinite] drop-shadow-2xl"
             aria-label="Mulai Menyusun"
           >
             <img
               id="splash-start-button-image"
               src={btnMulai}
               alt="Mulai Menyusun"
-              className="w-44 sm:w-56 md:w-64 lg:w-72 xl:w-80 2xl:w-[420px] h-auto object-contain select-none pointer-events-none"
+              className="w-48 sm:w-60 md:w-72 lg:w-80 xl:w-96 2xl:w-[480px] h-auto object-contain select-none pointer-events-none"
             />
           </button>
         </div>
