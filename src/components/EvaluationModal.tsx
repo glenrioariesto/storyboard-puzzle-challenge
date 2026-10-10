@@ -8,6 +8,7 @@ interface EvaluationModalProps {
   onAdvance: () => void;
   currentStoryIndex: number;
   totalStories: number;
+  allCompleted?: boolean;
 }
 
 export function EvaluationModal({
@@ -15,7 +16,8 @@ export function EvaluationModal({
   explanation,
   onAdvance,
   currentStoryIndex,
-  totalStories
+  totalStories,
+  allCompleted
 }: EvaluationModalProps) {
   // Trigger festive confetti animation when modal opens
   useEffect(() => {
@@ -51,7 +53,7 @@ export function EvaluationModal({
 
   if (!isOpen) return null;
 
-  const isLastStory = currentStoryIndex === totalStories - 1;
+  const isLastStory = allCompleted || currentStoryIndex === totalStories - 1;
 
   return (
     <div

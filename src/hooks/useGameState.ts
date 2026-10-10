@@ -42,6 +42,7 @@ export const useGameState = () => {
     currentStoryIndex: 0,
     score: 0,
     shuffledScenes: [],
+    scenesByStoryId: {},
     showFeedback: false,
     checked: false,
     attempts: 0,
@@ -50,15 +51,19 @@ export const useGameState = () => {
 
   const activeStory = STORYBOARD_CAMPAIGN[state.currentStoryIndex];
 
-  // Level initialization is handled inside event handlers directly (startInvestigation, advanceStory)
+  // Level initialization is handled inside event handlers directly (startInvestigation, advanceStory, jumpToStory)
 
   const startInvestigation = () => {
     playSynthesizerNote('success');
+    const firstScenes = shuffleScenes(STORYBOARD_CAMPAIGN[0].scenes);
     setState({
       pageView: 'game',
       currentStoryIndex: 0,
       score: 0,
-      shuffledScenes: shuffleScenes(STORYBOARD_CAMPAIGN[0].scenes),
+      shuffledScenes: firstScenes,
+      scenesByStoryId: {
+        [STORYBOARD_CAMPAIGN[0].id]: firstScenes,
+      },
       showFeedback: false,
       checked: false,
       attempts: 0,
@@ -79,6 +84,10 @@ export const useGameState = () => {
     setState(prev => ({
       ...prev,
       shuffledScenes: newScenes,
+      scenesByStoryId: {
+        ...prev.scenesByStoryId,
+        [activeStory.id]: newScenes,
+      },
       checked: false // Reset checked status on change
     }));
   };
@@ -95,6 +104,10 @@ export const useGameState = () => {
     setState(prev => ({
       ...prev,
       shuffledScenes: newScenes,
+      scenesByStoryId: {
+        ...prev.scenesByStoryId,
+        [activeStory.id]: newScenes,
+      },
       checked: false // Reset checked status on change
     }));
   };
@@ -115,14 +128,29 @@ export const useGameState = () => {
         attemptsCount: nextAttempts
       };
 
-      setState(prev => ({
-        ...prev,
-        answers: [...prev.answers, newAnswer],
-        score: prev.score + 1,
-        showFeedback: true,
-        checked: true,
-        attempts: nextAttempts
-      }));
+      setState(prev => {
+        const existingIdx = prev.answers.findIndex(a => a.storyId === activeStory.id);
+        const updatedAnswers = [...prev.answers];
+        if (existingIdx !== -1) {
+          updatedAnswers[existingIdx] = newAnswer;
+        } else {
+          updatedAnswers.push(newAnswer);
+        }
+        const newScore = updatedAnswers.filter(a => a.isCorrect).length;
+
+        return {
+          ...prev,
+          answers: updatedAnswers,
+          score: newScore,
+          showFeedback: true,
+          checked: true,
+          attempts: nextAttempts,
+          scenesByStoryId: {
+            ...prev.scenesByStoryId,
+            [activeStory.id]: [...prev.shuffledScenes],
+          },
+        };
+      });
     } else {
       playSynthesizerNote('fail');
       setState(prev => ({
@@ -133,30 +161,93 @@ export const useGameState = () => {
     }
   };
 
+  const jumpToStory = (index: number) => {
+    if (index < 0 || index >= STORYBOARD_CAMPAIGN.length) return;
+    if (index === state.currentStoryIndex) return;
+
+    playSynthesizerNote('btn');
+    const targetStory = STORYBOARD_CAMPAIGN[index];
+    const existingAnswer = state.answers.find(a => a.storyId === targetStory.id);
+
+    let scenes = state.scenesByStoryId?.[targetStory.id];
+    if (!scenes) {
+      scenes = existingAnswer?.isCorrect
+        ? [...targetStory.scenes]
+        : shuffleScenes(targetStory.scenes);
+    }
+
+    setState(prev => ({
+      ...prev,
+      currentStoryIndex: index,
+      shuffledScenes: scenes,
+      scenesByStoryId: {
+        ...prev.scenesByStoryId,
+        [targetStory.id]: scenes,
+      },
+      showFeedback: false,
+      checked: !!existingAnswer?.isCorrect,
+      attempts: existingAnswer ? existingAnswer.attemptsCount : 0,
+    }));
+  };
+
   const advanceStory = () => {
     playSynthesizerNote('btn');
-    const isLastStory = state.currentStoryIndex === STORYBOARD_CAMPAIGN.length - 1;
 
-    if (isLastStory) {
+    // Check if all stories in campaign have been completed
+    const allCompleted = STORYBOARD_CAMPAIGN.every(s =>
+      state.answers.some(a => a.storyId === s.id && a.isCorrect)
+    );
+
+    if (allCompleted) {
       playSynthesizerNote('unlock');
       setState(prev => ({
         ...prev,
         pageView: 'result',
         showFeedback: false,
-        checked: false
-      }));
-    } else {
-      const nextIndex = state.currentStoryIndex + 1;
-      const nextStory = STORYBOARD_CAMPAIGN[nextIndex];
-      setState(prev => ({
-        ...prev,
-        currentStoryIndex: nextIndex,
-        shuffledScenes: shuffleScenes(nextStory.scenes),
-        showFeedback: false,
         checked: false,
-        attempts: 0
       }));
+      return;
     }
+
+    // Try next sequential level first, or wrap around to find first uncompleted level
+    let nextIndex = state.currentStoryIndex + 1;
+    if (nextIndex >= STORYBOARD_CAMPAIGN.length) {
+      nextIndex = STORYBOARD_CAMPAIGN.findIndex(s =>
+        !state.answers.some(a => a.storyId === s.id && a.isCorrect)
+      );
+      if (nextIndex === -1) {
+        playSynthesizerNote('unlock');
+        setState(prev => ({
+          ...prev,
+          pageView: 'result',
+          showFeedback: false,
+          checked: false,
+        }));
+        return;
+      }
+    }
+
+    const nextStory = STORYBOARD_CAMPAIGN[nextIndex];
+    const existingAnswer = state.answers.find(a => a.storyId === nextStory.id);
+    let scenes = state.scenesByStoryId?.[nextStory.id];
+    if (!scenes) {
+      scenes = existingAnswer?.isCorrect
+        ? [...nextStory.scenes]
+        : shuffleScenes(nextStory.scenes);
+    }
+
+    setState(prev => ({
+      ...prev,
+      currentStoryIndex: nextIndex,
+      shuffledScenes: scenes,
+      scenesByStoryId: {
+        ...prev.scenesByStoryId,
+        [nextStory.id]: scenes,
+      },
+      showFeedback: false,
+      checked: !!existingAnswer?.isCorrect,
+      attempts: existingAnswer ? existingAnswer.attemptsCount : 0,
+    }));
   };
 
   const restartGame = () => {
@@ -166,6 +257,7 @@ export const useGameState = () => {
       currentStoryIndex: 0,
       score: 0,
       shuffledScenes: [],
+      scenesByStoryId: {},
       showFeedback: false,
       checked: false,
       attempts: 0,
@@ -189,6 +281,7 @@ export const useGameState = () => {
     reorderCard,
     checkStoryboard,
     advanceStory,
+    jumpToStory,
     restartGame,
     getRank,
   };

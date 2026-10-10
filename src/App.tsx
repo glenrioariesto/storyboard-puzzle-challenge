@@ -24,6 +24,7 @@ export default function App() {
     reorderCard,
     checkStoryboard,
     advanceStory,
+    jumpToStory,
     restartGame,
     getRank
   } = useGameState();
@@ -83,6 +84,8 @@ export default function App() {
           onCheck={checkStoryboard}
           onAdvance={advanceStory}
           onOpenObjectives={() => setShowObjectivesModal(true)}
+          answers={answers}
+          onJumpToStory={jumpToStory}
         />
       )}
 

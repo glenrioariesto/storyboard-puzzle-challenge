@@ -24,6 +24,7 @@ export interface GameState {
   currentStoryIndex: number;
   score: number;
   shuffledScenes: Scene[]; // Active shuffled scene cards
+  scenesByStoryId?: Record<number, Scene[]>;
   showFeedback: boolean;
   checked: boolean;
   attempts: number;
