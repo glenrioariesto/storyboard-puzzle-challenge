@@ -78,7 +78,7 @@ export function SplashPage({ onStart, onOpenObjectives, isMuted, onToggleAudio }
       <div className="w-full h-full flex justify-end items-center pr-6 sm:pr-8 md:pr-12 lg:pr-16 xl:pr-20 2xl:pr-28">
         <div
           id="splash-card-column"
-          className="flex flex-col items-center max-w-[280px] sm:max-w-[360px] md:max-w-[460px] lg:max-w-[560px] xl:max-w-[640px] 2xl:max-w-[800px] w-full z-20"
+          className="flex flex-col items-center max-w-[280px] sm:max-w-[360px] md:max-w-[460px] lg:max-w-[560px] xl:max-w-[640px] 2xl:max-w-[800px] w-full z-20 animate-scale-up"
         >
           {/* Floating container for titles to create a smooth bobbing/wiggle effect */}
           <div className="w-full flex flex-col items-center animate-float-wiggle">
@@ -110,7 +110,7 @@ export function SplashPage({ onStart, onOpenObjectives, isMuted, onToggleAudio }
             id="splash-start-button"
             type="button"
             onClick={handleStartClick}
-            className="mt-4 sm:mt-6 md:mt-8 2xl:mt-12 cursor-pointer transform hover:scale-105 active:scale-95 transition-all duration-300 hover:brightness-105 focus:outline-none animate-[pulse_2.5s_infinite] drop-shadow-2xl"
+            className="mt-4 sm:mt-6 md:mt-8 2xl:mt-12 cursor-pointer transform hover:scale-110 active:scale-95 transition-all duration-300 hover:brightness-110 focus:outline-none animate-btn-pulse"
             aria-label="Mulai Menyusun"
           >
             <img
