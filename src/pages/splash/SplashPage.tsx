@@ -94,7 +94,7 @@ export function SplashPage({ onStart, onOpenObjectives, isMuted, onToggleAudio }
               id="splash-title-storyboard"
               src={titleStoryboard}
               alt="STORYBOARD"
-              className="w-full h-auto object-contain select-none pointer-events-none -mt-2 sm:-mt-3 md:-mt-5 lg:-mt-7 2xl:-mt-10 relative z-20 animate-title-2 drop-shadow-xl"
+              className="w-full h-auto object-contain select-none pointer-events-none mt-0 relative z-20 animate-title-2 drop-shadow-xl"
             />
           </div>
 
