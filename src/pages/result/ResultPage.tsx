@@ -247,7 +247,7 @@ export function ResultPage({
                         id={`story-review-scene-img-${s.id}`}
                         src={s.imageUrl}
                         alt={s.title}
-                        className="w-10 h-10 2xl:w-14 2xl:h-14 object-contain rounded bg-slate-950 border border-slate-900 shrink-0"
+                        className="w-10 h-10 2xl:w-14 2xl:h-14 object-cover rounded bg-slate-950 border border-slate-900 shrink-0"
                       />
                       <div className="min-w-0 flex-1">
                         <span id={`story-review-scene-slot-${s.id}`} className="text-[8px] 2xl:text-[10px] font-display font-bold text-orange-600 block">Slot #{idx + 1}</span>
