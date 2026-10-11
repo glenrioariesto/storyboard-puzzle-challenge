@@ -127,7 +127,7 @@ export function ArenaPage({
         {/* Navbar Container */}
         <div
           id="arena-navbar-container"
-          className="relative h-14 sm:h-16 md:h-20 lg:h-22 2xl:h-28 px-3 sm:px-6 lg:px-8 2xl:px-12 flex items-center justify-between"
+          className="relative h-14 sm:h-18 md:h-22 lg:h-24 2xl:h-32 px-3 sm:px-6 lg:px-8 2xl:px-12 flex items-center justify-between"
         >
           {/* Top Left: Logo Jenama Kemendikdasmen / Pusbuk (Matched with detektif digital) */}
           <div id="arena-logo-container" className="flex items-center shrink-0 pointer-events-auto z-20">
@@ -135,7 +135,7 @@ export function ArenaPage({
               id="arena-logo-image"
               src={logoJenama} 
               alt="Logo Pusbuk" 
-              className="h-8 sm:h-11 md:h-14 lg:h-16 xl:h-20 w-auto object-contain drop-shadow-[0_6px_12px_rgba(56,69,91,0.45)]"
+              className="h-10 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain drop-shadow-[0_6px_12px_rgba(56,69,91,0.45)]"
             />
           </div>
 
