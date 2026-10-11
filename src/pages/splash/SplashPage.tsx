@@ -41,13 +41,13 @@ export function SplashPage({ onStart, onOpenObjectives, isMuted, onToggleAudio }
       {/* Top Left: Logo Jenama Kemendikdasmen / Pusbuk */}
       <div
         id="splash-logo-container"
-        className="fixed top-3 left-3 sm:top-5 sm:left-6 lg:top-7 lg:left-8 2xl:top-10 2xl:left-12 z-30 animate-fadeIn"
+        className="fixed top-3 left-3 sm:top-5 sm:left-5 z-40 shrink-0 animate-fadeIn"
       >
         <img
           id="splash-logo-image"
           src={logoJenama}
           alt="Logo Pusbuk"
-          className="h-10 sm:h-13 md:h-15 lg:h-18 2xl:h-24 w-auto object-contain drop-shadow-md"
+          className="h-10 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-28 w-auto object-contain drop-shadow-[0_8px_16px_rgba(56,69,91,0.55)]"
         />
       </div>
 

@@ -35,16 +35,16 @@ export function ResultPage({
       id="result-page"
       className="min-h-screen w-screen bg-transparent relative flex flex-col items-center justify-start sm:justify-center p-2.5 sm:p-6 lg:p-10 2xl:p-16 text-slate-800 overflow-y-auto"
     >
-      {/* Top Left: Logo Jenama Pusbuk - Scaled for 2xl */}
+      {/* Top Left: Logo Jenama Pusbuk - Matched with detektif digital */}
       <div
         id="result-logo-container"
-        className="absolute top-3 left-3 sm:top-5 sm:left-6 lg:top-8 lg:left-10 2xl:top-12 2xl:left-14 z-20 shrink-0 animate-fadeIn"
+        className="absolute top-3 left-3 sm:top-4 sm:left-4 md:top-5 md:left-5 z-30 shrink-0 animate-fadeIn"
       >
         <img
           id="result-logo-image"
           src={logoJenama} 
           alt="Logo Pusbuk" 
-          className="h-10 sm:h-14 md:h-16 lg:h-20 xl:h-24 2xl:h-32 w-auto object-contain drop-shadow-md"
+          className="h-8 sm:h-11 md:h-14 lg:h-16 xl:h-20 w-auto object-contain drop-shadow-[0_6px_12px_rgba(56,69,91,0.45)]"
         />
       </div>
 
