@@ -36,7 +36,7 @@ export function GuideModal({ isOpen, onClose, title, description }: GuideModalPr
       >
         {/* Header */}
         <div id="guide-modal-header" className="flex items-center justify-between border-b-2 border-slate-900 pb-2.5 2xl:pb-4 shrink-0">
-          <div className="flex items-center gap-2 2xl:gap-3 text-orange-700">
+          <div className="flex items-center gap-2 2xl:gap-3 text-[#346641]">
             <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 2xl:w-7 2xl:h-7 shrink-0" />
             <h4 id="guide-modal-title" className="font-display text-xs 2xl:text-base font-bold uppercase tracking-wider">
               Panduan Level ({currentSlide + 1}/{totalSlides})
@@ -68,16 +68,16 @@ export function GuideModal({ isOpen, onClose, title, description }: GuideModalPr
           {currentSlide === 1 && (
             <div id="guide-slide-1" className="flex flex-col gap-3 2xl:gap-4 animate-fadeIn">
               <div className="flex items-center gap-2 2xl:gap-3 text-slate-900 font-bold font-display text-xs 2xl:text-base uppercase tracking-wider">
-                <MoveVertical className="w-4 h-4 2xl:w-6 2xl:h-6 text-orange-600" />
+                <MoveVertical className="w-4 h-4 2xl:w-6 2xl:h-6 text-[#346641]" />
                 <span>Cara Mengurutkan Adegan:</span>
               </div>
               <div className="bg-slate-50 border-2 border-slate-900 p-3 2xl:p-5 rounded-xl 2xl:rounded-2xl flex flex-col gap-2 2xl:gap-3 text-xs 2xl:text-base text-slate-700 font-medium shadow-[2px_2px_0px_#000000]">
                 <p className="flex items-start gap-2">
-                  <span className="font-bold text-orange-600 shrink-0">1.</span>
+                  <span className="font-bold text-[#346641] shrink-0">1.</span>
                   <span><strong>Tarik & Lepas (Drag & Drop):</strong> Geser langsung kartu cerita ke atas atau ke bawah.</span>
                 </p>
                 <p className="flex items-start gap-2">
-                  <span className="font-bold text-orange-600 shrink-0">2.</span>
+                  <span className="font-bold text-[#346641] shrink-0">2.</span>
                   <span><strong>Tombol Geser Atas / Bawah:</strong> Gunakan tombol di bagian bawah setiap kartu untuk menukar posisi.</span>
                 </p>
               </div>
@@ -114,7 +114,7 @@ export function GuideModal({ isOpen, onClose, title, description }: GuideModalPr
                 id={`guide-dot-${idx}`}
                 onClick={() => setCurrentSlide(idx)}
                 className={`w-2.5 h-2.5 2xl:w-3.5 2xl:h-3.5 rounded-full border 2xl:border-2 border-slate-900 cursor-pointer transition-all ${
-                  currentSlide === idx ? 'bg-orange-600 scale-110 shadow-xs' : 'bg-slate-200'
+                  currentSlide === idx ? 'bg-[#346641] scale-110 shadow-xs' : 'bg-slate-200'
                 }`}
               />
             ))}
@@ -138,7 +138,7 @@ export function GuideModal({ isOpen, onClose, title, description }: GuideModalPr
                 id="guide-modal-next-button"
                 type="button"
                 onClick={() => setCurrentSlide(prev => prev + 1)}
-                className="flex-1 py-2 2xl:py-3.5 bg-orange-600 hover:bg-orange-700 border-2 border-slate-900 text-white rounded-lg 2xl:rounded-xl text-xs 2xl:text-base font-display font-bold flex items-center justify-center gap-1 transition-all shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] cursor-pointer"
+                className="flex-1 py-2 2xl:py-3.5 bg-[#346641] hover:bg-[#2b5436] border-2 border-slate-900 text-white rounded-lg 2xl:rounded-xl text-xs 2xl:text-base font-display font-bold flex items-center justify-center gap-1 transition-all shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] cursor-pointer"
               >
                 <span>Selanjutnya</span>
                 <ArrowRight className="w-3.5 h-3.5 2xl:w-5 2xl:h-5" />
@@ -148,7 +148,7 @@ export function GuideModal({ isOpen, onClose, title, description }: GuideModalPr
                 id="guide-modal-start-button"
                 type="button"
                 onClick={onClose}
-                className="flex-1 py-2 2xl:py-3.5 bg-orange-600 hover:bg-orange-700 border-2 border-slate-900 text-white rounded-lg 2xl:rounded-xl text-xs 2xl:text-base font-display font-bold flex items-center justify-center gap-1 transition-all shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] cursor-pointer"
+                className="flex-1 py-2 2xl:py-3.5 bg-[#346641] hover:bg-[#2b5436] border-2 border-slate-900 text-white rounded-lg 2xl:rounded-xl text-xs 2xl:text-base font-display font-bold flex items-center justify-center gap-1 transition-all shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] cursor-pointer"
               >
                 <span>Mulai Menyusun!</span>
               </button>

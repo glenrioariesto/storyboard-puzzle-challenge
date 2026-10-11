@@ -41,7 +41,7 @@ export function SceneCard({
 
   // Adjust card appearance when dragging
   if (isDragging) {
-    cardClass = 'border-2 border-dashed border-orange-500 bg-orange-50/10 opacity-30 scale-95 shadow-none transition-all';
+    cardClass = 'border-2 border-dashed border-[#346641] bg-[#346641]/10 opacity-30 scale-95 shadow-none transition-all';
   }
 
   return (

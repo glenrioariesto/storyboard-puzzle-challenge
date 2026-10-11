@@ -119,7 +119,7 @@ export function ArenaPage({
         <div id="arena-progress-bar-container" className="w-full h-1 sm:h-1.5 2xl:h-2 bg-white/20 overflow-hidden pointer-events-auto">
           <div
             id="arena-progress-bar-fill"
-            className="h-full bg-gradient-to-r from-orange-500 to-amber-500 transition-all duration-500 shadow-sm"
+            className="h-full bg-[#346641] transition-all duration-500 shadow-sm"
             style={{ width: `${progressPercentage}%` }}
           />
         </div>
@@ -146,7 +146,7 @@ export function ArenaPage({
           >
             <span
               id="arena-mission-badge"
-              className="text-[9px] sm:text-[10px] md:text-xs font-display text-orange-600 font-extrabold uppercase tracking-wider leading-none"
+              className="text-[9px] sm:text-[10px] md:text-xs font-display text-[#346641] font-extrabold uppercase tracking-wider leading-none"
             >
               Misi {currentStoryIndex + 1}/{totalStories}
             </span>
@@ -158,7 +158,7 @@ export function ArenaPage({
             </h3>
           </div>
 
-          {/* Top Right: Icon-only Controls (Tujuan, Panduan, Sebarkan/Share, Skor, Audio) */}
+          {/* Top Right: Icon-only Controls (Tujuan, Panduan, Skor, Audio) */}
           <div id="arena-header-controls" className="flex items-center gap-1.5 sm:gap-2 md:gap-2.5 shrink-0 z-20 pointer-events-auto">
             {/* Objectives Button (Icon only) */}
             <button
@@ -183,11 +183,11 @@ export function ArenaPage({
                 playSynthesizerNote('pop');
                 setIsGuideOpen(true);
               }}
-              className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 lg:w-11 lg:h-11 2xl:w-13 2xl:h-13 rounded-xl 2xl:rounded-2xl bg-white/95 hover:bg-orange-50 text-orange-600 border-2 2xl:border-3 border-slate-900 hover:border-orange-500 shadow-[2px_2px_0px_#0f172a] hover:shadow-[3px_3px_0px_#ea580c] flex items-center justify-center cursor-pointer transition-all active:translate-x-[1px] active:translate-y-[1px]"
+              className="w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 lg:w-11 lg:h-11 2xl:w-13 2xl:h-13 rounded-xl 2xl:rounded-2xl bg-white/95 hover:bg-[#346641]/10 text-[#346641] border-2 2xl:border-3 border-slate-900 hover:border-[#346641] shadow-[2px_2px_0px_#0f172a] hover:shadow-[3px_3px_0px_#346641] flex items-center justify-center cursor-pointer transition-all active:translate-x-[1px] active:translate-y-[1px]"
               title="Panduan Cerita Storyboard"
               aria-label="Panduan Cerita"
             >
-              <HelpCircle className="w-4 h-4 sm:w-5 sm:h-5 text-orange-600 stroke-[2.5]" />
+              <HelpCircle className="w-4 h-4 sm:w-5 sm:h-5 text-[#346641] stroke-[2.5]" />
             </button>
 
             {/* Compact Score Badge */}
@@ -197,7 +197,7 @@ export function ArenaPage({
               title={`Skor Selesai: ${score}/${totalStories}`}
             >
               <span className="text-xs sm:text-sm md:text-base">🏆</span>
-              <span id="arena-score-value" className="font-display text-xs sm:text-sm md:text-base 2xl:text-lg font-black text-orange-700">
+              <span id="arena-score-value" className="font-display text-xs sm:text-sm md:text-base 2xl:text-lg font-black text-[#346641]">
                 {score}
               </span>
             </div>
@@ -233,12 +233,12 @@ export function ArenaPage({
               onClick={() => onJumpToStory(i)}
               className={`relative w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-9.5 lg:h-9.5 2xl:w-11 2xl:h-11 rounded-xl 2xl:rounded-2xl font-display text-xs sm:text-sm 2xl:text-base font-bold flex items-center justify-center transition-all duration-200 cursor-pointer ${
                 isCurrent
-                  ? 'bg-orange-600 text-white border-2 border-slate-900 shadow-[2px_2px_0px_#0f172a] scale-110 font-black z-10'
+                  ? 'bg-[#346641] text-white border-2 border-slate-900 shadow-[2px_2px_0px_#0f172a] scale-110 font-black z-10'
                   : isAnswered
                   ? isCorrect
                     ? 'bg-emerald-100 text-emerald-900 hover:bg-emerald-200 hover:scale-105 border-2 border-emerald-700 shadow-[2px_2px_0px_#047857]'
                     : 'bg-rose-100 text-rose-900 hover:bg-rose-200 hover:scale-105 border-2 border-rose-700 shadow-[2px_2px_0px_#be123c]'
-                  : 'bg-[#FAF8F5] text-slate-700 hover:bg-orange-50 hover:text-orange-700 hover:scale-105 border-2 border-slate-900/40 hover:border-slate-900 shadow-[1px_1px_0px_#0f172a] hover:shadow-[2px_2px_0px_#0f172a]'
+                  : 'bg-[#FAF8F5] text-slate-700 hover:bg-[#346641]/10 hover:text-[#346641] hover:scale-105 border-2 border-slate-900/40 hover:border-slate-900 shadow-[1px_1px_0px_#0f172a] hover:shadow-[2px_2px_0px_#0f172a]'
               }`}
               title={`Level ${storyNum}: ${story?.title || ''}${
                 isAnswered ? (isCorrect ? ' (Selesai Benar)' : ' (Selesai)') : ' (Klik untuk pindah level)'
@@ -288,7 +288,7 @@ export function ArenaPage({
                   id="arena-check-button"
                   type="button"
                   onClick={onCheck}
-                  className="px-4 sm:px-5 2xl:px-8 py-2 2xl:py-3.5 font-display text-xs sm:text-sm 2xl:text-lg font-bold uppercase rounded-lg 2xl:rounded-xl border-2 2xl:border-3 transition-all cursor-pointer border-slate-900 text-white bg-orange-600 hover:bg-orange-700 shadow-[3px_3px_0px_#0f172a] 2xl:shadow-[5px_5px_0px_#0f172a] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[2px_2px_0px_#0f172a]"
+                  className="px-4 sm:px-5 2xl:px-8 py-2 2xl:py-3.5 font-display text-xs sm:text-sm 2xl:text-lg font-bold uppercase rounded-lg 2xl:rounded-xl border-2 2xl:border-3 transition-all cursor-pointer border-slate-900 text-white bg-[#346641] hover:bg-[#2b5436] shadow-[3px_3px_0px_#0f172a] 2xl:shadow-[5px_5px_0px_#0f172a] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[2px_2px_0px_#0f172a]"
                 >
                   Periksa Cerita
                 </button>
