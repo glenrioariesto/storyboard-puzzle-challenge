@@ -5,25 +5,19 @@ import titleStoryboard from '../../../assets/title-storyboard.webp';
 import btnMulai from '../../../assets/btn-mulai.webp';
 import logoJenama from '../../../assets/logo-jenama.webp?v2';
 import { AudioToggle } from '../../components/AudioToggle';
-import { Target } from 'lucide-react';
 import { playSynthesizerNote } from '../../utils/audio';
 
 interface SplashPageProps {
   onStart: () => void;
-  onOpenObjectives: () => void;
+  onOpenObjectives?: () => void;
   isMuted: boolean;
   onToggleAudio: () => void;
 }
 
-export function SplashPage({ onStart, onOpenObjectives, isMuted, onToggleAudio }: SplashPageProps) {
+export function SplashPage({ onStart, isMuted, onToggleAudio }: SplashPageProps) {
   const handleStartClick = () => {
     playSynthesizerNote('btn');
     onStart();
-  };
-
-  const handleObjectivesClick = () => {
-    playSynthesizerNote('pop');
-    onOpenObjectives();
   };
 
   return (
@@ -51,21 +45,11 @@ export function SplashPage({ onStart, onOpenObjectives, isMuted, onToggleAudio }
         />
       </div>
 
-      {/* Top Right Controls: Tujuan Pembelajaran & Audio Toggle */}
+      {/* Top Right Controls: Audio Toggle */}
       <div
         id="splash-header-controls"
-        className="fixed top-3 right-3 sm:top-5 sm:right-6 lg:top-7 lg:right-8 2xl:top-10 2xl:right-12 z-30 flex items-center gap-2 sm:gap-3 animate-fadeIn"
+        className="fixed top-3 right-3 sm:top-5 sm:right-6 lg:top-7 lg:right-8 2xl:top-10 2xl:right-12 z-30 flex items-center animate-fadeIn"
       >
-        <button
-          id="splash-objectives-top-btn"
-          type="button"
-          onClick={handleObjectivesClick}
-          className="h-9 sm:h-11 md:h-12 2xl:h-16 px-2.5 sm:px-4 2xl:px-6 bg-white/95 hover:bg-white text-emerald-900 border-2 border-emerald-950/20 hover:border-emerald-600 rounded-xl 2xl:rounded-2xl shadow-[2px_2px_0px_#0f172a] text-[10px] sm:text-xs md:text-sm 2xl:text-lg font-black font-display uppercase tracking-wide flex items-center gap-1.5 transition-all cursor-pointer hover:scale-105 active:scale-95 backdrop-blur-xs"
-        >
-          <Target className="w-3.5 h-3.5 sm:w-4 sm:h-4 2xl:w-6 2xl:h-6 text-emerald-600 shrink-0" />
-          <span>Tujuan Pembelajaran</span>
-        </button>
-
         <AudioToggle
           id="splash-audio-button"
           isMuted={isMuted}
