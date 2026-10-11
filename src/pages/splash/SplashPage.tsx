@@ -41,7 +41,7 @@ export function SplashPage({ onStart, isMuted, onToggleAudio }: SplashPageProps)
           id="splash-logo-image"
           src={logoJenama}
           alt="Logo Pusbuk"
-          className="h-12 sm:h-16 md:h-20 lg:h-24 xl:h-28 2xl:h-32 w-auto object-contain drop-shadow-[0_8px_16px_rgba(56,69,91,0.55)]"
+          className="h-7 sm:h-10 md:h-14 lg:h-16 2xl:h-28 w-auto object-contain drop-shadow-[0_8px_16px_rgba(56,69,91,0.55)]"
         />
       </div>
 
