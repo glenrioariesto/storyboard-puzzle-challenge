@@ -29,12 +29,12 @@ export const storyboardAnswers: StoryboardAnswer[] = [
     totalScenes: 4,
     liveUrl: 'https://glenrioariesto.github.io/storyboard-puzzle-challenge/',
     description: 'Di muara sungai, dua penguasa saling berselisih demi wilayah kekuasaan. Susun 4 adegan cerita Sura dan Baya dengan urutan yang benar!',
-    explanation: 'Cerita Sura dan Baya mengikuti struktur naratif klasik: Pengenalan konflik dan gencatan senjata (adegan 1), pelanggaran sumpah oleh Sura (adegan 2), pertempuran dahsyat (adegan 3), serta resolusi dan asal-usul nama Surabaya (adegan 4).',
+    explanation: 'Cerita Sura dan Baya mengikuti struktur naratif klasik: Pengenalan konflik dan perjanjian damai di muara (adegan 1), pelanggaran sumpah oleh Sura (adegan 2), pertempuran dahsyat (adegan 3), serta resolusi dan asal-usul nama Surabaya (adegan 4).',
     correctSequence: [
       {
         order: 1,
         sceneId: 0,
-        title: 'Gencatan Senjata di Muara',
+        title: 'Perjanjian Damai di Muara',
         narrativeSummary: 'Sura penguasa samudera dan Baya penjaga sungai sepakat membagi wilayah kekuasaan untuk mengakhiri perselisihan.'
       },
       {

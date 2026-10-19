@@ -66,7 +66,7 @@ const slides: Slide[] = [
       },
       {
         keyword: 'Algoritma Kronologis (Chronological Algorithm)',
-        text: 'Menyusun rangkaian urutan adegan yang terstruktur dari Slot #1 (adegan pembuka) hingga adegan penutup sehingga membentuk narasi yang padu dan bermakna.',
+        text: 'Menyusun rangkaian urutan adegan yang terstruktur dari Slot Pertama (adegan pembuka) hingga adegan penutup sehingga membentuk narasi yang padu dan bermakna.',
       },
     ],
   },
@@ -138,10 +138,10 @@ export function ObjectivesModal({ isOpen, onClose, onStart }: ObjectivesModalPro
               <GraduationCap className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-100" />
             </div>
             <div className="min-w-0">
-              <h3 className="text-xs sm:text-base md:text-lg font-black tracking-tight font-display uppercase truncate">
+              <h3 className="text-xs sm:text-base md:text-lg font-black tracking-tight font-display truncate">
                 Penyusun Alur Storyboard
               </h3>
-              <p className="text-[9px] sm:text-[11px] md:text-xs text-emerald-200 font-bold uppercase tracking-wider font-sans">
+              <p className="text-[9px] sm:text-[11px] md:text-xs text-emerald-200 font-bold tracking-wider font-sans">
                 Tujuan Pembelajaran & Bermain
               </p>
             </div>
@@ -169,7 +169,7 @@ export function ObjectivesModal({ isOpen, onClose, onStart }: ObjectivesModalPro
               {slide.icon}
             </div>
             <div className="min-w-0">
-              <h4 className="text-xs sm:text-sm md:text-base font-black text-slate-800 uppercase tracking-wide font-display">
+              <h4 className="text-xs sm:text-sm md:text-base font-black text-slate-800 tracking-wide font-display">
                 {slide.title}
               </h4>
               <p className="text-[10px] sm:text-xs text-slate-500 font-medium font-sans">
@@ -185,7 +185,7 @@ export function ObjectivesModal({ isOpen, onClose, onStart }: ObjectivesModalPro
                 key={idx}
                 className={`p-3 sm:p-4 rounded-xl sm:rounded-2xl border-2 transition-all duration-200 text-left ${slide.accentBorder}`}
               >
-                <div className="flex items-center gap-1.5 font-black text-[11px] sm:text-xs md:text-sm text-slate-900 font-display uppercase tracking-wide mb-1">
+                <div className="flex items-center gap-1.5 font-black text-[11px] sm:text-xs md:text-sm text-slate-900 font-display tracking-wide mb-1">
                   <Sparkles className="w-3.5 h-3.5 text-amber-500 shrink-0" />
                   <span>{item.keyword}</span>
                 </div>

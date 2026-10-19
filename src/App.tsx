@@ -23,6 +23,7 @@ export default function App() {
     moveCard,
     reorderCard,
     checkStoryboard,
+    closeFeedback,
     advanceStory,
     jumpToStory,
     restartGame,
@@ -82,6 +83,7 @@ export default function App() {
           onMoveCard={moveCard}
           onReorderCard={reorderCard}
           onCheck={checkStoryboard}
+          onCloseFeedback={closeFeedback}
           onAdvance={advanceStory}
           onOpenObjectives={() => setShowObjectivesModal(true)}
           answers={answers}

@@ -4,6 +4,7 @@ import { StoryAnswer, Story } from '../../types';
 import { STORYBOARD_CAMPAIGN } from '../../data/storyboardData';
 import { AudioToggle } from '../../components/AudioToggle';
 import { playSoundEffect } from '../../utils/audio';
+import { getSlotLabel } from '../../utils/text';
 import logoJenama from '../../../assets/logo-jenama.webp?v2';
 
 interface ResultPageProps {
@@ -68,7 +69,7 @@ export function ResultPage({
         {/* Headings */}
         <h2
           id="result-title"
-          className="text-lg sm:text-3xl lg:text-4xl 2xl:text-5xl font-black font-display mb-3 sm:mb-6 2xl:mb-10 text-center uppercase tracking-wide text-slate-900"
+          className="text-lg sm:text-3xl lg:text-4xl 2xl:text-5xl font-black font-display mb-3 sm:mb-6 2xl:mb-10 text-center tracking-wide text-slate-900"
         >
           Hasil Evaluasi Storyboarding
         </h2>
@@ -85,7 +86,7 @@ export function ResultPage({
           >
             <span
               id="result-accuracy-label"
-              className="text-[7.5px] sm:text-[9px] 2xl:text-sm font-display font-bold text-slate-500 uppercase tracking-wider mb-1 sm:mb-3 2xl:mb-4"
+              className="text-[7.5px] sm:text-[9px] 2xl:text-sm font-display font-bold text-slate-500 tracking-wider mb-1 sm:mb-3 2xl:mb-4"
             >
               Akurasi Struktur
             </span>
@@ -103,7 +104,7 @@ export function ResultPage({
               ></div>
               <div className="flex flex-col items-center">
                 <span id="result-accuracy-percentage" className="text-sm sm:text-2xl 2xl:text-4xl font-black font-display text-slate-900">{accuracy}%</span>
-                <span id="result-accuracy-completed" className="text-[6.5px] sm:text-[8px] 2xl:text-xs font-display text-[#346641] uppercase font-bold mt-0.5">
+                <span id="result-accuracy-completed" className="text-[6.5px] sm:text-[8px] 2xl:text-xs font-display text-[#346641] font-bold mt-0.5">
                   {score}/{STORYBOARD_CAMPAIGN.length} Selesai
                 </span>
               </div>
@@ -118,7 +119,7 @@ export function ResultPage({
             <div>
               <span
                 id="result-rank-label"
-                className="text-[7.5px] sm:text-[9px] 2xl:text-sm font-display font-bold text-slate-500 uppercase tracking-wider block mb-1 2xl:mb-2"
+                className="text-[7.5px] sm:text-[9px] 2xl:text-sm font-display font-bold text-slate-500 tracking-wider block mb-1 2xl:mb-2"
               >
                 Kategori Kemahiran
               </span>
@@ -166,7 +167,7 @@ export function ResultPage({
               playSoundEffect('pop');
               setIsRekapOpen(true);
             }}
-            className="flex-1 brutalist-button px-3 sm:px-6 2xl:px-8 py-2.5 sm:py-3.5 2xl:py-5 rounded-xl 2xl:rounded-2xl font-bold font-display text-[11px] sm:text-sm 2xl:text-lg tracking-wider uppercase flex items-center justify-center gap-1.5 sm:gap-2 2xl:gap-3 cursor-pointer bg-slate-900 text-white border-2 2xl:border-3 border-slate-900 shadow-[3px_3px_0px_#346641] sm:shadow-[4px_4px_0px_#346641] 2xl:shadow-[6px_6px_0px_#346641] hover:bg-slate-800 active:translate-x-[1px] active:translate-y-[1px]"
+            className="flex-1 brutalist-button px-3 sm:px-6 2xl:px-8 py-2.5 sm:py-3.5 2xl:py-5 rounded-xl 2xl:rounded-2xl font-bold font-display text-[11px] sm:text-sm 2xl:text-lg tracking-wider flex items-center justify-center gap-1.5 sm:gap-2 2xl:gap-3 cursor-pointer bg-slate-900 text-white border-2 2xl:border-3 border-slate-900 shadow-[3px_3px_0px_#346641] sm:shadow-[4px_4px_0px_#346641] 2xl:shadow-[6px_6px_0px_#346641] hover:bg-slate-800 active:translate-x-[1px] active:translate-y-[1px]"
           >
             <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4 2xl:w-6 2xl:h-6 text-white shrink-0 stroke-[2.5]" />
             <span className="whitespace-nowrap">Rekap Level</span>
@@ -176,7 +177,7 @@ export function ResultPage({
             id="result-restart-button"
             type="button"
             onClick={onRestart}
-            className="flex-1 brutalist-button px-3 sm:px-6 2xl:px-8 py-2.5 sm:py-3.5 2xl:py-5 rounded-xl 2xl:rounded-2xl font-bold font-display text-[11px] sm:text-sm 2xl:text-lg tracking-wider uppercase flex items-center justify-center gap-1.5 sm:gap-2 2xl:gap-3 cursor-pointer bg-[#346641] hover:bg-[#2b5436] text-white border-2 2xl:border-3 border-slate-900 shadow-[3px_3px_0px_#0f172a] sm:shadow-[4px_4px_0px_#0f172a] 2xl:shadow-[6px_6px_0px_#0f172a] active:translate-x-[1px] active:translate-y-[1px]"
+            className="flex-1 brutalist-button px-3 sm:px-6 2xl:px-8 py-2.5 sm:py-3.5 2xl:py-5 rounded-xl 2xl:rounded-2xl font-bold font-display text-[11px] sm:text-sm 2xl:text-lg tracking-wider flex items-center justify-center gap-1.5 sm:gap-2 2xl:gap-3 cursor-pointer bg-[#346641] hover:bg-[#2b5436] text-white border-2 2xl:border-3 border-slate-900 shadow-[3px_3px_0px_#0f172a] sm:shadow-[4px_4px_0px_#0f172a] 2xl:shadow-[6px_6px_0px_#0f172a] active:translate-x-[1px] active:translate-y-[1px]"
           >
             <RotateCcw className="w-3.5 h-3.5 sm:w-4 sm:h-4 2xl:w-6 2xl:h-6 text-white shrink-0 stroke-[2.5]" />
             <span className="whitespace-nowrap">Ulangi</span>
@@ -197,14 +198,14 @@ export function ResultPage({
           />
           <div
             id="story-review-modal-container"
-            className="relative w-full max-w-lg 2xl:max-w-2xl h-[95vh] brutalist-card bg-white rounded-2xl 2xl:rounded-3xl p-4 sm:p-6 2xl:p-8 flex flex-col justify-between z-10 select-none shadow-[6px_6px_0px_#000000]"
+            className="relative w-full max-w-lg 2xl:max-w-2xl h-[95vh] brutalist-card bg-white rounded-2xl 2xl:rounded-3xl p-4 sm:p-6 2xl:p-8 flex flex-col justify-between z-10 select-none shadow-[6px_6px_0px_#0f172a]"
           >
             {/* Modal Header */}
             <div id="story-review-modal-header" className="flex items-center justify-between border-b-2 2xl:border-3 border-slate-900 pb-3 2xl:pb-4 shrink-0">
               <div className="flex items-center gap-2 2xl:gap-3 text-[#346641] min-w-0 pr-2">
                 <BookOpen className="w-5 h-5 2xl:w-7 2xl:h-7 shrink-0" />
-                <h4 id="story-review-modal-title" className="font-display text-xs 2xl:text-base font-bold uppercase tracking-wider truncate">
-                  Ulasan #{selectedStory.id}: {selectedStory.title}
+                <h4 id="story-review-modal-title" className="font-display text-xs 2xl:text-base font-bold tracking-wider truncate">
+                  Ulasan Level {selectedStory.id}: {selectedStory.title}
                 </h4>
               </div>
               <button
@@ -220,12 +221,12 @@ export function ResultPage({
             {/* Modal Content - Scrollable */}
             <div id="story-review-modal-body" className="flex-1 py-4 2xl:py-6 flex flex-col gap-4 2xl:gap-6 overflow-y-auto">
               <div className="flex flex-col gap-2">
-                <span className="text-[10px] 2xl:text-xs font-display font-bold text-slate-500 uppercase tracking-widest">
+                <span className="text-[10px] 2xl:text-xs font-display font-bold text-slate-500 tracking-widest">
                   Struktur & Analisis Alur Narasi:
                 </span>
                 <p
                   id="story-review-narrative-explanation"
-                  className="text-slate-800 text-xs sm:text-sm 2xl:text-base leading-relaxed font-sans text-justify font-medium bg-slate-50 border-2 2xl:border-3 border-slate-900 p-4 2xl:p-6 rounded-xl 2xl:rounded-2xl shadow-[2px_2px_0px_#000000]"
+                  className="text-slate-800 text-xs sm:text-sm 2xl:text-base leading-relaxed font-sans text-justify font-medium bg-slate-50 border-2 2xl:border-3 border-slate-900 p-4 2xl:p-6 rounded-xl 2xl:rounded-2xl shadow-[2px_2px_0px_#0f172a]"
                 >
                   {selectedStory.explanation}
                 </p>
@@ -233,7 +234,7 @@ export function ResultPage({
 
               {/* Adegan Preview Mini List */}
               <div id="story-review-scenes-list" className="flex flex-col gap-2 pt-2">
-                <span className="text-[10px] 2xl:text-xs font-display font-bold text-slate-500 uppercase tracking-widest">
+                <span className="text-[10px] 2xl:text-xs font-display font-bold text-slate-500 tracking-widest">
                   Urutan Kronologis Adegan:
                 </span>
                 <div className="grid grid-cols-2 gap-2 2xl:gap-3">
@@ -247,10 +248,10 @@ export function ResultPage({
                         id={`story-review-scene-img-${s.id}`}
                         src={s.imageUrl}
                         alt={s.title}
-                        className="w-10 h-10 2xl:w-14 2xl:h-14 object-cover rounded bg-slate-950 border border-slate-900 shrink-0"
+                        className="w-14 sm:w-16 2xl:w-20 aspect-video object-cover rounded bg-slate-950 border border-slate-900 shrink-0"
                       />
                       <div className="min-w-0 flex-1">
-                        <span id={`story-review-scene-slot-${s.id}`} className="text-[8px] 2xl:text-[10px] font-display font-bold text-[#346641] block">Slot #{idx + 1}</span>
+                        <span id={`story-review-scene-slot-${s.id}`} className="text-[8px] 2xl:text-[10px] font-display font-bold text-[#346641] block">{getSlotLabel(idx)}</span>
                         <p id={`story-review-scene-title-${s.id}`} className="text-[10px] 2xl:text-xs font-bold font-display text-slate-900 truncate">{s.title}</p>
                       </div>
                     </div>
@@ -265,7 +266,7 @@ export function ResultPage({
                 id="story-review-modal-dismiss-button"
                 type="button"
                 onClick={() => setSelectedStory(null)}
-                className="w-full py-2.5 2xl:py-3.5 bg-[#346641] hover:bg-[#2b5436] border-2 2xl:border-3 border-slate-900 text-white rounded-xl 2xl:rounded-2xl text-xs 2xl:text-base font-display font-bold flex items-center justify-center gap-1 shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] cursor-pointer"
+                className="w-full py-2.5 2xl:py-3.5 bg-[#346641] hover:bg-[#2b5436] border-2 2xl:border-3 border-slate-900 text-white rounded-xl 2xl:rounded-2xl text-xs 2xl:text-base font-display font-bold flex items-center justify-center gap-1 shadow-[2px_2px_0px_#0f172a] active:translate-x-[1px] active:translate-y-[1px] cursor-pointer"
               >
                 <span>Tutup Ulasan</span>
               </button>
@@ -287,13 +288,13 @@ export function ResultPage({
           />
           <div
             id="rekap-modal-container"
-            className="relative w-full max-w-xl 2xl:max-w-3xl h-[95vh] brutalist-card bg-white rounded-2xl 2xl:rounded-3xl p-4 sm:p-6 2xl:p-8 flex flex-col justify-between z-10 select-none shadow-[6px_6px_0px_#000000]"
+            className="relative w-full max-w-xl 2xl:max-w-3xl h-[95vh] brutalist-card bg-white rounded-2xl 2xl:rounded-3xl p-4 sm:p-6 2xl:p-8 flex flex-col justify-between z-10 select-none shadow-[6px_6px_0px_#0f172a]"
           >
             {/* Modal Header */}
             <div id="rekap-modal-header" className="flex items-center justify-between border-b-2 2xl:border-3 border-slate-900 pb-3 2xl:pb-4 shrink-0">
               <div className="flex items-center gap-2 2xl:gap-3 text-[#346641]">
                 <BookOpen className="w-5 h-5 2xl:w-7 2xl:h-7 shrink-0" />
-                <h4 id="rekap-modal-title" className="font-display text-xs 2xl:text-base font-bold uppercase tracking-wider">
+                <h4 id="rekap-modal-title" className="font-display text-xs 2xl:text-base font-bold tracking-wider">
                   Rekapitulasi Level & Ulasan
                 </h4>
               </div>
@@ -309,7 +310,7 @@ export function ResultPage({
 
             {/* Level List inside Modal */}
             <div id="rekap-modal-levels-list" className="flex-1 py-4 2xl:py-6 flex flex-col gap-3 2xl:gap-4 overflow-y-auto">
-              <p id="rekap-modal-instruction" className="text-xs 2xl:text-sm text-slate-500 font-display font-bold uppercase tracking-wider">
+              <p id="rekap-modal-instruction" className="text-xs 2xl:text-sm text-slate-500 font-display font-bold tracking-wider">
                 Pilih level di bawah untuk membuka ulasan narasi:
               </p>
               {STORYBOARD_CAMPAIGN.map((c) => {
@@ -327,7 +328,7 @@ export function ResultPage({
                     <div className="flex flex-col min-w-0 pr-2">
                       <div className="flex items-center gap-2 2xl:gap-3 mb-1">
                         <span id={`rekap-level-badge-${c.id}`} className="bg-slate-900 text-white font-display text-[10px] 2xl:text-xs font-bold px-2 2xl:px-3 py-0.5 2xl:py-1 rounded">
-                          #0{c.id}
+                          Level {c.id}
                         </span>
                         <span id={`rekap-level-title-${c.id}`} className="text-sm 2xl:text-lg font-bold font-display text-slate-900 truncate">
                           {c.title}
@@ -352,7 +353,7 @@ export function ResultPage({
                 id="rekap-modal-dismiss-button"
                 type="button"
                 onClick={() => setIsRekapOpen(false)}
-                className="w-full py-2.5 2xl:py-3.5 bg-[#346641] hover:bg-[#2b5436] border-2 2xl:border-3 border-slate-900 text-white rounded-xl 2xl:rounded-2xl text-xs 2xl:text-base font-display font-bold flex items-center justify-center gap-1 shadow-[2px_2px_0px_#000000] active:translate-x-[1px] active:translate-y-[1px] cursor-pointer"
+                className="w-full py-2.5 2xl:py-3.5 bg-[#346641] hover:bg-[#2b5436] border-2 2xl:border-3 border-slate-900 text-white rounded-xl 2xl:rounded-2xl text-xs 2xl:text-base font-display font-bold flex items-center justify-center gap-1 shadow-[2px_2px_0px_#0f172a] active:translate-x-[1px] active:translate-y-[1px] cursor-pointer"
               >
                 <span>Tutup Rekap</span>
               </button>

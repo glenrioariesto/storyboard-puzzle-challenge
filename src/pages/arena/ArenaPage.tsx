@@ -24,6 +24,7 @@ interface ArenaPageProps {
   onMoveCard: (index: number, direction: 'up' | 'down') => void;
   onReorderCard: (fromIndex: number, toIndex: number) => void;
   onCheck: () => void;
+  onCloseFeedback: () => void;
   onAdvance: () => void;
   onOpenObjectives?: () => void;
   answers: StoryAnswer[];
@@ -44,6 +45,7 @@ export function ArenaPage({
   onMoveCard,
   onReorderCard,
   onCheck,
+  onCloseFeedback,
   onAdvance,
   onOpenObjectives,
   answers,
@@ -53,15 +55,17 @@ export function ArenaPage({
   
   // Modals state
   const [isGuideOpen, setIsGuideOpen] = useState(false);
+  const [seenGuideStories, setSeenGuideStories] = useState<Record<number, boolean>>({});
 
   // Drag & drop indexing state
   const [draggingIndex, setDraggingIndex] = useState<number | null>(null);
 
-  // Open guide modal when entering an uncompleted level
+  // Open guide modal only on first entry to an uncompleted level
   useEffect(() => {
     const isAnswered = answers.some(a => a.storyId === activeStory.id && a.isCorrect);
-    if (!isAnswered) {
+    if (!isAnswered && !seenGuideStories[activeStory.id]) {
       setIsGuideOpen(true);
+      setSeenGuideStories(prev => ({ ...prev, [activeStory.id]: true }));
     } else {
       setIsGuideOpen(false);
     }
@@ -146,7 +150,7 @@ export function ArenaPage({
           >
             <span
               id="arena-mission-badge"
-              className="text-[9px] sm:text-[10px] md:text-xs font-display text-[#346641] font-extrabold uppercase tracking-wider leading-none"
+              className="text-[9px] sm:text-[10px] md:text-xs font-display text-[#346641] font-extrabold tracking-wider leading-none"
             >
               Misi {currentStoryIndex + 1}/{totalStories}
             </span>
@@ -231,9 +235,9 @@ export function ArenaPage({
               key={storyNum}
               type="button"
               onClick={() => onJumpToStory(i)}
-              className={`relative w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-9.5 lg:h-9.5 2xl:w-11 2xl:h-11 rounded-xl 2xl:rounded-2xl font-display text-xs sm:text-sm 2xl:text-base font-bold flex items-center justify-center transition-all duration-200 cursor-pointer ${
+              className={`relative w-8 h-9 sm:w-9 sm:h-10 md:w-10 md:h-12 2xl:w-13 2xl:h-14 rounded-lg sm:rounded-xl 2xl:rounded-2xl font-display flex flex-col items-center justify-center transition-all duration-200 cursor-pointer ${
                 isCurrent
-                  ? 'bg-[#346641] text-white border-2 border-slate-900 shadow-[2px_2px_0px_#0f172a] scale-110 font-black z-10'
+                  ? 'bg-[#346641] text-white border-2 border-slate-900 shadow-[2px_2px_0px_#0f172a] scale-105 font-black z-10'
                   : isAnswered
                   ? isCorrect
                     ? 'bg-emerald-100 text-emerald-900 hover:bg-emerald-200 hover:scale-105 border-2 border-emerald-700 shadow-[2px_2px_0px_#047857]'
@@ -244,7 +248,12 @@ export function ArenaPage({
                 isAnswered ? (isCorrect ? ' (Selesai Benar)' : ' (Selesai)') : ' (Klik untuk pindah level)'
               }`}
             >
-              <span>{storyNum}</span>
+              <span className="text-[6.5px] sm:text-[7.5px] md:text-[8px] 2xl:text-[10px] font-bold tracking-tight leading-none opacity-80 mb-0.5">
+                Level
+              </span>
+              <span className="text-xs sm:text-sm md:text-base 2xl:text-lg font-black leading-none">
+                {storyNum}
+              </span>
               {/* Status Indicator Badge */}
               {isAnswered && (
                 <span
@@ -270,7 +279,7 @@ export function ArenaPage({
               className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white/95 backdrop-blur-md border-2 2xl:border-3 border-slate-900 p-4 2xl:p-6 rounded-xl 2xl:rounded-2xl shadow-[4px_4px_0px_#0f172a] 2xl:shadow-[6px_6px_0px_#0f172a]"
             >
               <div id="arena-action-text-container" className="flex flex-col gap-0.5 2xl:gap-1.5">
-                <p id="arena-action-title" className="text-xs sm:text-sm 2xl:text-lg font-display font-bold text-slate-800 uppercase tracking-wider">
+                <p id="arena-action-title" className="text-xs sm:text-sm 2xl:text-lg font-display font-bold text-slate-800 tracking-wider">
                   Evaluasi Urutan Storyboard
                 </p>
                 <p id="arena-action-desc" className="text-[10px] sm:text-xs 2xl:text-base text-slate-500 font-bold leading-normal">
@@ -279,19 +288,38 @@ export function ArenaPage({
               </div>
 
               <div id="arena-action-buttons-container" className="flex items-center justify-between sm:justify-end gap-2 sm:gap-3 2xl:gap-4 w-full sm:w-auto shrink-0 border-t sm:border-t-0 border-slate-100 pt-3 sm:pt-0">
-                {attempts > 0 && (
-                  <span id="arena-attempts-indicator" className="text-xs 2xl:text-base font-display font-bold text-rose-600 mr-auto sm:mr-0">
-                    Salah: {attempts}x
-                  </span>
+                {answers.some(a => a.storyId === activeStory.id && a.isCorrect) ? (
+                  <>
+                    <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-100 border border-emerald-700 text-emerald-800 text-xs sm:text-sm font-bold mr-auto sm:mr-0 font-display">
+                      <span>✓</span>
+                      <span>Selesai</span>
+                    </div>
+                    <button
+                      id="arena-check-button"
+                      type="button"
+                      onClick={onCheck}
+                      className="px-4 sm:px-5 2xl:px-8 py-2 2xl:py-3.5 font-display text-xs sm:text-sm 2xl:text-lg font-bold rounded-lg 2xl:rounded-xl border-2 2xl:border-3 transition-all cursor-pointer border-slate-900 text-white bg-emerald-700 hover:bg-emerald-800 shadow-[3px_3px_0px_#0f172a] 2xl:shadow-[5px_5px_0px_#0f172a] active:translate-x-[1px] active:translate-y-[1px]"
+                    >
+                      Buka Ulasan
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    {attempts > 0 && (
+                      <span id="arena-attempts-indicator" className="text-xs 2xl:text-base font-display font-bold text-rose-600 mr-auto sm:mr-0">
+                        Salah: {attempts}x
+                      </span>
+                    )}
+                    <button
+                      id="arena-check-button"
+                      type="button"
+                      onClick={onCheck}
+                      className="px-4 sm:px-5 2xl:px-8 py-2 2xl:py-3.5 font-display text-xs sm:text-sm 2xl:text-lg font-bold rounded-lg 2xl:rounded-xl border-2 2xl:border-3 transition-all cursor-pointer border-slate-900 text-white bg-[#346641] hover:bg-[#2b5436] shadow-[3px_3px_0px_#0f172a] 2xl:shadow-[5px_5px_0px_#0f172a] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[2px_2px_0px_#0f172a]"
+                    >
+                      Periksa Cerita
+                    </button>
+                  </>
                 )}
-                <button
-                  id="arena-check-button"
-                  type="button"
-                  onClick={onCheck}
-                  className="px-4 sm:px-5 2xl:px-8 py-2 2xl:py-3.5 font-display text-xs sm:text-sm 2xl:text-lg font-bold uppercase rounded-lg 2xl:rounded-xl border-2 2xl:border-3 transition-all cursor-pointer border-slate-900 text-white bg-[#346641] hover:bg-[#2b5436] shadow-[3px_3px_0px_#0f172a] 2xl:shadow-[5px_5px_0px_#0f172a] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[2px_2px_0px_#0f172a]"
-                >
-                  Periksa Cerita
-                </button>
               </div>
             </div>
           )}
@@ -307,6 +335,7 @@ export function ArenaPage({
               totalScenes={shuffledScenes.length}
               checked={checked}
               showFeedback={showFeedback}
+              isSolved={answers.some(a => a.storyId === activeStory.id && a.isCorrect)}
               onMoveCard={onMoveCard}
               onDragStart={handleDragStart}
               onDragOver={handleDragOver}
@@ -331,6 +360,7 @@ export function ArenaPage({
         isOpen={showFeedback}
         explanation={activeStory.explanation}
         onAdvance={onAdvance}
+        onClose={onCloseFeedback}
         currentStoryIndex={currentStoryIndex}
         totalStories={totalStories}
         allCompleted={allCompleted}

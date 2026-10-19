@@ -50,8 +50,8 @@
 
 @theme {
   --font-sans: 'Noto Sans', system-ui, -apple-system, sans-serif;
-  --font-display: 'CC Regeneration', 'CCRegeneration', 'Noto Sans', system-ui, sans-serif;
-  --font-serif: 'CC Regeneration', 'CCRegeneration', 'Noto Sans', system-ui, sans-serif;
+  --font-display: 'Noto Sans', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Noto Sans', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
   --radius-3xl: 16px;
@@ -70,6 +70,7 @@ body {
 
 button, .font-display {
   font-family: var(--font-display);
+  font-weight: 700;
 }
 
 /* Custom Scrollbars - Vintage Ink style */

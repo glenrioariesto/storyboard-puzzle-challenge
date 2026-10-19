@@ -1,6 +1,7 @@
 import React from 'react';
 import { ChevronUp, ChevronDown } from 'lucide-react';
 import { Scene } from '../types';
+import { getSlotLabel } from '../utils/text';
 
 interface SceneCardProps {
   scene: Scene;
@@ -8,6 +9,7 @@ interface SceneCardProps {
   totalScenes: number;
   checked: boolean;
   showFeedback: boolean;
+  isSolved?: boolean;
   onMoveCard: (index: number, direction: 'up' | 'down') => void;
   onDragStart: (e: React.DragEvent, index: number) => void;
   onDragOver: (e: React.DragEvent, index: number) => void;
@@ -22,6 +24,7 @@ export function SceneCard({
   totalScenes,
   checked,
   showFeedback,
+  isSolved,
   onMoveCard,
   onDragStart,
   onDragOver,
@@ -33,8 +36,8 @@ export function SceneCard({
 
   // Compute border and badge colors based on validation state
   let cardClass = 'brutalist-card bg-white';
-  if (checked) {
-    cardClass = isPosCorrect 
+  if (checked || isSolved) {
+    cardClass = isPosCorrect || isSolved
       ? 'border-2 border-emerald-600 bg-emerald-50/50 shadow-[4px_4px_0px_#059669]' 
       : 'border-2 border-rose-600 bg-rose-50/50 shadow-[4px_4px_0px_#e11d48]';
   }
@@ -47,17 +50,19 @@ export function SceneCard({
   return (
     <div
       id={`scene-card-${scene.id}`}
-      draggable={!showFeedback}
+      draggable={!showFeedback && !isSolved}
       onDragStart={(e) => onDragStart(e, idx)}
       onDragOver={(e) => onDragOver(e, idx)}
       onDrop={(e) => onDrop(e, idx)}
       onDragEnd={onDragEnd}
-      className={`rounded-xl sm:rounded-2xl 2xl:rounded-3xl p-3 sm:p-4 2xl:p-6 flex flex-row gap-3 sm:gap-4 2xl:gap-6 items-center transition-all duration-200 relative group overflow-hidden cursor-grab active:cursor-grabbing ${cardClass}`}
+      className={`rounded-xl sm:rounded-2xl 2xl:rounded-3xl p-3 sm:p-4 2xl:p-6 flex flex-row gap-3 sm:gap-4 2xl:gap-6 items-center transition-all duration-200 relative group overflow-hidden ${
+        isSolved ? 'cursor-default' : 'cursor-grab active:cursor-grabbing'
+      } ${cardClass}`}
     >
       {/* Scene image rendering - Image Left */}
       <div
         id={`scene-image-container-${scene.id}`}
-        className="w-24 h-24 sm:w-40 sm:h-28 2xl:w-56 2xl:h-40 rounded-lg sm:rounded-xl 2xl:rounded-2xl overflow-hidden bg-slate-950 relative border-2 border-slate-900 pointer-events-none shrink-0"
+        className="w-28 sm:w-44 2xl:w-60 aspect-video rounded-lg sm:rounded-xl 2xl:rounded-2xl overflow-hidden bg-slate-950 relative border-2 border-slate-900 pointer-events-none shrink-0"
       >
         <img
           id={`scene-image-${scene.id}`}
@@ -77,7 +82,7 @@ export function SceneCard({
               id={`scene-slot-badge-${scene.id}`}
               className="bg-slate-900 border-2 border-slate-900 text-[8px] sm:text-[10px] 2xl:text-xs font-display text-white font-bold px-1.5 sm:px-2 2xl:px-3 py-0.5 rounded-md 2xl:rounded-lg"
             >
-              Slot #{idx + 1}
+              {getSlotLabel(idx)}
             </span>
             <h4
               id={`scene-title-${scene.id}`}
@@ -85,16 +90,16 @@ export function SceneCard({
             >
               {scene.title}
             </h4>
-            {checked && (
+            {(checked || isSolved) && (
               <span
                 id={`scene-status-badge-${scene.id}`}
                 className={`inline-flex items-center gap-0.5 text-[8px] sm:text-[9px] 2xl:text-xs font-display font-bold px-1.5 2xl:px-2.5 py-0.5 rounded-md 2xl:rounded-lg border-2 ${
-                  isPosCorrect 
+                  isPosCorrect || isSolved
                     ? 'bg-emerald-100 border-emerald-700 text-emerald-800' 
                     : 'bg-rose-100 border-rose-700 text-rose-800'
                 }`}
               >
-                {isPosCorrect ? '✓ OK' : '✗ Salah'}
+                {isPosCorrect || isSolved ? '✓ OK' : '✗ Salah'}
               </span>
             )}
           </div>
@@ -113,15 +118,15 @@ export function SceneCard({
           <button
             id={`scene-move-up-${scene.id}`}
             type="button"
-            disabled={idx === 0 || showFeedback}
+            disabled={idx === 0 || showFeedback || isSolved}
             onClick={(e) => {
               e.stopPropagation();
               onMoveCard(idx, 'up');
             }}
-            className={`flex-1 py-1 2xl:py-2 flex items-center justify-center gap-1 sm:gap-1.5 2xl:gap-2 rounded-lg 2xl:rounded-xl border-2 text-[9px] sm:text-xs 2xl:text-sm font-display font-bold transition-all cursor-pointer ${
-              idx === 0 || showFeedback
+            className={`flex-1 py-1 2xl:py-2 flex items-center justify-center gap-1 sm:gap-1.5 2xl:gap-2 rounded-lg 2xl:rounded-xl border-2 text-[9px] sm:text-xs 2xl:text-sm font-display font-bold transition-all ${
+              idx === 0 || showFeedback || isSolved
                 ? 'border-slate-200 text-slate-400 bg-slate-50 cursor-not-allowed'
-                : 'border-slate-900 text-slate-800 bg-white hover:bg-slate-50 shadow-[2px_2px_0px_#0f172a] 2xl:shadow-[3px_3px_0px_#0f172a] active:translate-x-[1px] active:translate-y-[1px]'
+                : 'border-slate-900 text-slate-800 bg-white hover:bg-slate-50 shadow-[2px_2px_0px_#0f172a] 2xl:shadow-[3px_3px_0px_#0f172a] active:translate-x-[1px] active:translate-y-[1px] cursor-pointer'
             }`}
           >
             <ChevronUp className="w-3 h-3 sm:w-3.5 sm:h-3.5 2xl:w-5 2xl:h-5" />
@@ -130,15 +135,15 @@ export function SceneCard({
           <button
             id={`scene-move-down-${scene.id}`}
             type="button"
-            disabled={idx === totalScenes - 1 || showFeedback}
+            disabled={idx === totalScenes - 1 || showFeedback || isSolved}
             onClick={(e) => {
               e.stopPropagation();
               onMoveCard(idx, 'down');
             }}
-            className={`flex-1 py-1 2xl:py-2 flex items-center justify-center gap-1 sm:gap-1.5 2xl:gap-2 rounded-lg 2xl:rounded-xl border-2 text-[9px] sm:text-xs 2xl:text-sm font-display font-bold transition-all cursor-pointer ${
-              idx === totalScenes - 1 || showFeedback
+            className={`flex-1 py-1 2xl:py-2 flex items-center justify-center gap-1 sm:gap-1.5 2xl:gap-2 rounded-lg 2xl:rounded-xl border-2 text-[9px] sm:text-xs 2xl:text-sm font-display font-bold transition-all ${
+              idx === totalScenes - 1 || showFeedback || isSolved
                 ? 'border-slate-200 text-slate-400 bg-slate-50 cursor-not-allowed'
-                : 'border-slate-900 text-slate-800 bg-white hover:bg-slate-50 shadow-[2px_2px_0px_#0f172a] 2xl:shadow-[3px_3px_0px_#0f172a] active:translate-x-[1px] active:translate-y-[1px]'
+                : 'border-slate-900 text-slate-800 bg-white hover:bg-slate-50 shadow-[2px_2px_0px_#0f172a] 2xl:shadow-[3px_3px_0px_#0f172a] active:translate-x-[1px] active:translate-y-[1px] cursor-pointer'
             }`}
           >
             <span>Geser Bawah</span>

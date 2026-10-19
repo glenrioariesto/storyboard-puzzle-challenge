@@ -29,4 +29,6 @@ export interface GameState {
   checked: boolean;
   attempts: number;
   answers: StoryAnswer[];
+  missesByStoryId?: Record<number, number>;
+  checkedByStoryId?: Record<number, boolean>;
 }

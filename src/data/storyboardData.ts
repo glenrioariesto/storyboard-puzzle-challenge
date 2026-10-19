@@ -67,11 +67,11 @@ export const STORYBOARD_CAMPAIGN: Story[] = [
     id: 1,
     title: "Level 1: Sura dan Baya",
     description: "Di muara sungai, dua penguasa saling berselisih demi wilayah kekuasaan. Susun 4 adegan cerita Sura dan Baya dengan urutan yang benar!",
-    explanation: "Cerita Sura dan Baya mengikuti struktur naratif klasik: Pengenalan konflik dan gencatan senjata (adegan 1), pelanggaran sumpah oleh Sura (adegan 2), pertempuran dahsyat (adegan 3), serta resolusi dan asal-usul nama Surabaya (adegan 4).",
+    explanation: "Cerita Sura dan Baya mengikuti struktur naratif klasik: Pengenalan konflik dan perjanjian damai di muara (adegan 1), pelanggaran sumpah oleh Sura (adegan 2), pertempuran dahsyat (adegan 3), serta resolusi dan asal-usul nama Surabaya (adegan 4).",
     scenes: [
       {
         id: 0,
-        title: "Gencatan Senjata di Muara",
+        title: "Perjanjian Damai di Muara",
         imageUrl: suraBaya1,
         narrative: "Di muara tempat bertemunya air asin dan air tawar, dua penguasa tak tertandingi selalu hidup dalam perselisihan. Sura, sang penguasa samudera, dan Baya, sang penjaga sungai. Bosan dengan pertumpahan darah yang tiada akhir, mereka akhirnya menarik garis gencatan senjata: laut menjadi wilayah Sura, dan sungai menjadi teritori Baya."
       },

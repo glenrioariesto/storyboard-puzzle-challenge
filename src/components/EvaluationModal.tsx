@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-import { CheckCircle2, ArrowRight, BookOpen } from 'lucide-react';
+import { CheckCircle2, ArrowRight, BookOpen, X } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 interface EvaluationModalProps {
   isOpen: boolean;
   explanation: string;
   onAdvance: () => void;
+  onClose?: () => void;
   currentStoryIndex: number;
   totalStories: number;
   allCompleted?: boolean;
@@ -15,6 +16,7 @@ export function EvaluationModal({
   isOpen,
   explanation,
   onAdvance,
+  onClose,
   currentStoryIndex,
   totalStories,
   allCompleted
@@ -60,22 +62,44 @@ export function EvaluationModal({
       id="evaluation-modal-backdrop"
       className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-3 sm:p-4 2xl:p-8 animate-fadeIn"
     >
+      {/* Backdrop click to dismiss if onClose is provided */}
+      {onClose && (
+        <div
+          id="evaluation-modal-dismiss-area"
+          className="absolute inset-0 cursor-default"
+          onClick={onClose}
+        />
+      )}
+
       {/* Modal Container */}
       <div
         id="evaluation-modal-container"
         className="relative w-full max-w-md sm:max-w-lg 2xl:max-w-2xl brutalist-card bg-emerald-50 border-emerald-700 rounded-2xl 2xl:rounded-3xl p-4 sm:p-6 2xl:p-8 flex flex-col gap-3 sm:gap-4 2xl:gap-6 z-10 select-none shadow-[4px_4px_0px_#047857] sm:shadow-[6px_6px_0px_#047857] max-h-[85vh] overflow-y-auto"
       >
         {/* Header */}
-        <div id="evaluation-modal-header" className="flex items-center gap-2 2xl:gap-3 border-b-2 2xl:border-3 pb-2.5 2xl:pb-4 border-slate-900 shrink-0">
-          <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 2xl:w-8 2xl:h-8 text-emerald-700 shrink-0 animate-bounce" />
-          <h4 id="evaluation-modal-title" className="font-display text-xs sm:text-sm 2xl:text-lg font-bold text-emerald-800 uppercase tracking-wider">
-            STORYBOARD SEJAJAR BENAR (+1)
-          </h4>
+        <div id="evaluation-modal-header" className="flex items-center justify-between border-b-2 2xl:border-3 pb-2.5 2xl:pb-4 border-slate-900 shrink-0">
+          <div className="flex items-center gap-2 2xl:gap-3">
+            <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 2xl:w-8 2xl:h-8 text-emerald-700 shrink-0 animate-bounce" />
+            <h4 id="evaluation-modal-title" className="font-display text-xs sm:text-sm 2xl:text-lg font-bold text-emerald-800 tracking-wider">
+              Storyboard Sejajar Benar (+1)
+            </h4>
+          </div>
+          {onClose && (
+            <button
+              id="evaluation-modal-close-button"
+              type="button"
+              onClick={onClose}
+              className="p-1 2xl:p-2 rounded-lg border-2 border-transparent hover:border-slate-900 hover:bg-emerald-100 transition-all cursor-pointer"
+              title="Tutup"
+            >
+              <X className="w-4 h-4 2xl:w-6 2xl:h-6 text-slate-800" />
+            </button>
+          )}
         </div>
 
         {/* Content */}
         <div id="evaluation-modal-content" className="flex flex-col gap-2 2xl:gap-3 py-1">
-          <div className="flex items-center gap-1.5 2xl:gap-2 text-[10px] sm:text-xs 2xl:text-base font-display text-emerald-800 font-bold uppercase">
+          <div className="flex items-center gap-1.5 2xl:gap-2 text-[10px] sm:text-xs 2xl:text-base font-display text-emerald-800 font-bold">
             <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4 2xl:w-6 2xl:h-6 text-[#346641] shrink-0" />
             <span>Ulasan Alur Cerita</span>
           </div>
