@@ -3,12 +3,23 @@ import { GameState, Scene, StoryAnswer } from '../types';
 import { STORYBOARD_CAMPAIGN } from '../data/storyboardData';
 import { playSynthesizerNote } from '../utils/audio';
 
+export const MAX_POINTS_PER_STORY = 5;
+
+export const calculateStoryPoints = (misses: number): number => {
+  if (misses === 0) return 5;
+  if (misses <= 3) return 3;
+  return 1;
+};
+
 const getRank = (score: number) => {
-  if (score === 5) return { title: "Sutradara Maestro (Legendaris)", desc: "Sempurna! Anda memiliki insting narasi luar biasa dan mampu menyusun semua struktur cerita tanpa kesalahan.", color: "text-emerald-800 border-2 border-emerald-700 bg-emerald-50" };
-  if (score === 4) return { title: "Editor Senior", desc: "Sangat memahami struktur linier cerita, transisi adegan, dan konflik dramatis.", color: "text-indigo-800 border-2 border-indigo-700 bg-indigo-50" };
-  if (score === 3) return { title: "Penulis Skrip Menengah", desc: "Pemahaman narasi yang cukup baik, namun masih ada ruang untuk perbaikan di beberapa level.", color: "text-sky-800 border-2 border-sky-700 bg-sky-50" };
-  if (score === 2) return { title: "Penulis Skrip Magang", desc: "Anda memahami dasar-dasar narasi, tetapi masih perlu mengasah penempatan adegan.", color: "text-[#346641] border-2 border-[#346641] bg-[#346641]/10" };
-  if (score === 1) return { title: "Penonton Pemula", desc: "Masih banyak yang perlu dipelajari tentang alur cerita dan kronologi narasi.", color: "text-amber-800 border-2 border-amber-700 bg-amber-50" };
+  const maxScore = STORYBOARD_CAMPAIGN.length * MAX_POINTS_PER_STORY;
+  const percentage = maxScore > 0 ? Math.round((score / maxScore) * 100) : 0;
+
+  if (percentage === 100) return { title: "Sutradara Maestro (Legendaris)", desc: "Sempurna! Anda memiliki insting narasi luar biasa dan mampu menyusun semua struktur cerita tanpa kesalahan.", color: "text-emerald-800 border-2 border-emerald-700 bg-emerald-50" };
+  if (percentage >= 80) return { title: "Editor Senior", desc: "Sangat memahami struktur linier cerita, transisi adegan, dan konflik dramatis.", color: "text-indigo-800 border-2 border-indigo-700 bg-indigo-50" };
+  if (percentage >= 60) return { title: "Penulis Skrip Menengah", desc: "Pemahaman narasi yang cukup baik, namun masih ada ruang untuk perbaikan di beberapa level.", color: "text-sky-800 border-2 border-sky-700 bg-sky-50" };
+  if (percentage >= 40) return { title: "Penulis Skrip Magang", desc: "Anda memahami dasar-dasar narasi, tetapi masih perlu mengasah penempatan adegan.", color: "text-[#346641] border-2 border-[#346641] bg-[#346641]/10" };
+  if (percentage > 20) return { title: "Penonton Pemula", desc: "Masih banyak yang perlu dipelajari tentang alur cerita dan kronologi narasi.", color: "text-amber-800 border-2 border-amber-700 bg-amber-50" };
   return { title: "Penonton Biasa", desc: "Pelajari lagi perbedaan kronologi cerita, transisi adegan, dan penyelesaian resolusi.", color: "text-rose-800 border-2 border-rose-700 bg-rose-50" };
 };
 
@@ -148,10 +159,13 @@ export const useGameState = () => {
     if (isAllCorrect) {
       playSynthesizerNote('success');
       const currentMisses = state.missesByStoryId?.[activeStory.id] || 0;
+      const earnedPoints = calculateStoryPoints(currentMisses);
       const newAnswer: StoryAnswer = {
         storyId: activeStory.id,
         isCorrect: true,
-        attemptsCount: currentMisses + 1
+        attemptsCount: currentMisses + 1,
+        missCount: currentMisses,
+        points: earnedPoints,
       };
 
       setState(prev => {
@@ -162,7 +176,9 @@ export const useGameState = () => {
         } else {
           updatedAnswers.push(newAnswer);
         }
-        const newScore = updatedAnswers.filter(a => a.isCorrect).length;
+        const newScore = updatedAnswers
+          .filter(a => a.isCorrect)
+          .reduce((sum, a) => sum + a.points, 0);
 
         return {
           ...prev,

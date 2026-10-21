@@ -17,6 +17,8 @@ export interface StoryAnswer {
   storyId: number;
   isCorrect: boolean;
   attemptsCount: number;
+  missCount: number;
+  points: number;
 }
 
 export interface GameState {

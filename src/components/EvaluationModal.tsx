@@ -10,6 +10,7 @@ interface EvaluationModalProps {
   currentStoryIndex: number;
   totalStories: number;
   allCompleted?: boolean;
+  points?: number;
 }
 
 export function EvaluationModal({
@@ -19,7 +20,8 @@ export function EvaluationModal({
   onClose,
   currentStoryIndex,
   totalStories,
-  allCompleted
+  allCompleted,
+  points = 5
 }: EvaluationModalProps) {
   // Trigger festive confetti animation when modal opens
   useEffect(() => {
@@ -81,7 +83,7 @@ export function EvaluationModal({
           <div className="flex items-center gap-2 2xl:gap-3">
             <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 2xl:w-8 2xl:h-8 text-emerald-700 shrink-0 animate-bounce" />
             <h4 id="evaluation-modal-title" className="font-display text-xs sm:text-sm 2xl:text-lg font-bold text-emerald-800 tracking-wider">
-              Storyboard Sejajar Benar (+1)
+              Storyboard Sejajar Benar (+{points})
             </h4>
           </div>
           {onClose && (

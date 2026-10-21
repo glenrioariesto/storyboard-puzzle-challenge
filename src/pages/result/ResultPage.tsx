@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { RotateCcw, BookOpen, X, ChevronRight } from 'lucide-react';
 import { StoryAnswer, Story } from '../../types';
 import { STORYBOARD_CAMPAIGN } from '../../data/storyboardData';
+import { MAX_POINTS_PER_STORY, calculateStoryPoints } from '../../hooks/useGameState';
 import { AudioToggle } from '../../components/AudioToggle';
 import { playSoundEffect } from '../../utils/audio';
 import { getSlotLabel } from '../../utils/text';
@@ -25,7 +26,8 @@ export function ResultPage({
   getRank
 }: ResultPageProps) {
   const rank = getRank(score);
-  const accuracy = Math.round((score / STORYBOARD_CAMPAIGN.length) * 100);
+  const maxScore = STORYBOARD_CAMPAIGN.length * MAX_POINTS_PER_STORY;
+  const accuracy = maxScore > 0 ? Math.round((score / maxScore) * 100) : 0;
 
   // Rekap modal & selected story states
   const [isRekapOpen, setIsRekapOpen] = useState(false);
@@ -88,11 +90,11 @@ export function ResultPage({
               id="result-accuracy-label"
               className="text-[7.5px] sm:text-[9px] 2xl:text-sm font-display font-bold text-slate-500 tracking-wider mb-1 sm:mb-3 2xl:mb-4"
             >
-              Akurasi Struktur
+              Nilai Akhir
             </span>
             <div
               id="result-accuracy-circle"
-              className="relative w-14 h-14 sm:w-28 sm:h-28 2xl:w-40 2xl:h-40 flex items-center justify-center"
+              className="relative w-14 h-14 sm:w-28 sm:h-28 2xl:w-40 2xl:w-40 flex items-center justify-center"
             >
               <div className="absolute inset-0 rounded-full border-2 sm:border-4 2xl:border-6 border-slate-200"></div>
               <div 
@@ -105,7 +107,7 @@ export function ResultPage({
               <div className="flex flex-col items-center">
                 <span id="result-accuracy-percentage" className="text-sm sm:text-2xl 2xl:text-4xl font-black font-display text-slate-900">{accuracy}%</span>
                 <span id="result-accuracy-completed" className="text-[6.5px] sm:text-[8px] 2xl:text-xs font-display text-[#346641] font-bold mt-0.5">
-                  {score}/{STORYBOARD_CAMPAIGN.length} Selesai
+                  {score}/{maxScore} Poin
                 </span>
               </div>
             </div>
@@ -145,11 +147,11 @@ export function ResultPage({
             >
               <div id="result-stat-arranged" className="flex items-center gap-1 2xl:gap-2">
                 <div className="w-1.5 h-1.5 sm:w-2.5 sm:h-2.5 2xl:w-3.5 2xl:h-3.5 rounded-full bg-emerald-500 border border-slate-900"></div>
-                <span>Tersusun: {score}</span>
+                <span>Total Poin: {score}/{maxScore}</span>
               </div>
               <div id="result-stat-evaluated" className="flex items-center gap-1 2xl:gap-2">
                 <div className="w-1.5 h-1.5 sm:w-2.5 sm:h-2.5 2xl:w-3.5 2xl:h-3.5 rounded-full bg-[#346641] border border-slate-900"></div>
-                <span>Evaluasi: {STORYBOARD_CAMPAIGN.length}</span>
+                <span>Evaluasi: {STORYBOARD_CAMPAIGN.length} Level</span>
               </div>
             </div>
           </div>
@@ -315,6 +317,8 @@ export function ResultPage({
               </p>
               {STORYBOARD_CAMPAIGN.map((c) => {
                 const ans = answers.find(a => a.storyId === c.id);
+                const misses = ans?.missCount ?? (ans ? Math.max(0, ans.attemptsCount - 1) : 0);
+                const pts = ans?.points ?? calculateStoryPoints(misses);
                 return (
                   <button
                     key={c.id}
@@ -335,7 +339,9 @@ export function ResultPage({
                         </span>
                       </div>
                       <span id={`rekap-level-attempts-${c.id}`} className="text-xs 2xl:text-sm font-display text-slate-500 truncate">
-                        {ans ? `${ans.attemptsCount}x Cek` : 'Selesai'}
+                        {ans
+                          ? `${misses === 0 ? 'Tanpa Salah' : `Salah ${misses}x`} • Nilai +${pts}`
+                          : 'Selesai'}
                       </span>
                     </div>
                     <div id={`rekap-level-button-action-${c.id}`} className="flex items-center gap-1 2xl:gap-2 shrink-0 text-[#346641] font-bold text-xs 2xl:text-sm font-display bg-white border border-[#346641]/30 px-3 2xl:px-4 py-1.5 2xl:py-2 rounded-lg 2xl:rounded-xl shadow-xs">

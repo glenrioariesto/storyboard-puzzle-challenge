@@ -198,7 +198,7 @@ export function ArenaPage({
             <div
               id="arena-score-badge"
               className="h-8 sm:h-9 md:h-10 lg:h-11 2xl:h-13 px-2 sm:px-2.5 md:px-3 bg-white/95 border-2 2xl:border-3 border-slate-900 rounded-xl 2xl:rounded-2xl shadow-[2px_2px_0px_#0f172a] flex items-center gap-1 shrink-0"
-              title={`Skor Selesai: ${score}/${totalStories}`}
+              title={`Total Poin: ${score}/${totalStories * 5}`}
             >
               <span className="text-xs sm:text-sm md:text-base">🏆</span>
               <span id="arena-score-value" className="font-display text-xs sm:text-sm md:text-base 2xl:text-lg font-black text-[#346641]">
@@ -292,7 +292,7 @@ export function ArenaPage({
                   <>
                     <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-100 border border-emerald-700 text-emerald-800 text-xs sm:text-sm font-bold mr-auto sm:mr-0 font-display">
                       <span>✓</span>
-                      <span>Selesai</span>
+                      <span>Selesai (+{answers.find(a => a.storyId === activeStory.id)?.points ?? 5})</span>
                     </div>
                     <button
                       id="arena-check-button"
@@ -364,6 +364,7 @@ export function ArenaPage({
         currentStoryIndex={currentStoryIndex}
         totalStories={totalStories}
         allCompleted={allCompleted}
+        points={answers.find(a => a.storyId === activeStory.id)?.points ?? (attempts === 0 ? 5 : attempts <= 3 ? 3 : 1)}
       />
     </div>
   );
