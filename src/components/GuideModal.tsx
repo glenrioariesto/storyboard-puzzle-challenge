@@ -93,11 +93,11 @@ export function GuideModal({ isOpen, onClose, title, description }: GuideModalPr
               <div className="bg-emerald-50/60 border-2 border-slate-900 p-3 2xl:p-5 rounded-xl 2xl:rounded-2xl flex flex-col gap-2 2xl:gap-3 text-xs 2xl:text-base text-slate-700 font-medium shadow-[2px_2px_0px_#0f172a]">
                 <p className="flex items-start gap-2">
                   <span className="font-bold text-emerald-700 shrink-0">✓</span>
-                  <span>Susun adegan kronologis dari <strong>Slot Pertama (Atas)</strong> hingga <strong>Slot Terakhir (Bawah)</strong>, lalu klik <strong>Periksa Cerita</strong>.</span>
+                  <span>Susun adegan kronologis dari <strong>Slot Pertama (Atas)</strong> hingga <strong>Slot Terakhir (Bawah)</strong>.</span>
                 </p>
                 <p className="flex items-start gap-2">
                   <span className="font-bold text-emerald-700 shrink-0">✓</span>
-                  <span>Benar tanpa salah: <strong>+5 poin</strong> • Salah 1–3x: <strong>+3 poin</strong> • Salah &gt;3x: <strong>+1 poin</strong> (Nilai akhir dalam persentase 100%).</span>
+                  <span>Klik tombol <strong>Periksa Cerita</strong> jika urutan sudah sesuai untuk mendapat skor penuh.</span>
                 </p>
               </div>
             </div>
